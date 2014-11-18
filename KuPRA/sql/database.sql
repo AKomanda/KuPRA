@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `matavimo_vienetai` (
 
 CREATE TABLE IF NOT EXISTS `naudotojai` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Teises` varchar(30) COLLATE utf16_lithuanian_ci NOT NULL,
   `Vardas` varchar(30) COLLATE utf16_lithuanian_ci NOT NULL,
   `Pavarde` varchar(40) COLLATE utf16_lithuanian_ci NOT NULL,
   `Slapyvardis` varchar(40) COLLATE utf16_lithuanian_ci NOT NULL,
