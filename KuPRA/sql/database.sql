@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `matavimo_vienetai` (
   `Trumpinys` varchar(10) COLLATE utf16_lithuanian_ci NOT NULL,
   `Autorius` int(11) NOT NULL,
   `Pavadinimas` varchar(60) COLLATE utf16_lithuanian_ci NOT NULL,
-  `Tipas` int(11) NOT NULL
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
 -- --------------------------------------------------------
@@ -113,7 +113,8 @@ CREATE TABLE IF NOT EXISTS `saldytuvas` (
 CREATE TABLE IF NOT EXISTS `valgiaraštis` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Autorius` int(11) NOT NULL,
-  `Receptai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL
+  `Receptai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL,
+  PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
