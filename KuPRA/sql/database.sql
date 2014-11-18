@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `maisto_produktai` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Pavadinimas` varchar(60) COLLATE utf16_lithuanian_ci NOT NULL,
   `Matavimo_vienetas` int(11) NOT NULL,
   `Autorius` int(11) NOT NULL,
@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `maisto_produktai` (
 --
 
 CREATE TABLE IF NOT EXISTS `matavimo_vienetai` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Trumpinys` varchar(10) COLLATE utf16_lithuanian_ci NOT NULL,
   `Autorius` int(11) NOT NULL,
   `Pavadinimas` varchar(60) COLLATE utf16_lithuanian_ci NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `naudotojai` (
 --
 
 CREATE TABLE IF NOT EXISTS `receptai` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Autorius` int(11) NOT NULL,
   `Pavadinimas` varchar(60) COLLATE utf16_lithuanian_ci NOT NULL,
   `Vertinimas` float NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `receptai` (
 --
 
 CREATE TABLE IF NOT EXISTS `saldytuvas` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Autorius` int(11) NOT NULL,
   `Produktai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL,
   PRIMARY KEY (`ID`)
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `saldytuvas` (
 --
 
 CREATE TABLE IF NOT EXISTS `valgiaraštis` (
-  `ID` int(11) NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Autorius` int(11) NOT NULL,
   `Receptai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci;
