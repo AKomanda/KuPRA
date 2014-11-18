@@ -148,10 +148,10 @@ INSERT INTO `saldytuvas` (`ID`, `Autorius`, `Produktai`) VALUES
 -- --------------------------------------------------------
 
 --
--- Sukurta duomenų struktūra lentelei `valgiaraštis`
+-- Sukurta duomenų struktūra lentelei `valgiarastis`
 --
 
-CREATE TABLE IF NOT EXISTS `valgiaraštis` (
+CREATE TABLE IF NOT EXISTS `valgiarastis` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Autorius` int(11) NOT NULL,
   `Receptai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL,
@@ -159,10 +159,10 @@ CREATE TABLE IF NOT EXISTS `valgiaraštis` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci AUTO_INCREMENT=3 ;
 
 --
--- Sukurta duomenų kopija lentelei `valgiaraštis`
+-- Sukurta duomenų kopija lentelei `valgiarastis`
 --
 
-INSERT INTO `valgiaraštis` (`ID`, `Autorius`, `Receptai`) VALUES
+INSERT INTO `valgiarastis` (`ID`, `Autorius`, `Receptai`) VALUES
 (1, 1, ''),
 (2, 2, '');
 

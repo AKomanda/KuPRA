@@ -51,5 +51,10 @@ class meniu
 	}
 
 }
+/*
+ * usage
+ * $menu = new meniu('1');
+ * echo $menu->getRecepies()[0][0];
+ */
 
 ?>
