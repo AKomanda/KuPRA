@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `naudotojai` (
   `Adresas` varchar(50) COLLATE utf16_lithuanian_ci NOT NULL,
   `Aprasymas` varchar(1000) COLLATE utf16_lithuanian_ci NOT NULL,
   `Draugai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL,
+  `Ivertinimai` varchar(2000) COLLATE utf16_lithuanian_ci NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_lithuanian_ci AUTO_INCREMENT=1 ;
 
