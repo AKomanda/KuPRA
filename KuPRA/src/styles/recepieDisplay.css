@@ -1,12 +1,13 @@
 @CHARSET "ISO-8859-1";
 
 body {
-    background-color: #d0e4fe;
+    background-color: #005B9A;
+    font-family: "Arial";
+    color: #294752;
 }
 
 h1 {
-    color: orange;
-    text-align: center;
+
 }
 
 p {
@@ -15,20 +16,40 @@ p {
 }
 
 .recepieContainer {
-	padding: 10px;
-	background-color: #847c6a;
-	width: 560px;
-	height: 400px;
+	padding: 15px;
+	background-color: #FAFAFA;
+	width: 660px;
+	height: auto;
+	border-radius: 5px;
 }
 
 .recepieTop {
-	background-color: #A68D5D;
 	float: top;
-	height: 35px;
+	border-radius: 5px;
+	padding: 3px;
 }
 
 .recepieName {
 	display: inline;
+	margin-left: 35px;
+}
+
+.recepieName h1 {
+	display: inline;
+	font-size: 32px;
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+.recepieBy {
+	display: inline;
+	color: #6B9DB3;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.recepieName:first-letter {
+	text-transform: capitalize;
 }
 
 .recepieAuthor {
@@ -37,11 +58,17 @@ p {
 
 .recepieTypes {
 	display: inline;
+	position: relative;
+	right: -300px;
+	color: #6B9DB3;
+	font-style: italic;
+	font-size: 12px;
 }
 
 .recepieTopInfo {
-	background-color: #A68D5D;
-	margin: 2px;
+	margin-left: 35px;
+	margin-right: 35px;
+	padding: 2px;
 }
 
 .recepieTimeToMake {
@@ -52,8 +79,23 @@ p {
 	display: inline;
 }
 
+.recepieTimeToMakeIco {
+	display: inline;
+	content:url(../../resources/icons/clock.png);
+	width: 20px;
+	height: auto;
+}
+
+.recepiePortionCountIco {
+	display: inline;
+	content:url(../../resources/icons/plate.png);
+	width: 20px;
+	height: auto;
+}
+
 .recepieMid {
-	
+	margin-left: 35px;
+	margin-right: 35px;
 }
 
 .recepieProducts {
@@ -62,12 +104,16 @@ p {
 }
 
 .recepieProducts table {
-	background-color: #BCBDC1;
-	width: 250px;
+	width: 235px;
 }
 
 .recepiePhotos {
 	float: right;
+}
+
+.recepiePhotos img {
+	width: 250px;
+	height: auto;
 }
 
 .recepieScore {
@@ -79,10 +125,12 @@ p {
 }
 
 .recepieBottom {
-	
+	margin-left: 35px;
+	margin-right: 35px;
 }
 
 .recepieDescription {
-	background-color: #BCBDC1;
+	text-align: justify;
+	text-justify: inter-word;
 	display:block;
 }

@@ -19,14 +19,15 @@ class recepie {
 		$photos = array("photo1", "photo2");
 		
 		$this->setId("1");
-		$this->setAuthor("1");
+		$this->setAuthor("admin");
 		$this->setName("kotletai");
 		$this->setScore("10");
 		$this->setType($types);
 		$this->setPortionCount("3");
 		$this->setTimeToMake("20");
 		$this->setProducts($products);
-		$this->setDescription("Įpilame pieno ir įdedame miltų");
+		$this->setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis velit a mauris dapibus iaculis. Sed ac nisl quis leo malesuada rutrum sit amet ac massa. Nunc porttitor quis nibh et consequat. Mauris ultricies augue felis, eget bibendum neque blandit nec. Phasellus eu ultrices augue. Curabitur at auctor nisl. In sollicitudin felis ac dolor dapibus, nec ornare neque commodo.
+Pellentesque eu lectus ut ligula lacinia commodo. Proin leo eros, rutrum at convallis in, cursus a dolor. Sed ut dapibus elit. Nunc iaculis risus eget nunc blandit, vel suscipit ex cursus. Donec sed ornare augue. Curabitur dictum, lectus ac suscipit aliquet, mi enim condimentum elit, id congue urna sapien rhoncus diam. Maecenas scelerisque tincidunt arcu, eu eleifend lorem laoreet at. Mauris hendrerit magna ipsum, vitae congue mauris eleifend a. Vestibulum non odio urna. Sed eros quam, condimentum id risus convallis, ultrices consectetur libero. Quisque id posuere lorem. Nulla et orci porta, commodo mi sit amet, finibus justo. Proin id mi sed tellus mollis interdum vel maximus leo. Vestibulum posuere ultricies imperdiet.");
 		$this->setPhotos($photos);
 		$this->setVisibility("1");
 	}
