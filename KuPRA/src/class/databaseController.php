@@ -15,31 +15,6 @@ class databaseController {
 	}
 	
 	
-	public function getMeniuId($author) {
-		global $conn;
-		$result = mysqli_query($conn, "SELECT id FROM valgiarastis WHERE Autorius = " . $author);
-		return "a";
-	}
-	
-	public function getMeniuRecepies($author) {
-		global $conn;
-		$result = mysqli_query($conn, 'SELECT receptai FROM valgiarastis WHERE Autorius = "' . $author . '"') or die("Bad syntax");
-		/*
-		 * $result = recepto_id:porciju_sk:data;recepto_id:porciju_sk:data;
-		 */
-		
-		$num=$result->num_rows;
-		$result = $result->fetch_assoc();
-		
-		$recepies = explode(";", (string) $result['receptai']);
-		$finalRecepies = array();
-		for($i = 0; $i < sizeof($recepies); $i++) {
-			$dividedRecepie = explode(":", $recepies[$i]);
-			array_push ($finalRecepies, $dividedRecepie);
-		}
-		
-		return $finalRecepies;
-	}
-
+ 	
 }
 ?>

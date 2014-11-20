@@ -1,3 +1,3 @@
 <?php
-	echo "just trying out if git works"
+	include_once "display/recepieDisplay.php";
 ?>

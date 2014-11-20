@@ -27,16 +27,18 @@ class meniu
 		/*
 		 * grazina integer
 		 */
-		$this->id = $databaseController->getMeniuId($author); //kazkokia funkcija kuri is duomenu bazes traukia id
+		$this->setId($databaseController->getMeniuId($author)); //kazkokia funkcija kuri is duomenu bazes traukia id
 		/*
 		 * grazina integer
 		 */
-		$this->author = $author;
+		$this->setAuthor($author);
 		/*
 		 * grazina array
 		 */
-		$this->recepies = $databaseController->getMeniuRecepies($author); //kazkokia funckija kuri is domenu bazes traukia meniu
+		$this->setRecepies($databaseController->getMeniuRecepies($author)); //kazkokia funckija kuri is domenu bazes traukia meniu
 	}
+	
+	//get functions
 
 	public function getId() {
 		return $this->id;
@@ -48,6 +50,20 @@ class meniu
 
 	public function getRecepies() {
 		return $this->recepies;
+	}
+	
+	//set functions
+	
+	public function setId($val) {
+		$this->id = $val;
+	}
+	
+	public function setAuthor($val) {
+		$this->author = $val;
+	}
+	
+	public function setRecepies($val) {
+		$this->recepies = $val;
 	}
 
 }
