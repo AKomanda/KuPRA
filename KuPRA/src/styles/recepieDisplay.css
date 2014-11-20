@@ -1,0 +1,88 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    background-color: #d0e4fe;
+}
+
+h1 {
+    color: orange;
+    text-align: center;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 20px;
+}
+
+.recepieContainer {
+	padding: 10px;
+	background-color: #847c6a;
+	width: 560px;
+	height: 400px;
+}
+
+.recepieTop {
+	background-color: #A68D5D;
+	float: top;
+	height: 35px;
+}
+
+.recepieName {
+	display: inline;
+}
+
+.recepieAuthor {
+	display: inline;
+}
+
+.recepieTypes {
+	display: inline;
+}
+
+.recepieTopInfo {
+	background-color: #A68D5D;
+	margin: 2px;
+}
+
+.recepieTimeToMake {
+	display: inline;
+}
+
+.recepiePortionCount {
+	display: inline;
+}
+
+.recepieMid {
+	
+}
+
+.recepieProducts {
+	display: inline;
+	float: left;
+}
+
+.recepieProducts table {
+	background-color: #BCBDC1;
+	width: 250px;
+}
+
+.recepiePhotos {
+	float: right;
+}
+
+.recepieScore {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.recepieBottom {
+	
+}
+
+.recepieDescription {
+	background-color: #BCBDC1;
+	display:block;
+}

@@ -57,12 +57,14 @@ $receptas = new recepie ();
 			}
 			?>
 			</div>
+			<div class="clear"/>
 		<div class="recepieScore">
 			<?php
 			echo $receptas->getScore ();
 			?>
 			</div>
 	</div>
+	<div class="clear"/>
 	<div class="recepieBottom">
 		<div class="recepieDescription">
 			<?php
