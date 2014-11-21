@@ -11,6 +11,8 @@
 <body>
 <?php
 include_once "display/recepieDisplay.php";
+include_once "class/databaseController.php";
+databaseController::getDB();
 ?>
 </body>
 

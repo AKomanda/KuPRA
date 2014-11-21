@@ -7,4 +7,4 @@ include_once 'measurementUnit.php';
  */
 $measurementUnits = new measurementUnit(1, "Kilogramai", "kg", "masė");
 echo $measurementUnits->getType();
-?>
+?>	
