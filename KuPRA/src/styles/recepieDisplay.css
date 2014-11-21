@@ -69,6 +69,7 @@ p {
 	margin-left: 35px;
 	margin-right: 35px;
 	padding: 2px;
+	padding-bottom: 15px;
 }
 
 .recepieTimeToMake {
@@ -96,6 +97,7 @@ p {
 .recepieMid {
 	margin-left: 35px;
 	margin-right: 35px;
+	padding-bottom: 15px;
 }
 
 .recepieProducts {
@@ -105,9 +107,15 @@ p {
 
 .recepieProducts table {
 	width: 235px;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border:  5px solid #fff;
+	background: #fff;
 }
 
 .recepiePhotos {
+	display: inline;
 	float: right;
 }
 
@@ -120,17 +128,168 @@ p {
 	float: right;
 }
 
+.recepieScore #starFull {
+	display: inline;
+	content:url(../../resources/icons/full_star.png);
+	width: 20px;
+	height: auto;
+}
+
+.recepieScore #starEmpty {
+	display: inline;
+	content:url(../../resources/icons/empty_star.png);
+	width: 20px;
+	height: auto;
+}
+
 .clear {
 	clear: both;
 }
 
 .recepieBottom {
-	margin-left: 35px;
-	margin-right: 35px;
+	padding-top: 15px;
 }
 
 .recepieDescription {
+	padding: 15px 10px 10px 10px;
+	box-shadow: 0 0 5px #ccc;
+	border:  5px solid #fff;
+	background: #fff;
 	text-align: justify;
-	text-justify: inter-word;
 	display:block;
+}
+
+/* .bottom-slider { */
+/* 	-moz-box-shadow: 0 0 5px #ccc; */
+/* 	-webkit-box-shadow: 0 0 5px #ccc; */
+/* 	box-shadow: 0 0 5px #ccc; */
+/* 	border:  5px solid #fff; */
+/* 	background: #fff; */
+/* 	left: -5px; */
+/* 	width: 95%; */
+/*     white-space: nowrap; */
+/*     overflow-x: auto; */
+/*     line-height: 1em; */
+/* } */
+
+/* .bottom-slider a { */
+/*     display: inline-block; */
+/* } */
+
+/* .bottom-slider img { */
+/* 	width: 50px; */
+/* 	height: auto; */
+/* } */
+
+#carousel-wrapper {
+	position: relative;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	white-space: nowrap;
+	line-height: 1em;
+}
+
+#carousel, #thumbs {
+	overflow: hidden;
+	width: 230px;
+	height: auto;
+}
+
+#carousel-wrapper .caroufredsel_wrapper {
+	box-shadow: 0 0 5px #899;
+}
+
+#carousel span, #carousel img, #thumbs a, #thumbs img {
+	display: block;
+	float: left;
+}
+
+#carousel span, #carousel a, #thumbs span, #thumbs a {
+	position: relative;
+}
+
+#carousel img, #thumbs img {
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width:280px;
+	height: auto;
+}
+
+#carousel img.glare, #thumbs img.glare {
+	width: 102%;
+	height: auto;
+}
+
+#carousel span {
+	width: 100%;
+	height: auto;
+}
+
+#thumbs-wrapper {
+	padding-left: 21px;
+	padding-right: 21px;
+	position: relative;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	white-space: nowrap;
+	overflow-x: auto;
+	line-height: 1em;
+	
+}
+#thumbs a {
+	width: 50px;
+	height: auto;
+	margin: 0 5px;
+	overflow: hidden;
+}
+
+#thumbs img {
+	width: 50px;
+	height: auto;
+}
+
+#thumbs a:hover, #thumbs a.selected {
+	border-color: #566;
+}
+
+
+#prev, #next {
+	background: transparent url('img/gui/carousel_nav.png') no-repeat
+		0 0;
+	display: block;
+	width: 19px;
+	height: 20px;
+	margin-top: -10px;
+	position: absolute;
+	top: 50%;
+}
+
+#prev {
+	background-position: 0 0;
+	left: 0px;
+}
+
+#next {
+	background-position: -19px 0;
+	right: 0px;
+}
+
+#prev:hover {
+	background-position: 0 -20px;
+}
+
+#next:hover {
+	background-position: -19px -20px;
+}
+
+#prev.disabled, #next.disabled {
+	display: none !important;
 }

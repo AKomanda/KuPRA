@@ -5,7 +5,7 @@ class databaseController {
 	private $username = "root";
 	private $database = 'kupra';
 	private $password = "";
-	private  $_pdo;
+	private $_pdo;
 	private $_query;
 	private $_error = false;
 	private $_results;

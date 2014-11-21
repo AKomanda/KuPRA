@@ -60,12 +60,49 @@ $receptas = new recepie ();
 			//	echo $receptas->getPhotos ()[$i];
 			//}
 			?>
-			<img src="../resources/testavimoSumetimai/kotletai.jpg" />
+			
+			<div id="carousel-wrapper">
+				<div id="carousel">
+					<span id="pixar"><img src="../resources/testavimoSumetimai/kotletai.jpg" /></span>
+					<span id="bugs"><img src="../resources/testavimoSumetimai/kotletai2.jpeg" /></span>
+					<span id="cars"><img src="../resources/testavimoSumetimai/kotletai3.jpg" /></span>
+					<span id="incred"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="monsters"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="nemo"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="rat"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="toystory"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="up"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+					<span id="walle"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+				</div>
 			</div>
+			<div id="thumbs-wrapper">
+				<div id="thumbs">
+					<a href="#pixar" class="selected"><img src="../resources/testavimoSumetimai/kotletai.jpg" /></a>
+					<a href="#bugs"><img src="../resources/testavimoSumetimai/kotletai2.jpeg" /></a>
+					<a href="#cars"><img src="../resources/testavimoSumetimai/kotletai3.jpg" /></a>
+					<a href="#incred"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+					<a href="#monsters"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+					<a href="#nemo"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+					<a href="#rat"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+					<a href="#toystory"><img src="../resources/testavimoSumetimai/kotletai4.jpg"  /></a>
+					<a href="#up"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+					<a href="#walle"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+				</div>
+				<a id="prev" href="#"></a>
+				<a id="next" href="#"></a>
+			</div>
+
 		<div class="clear"></div>
 		<div class="recepieScore">
 			<?php
-			echo $receptas->getScore ();
+			$out = "";
+			for($i = 0; $i <  $receptas->getScore (); $i ++) {
+				$out .= "<div id='starFull'></div>";
+			}
+			for($i = 0; $i <  10-$receptas->getScore (); $i ++) {
+				$out .= "<div id='starEmpty'></div>";
+			}
+			echo $out . " " . $receptas->getScore() ."/10";
 			?>
 			</div>
 	</div>

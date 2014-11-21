@@ -21,7 +21,7 @@ class recepie {
 		$this->setId("1");
 		$this->setAuthor("admin");
 		$this->setName("kotletai");
-		$this->setScore("10");
+		$this->setScore("8");
 		$this->setType($types);
 		$this->setPortionCount("3");
 		$this->setTimeToMake("20");
