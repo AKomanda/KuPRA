@@ -43,7 +43,8 @@
 .recepieTypes {
 	display: inline;
 	position: relative;
-	right: -300px;
+	float: right;
+	padding-top: 5px;
 	color: #6B9DB3;
 	font-style: italic;
 	font-size: 12px;

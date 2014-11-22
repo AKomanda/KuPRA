@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="styles/recepieDisplay.css">
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 <link rel="stylesheet" type="text/css" href="styles/topBar.css">
+<link rel="stylesheet" type="text/css" href="styles/topNav.css">
 
 <!-- jQuery library (served from Google) -->
 <script
@@ -67,7 +68,7 @@
 <div class="awesomePage">
 <?php
 include_once "display/topBar.php";
-
+include_once "display/topNav.php";
 include_once "display/recepieDisplay.php";
 include_once "class/databaseController.php";
 include_once "class/recepie.php";
