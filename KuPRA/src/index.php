@@ -8,6 +8,7 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="styles/jquery.carouFredSel-6.0.4-packed.js"></script>
+
 <script type="text/javascript">
 			$(function() {
 				
