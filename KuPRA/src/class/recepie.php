@@ -1,35 +1,58 @@
 <?php
+include_once "class/databaseController.php";
 class recepie {
 	private $id;
 	public $author;
 	public $name;
 	public $score;
-	public $type;
+	public $scores = array();
+	public $type = array();
 	public $portionCount;
 	public $timeToMake;
 	public $products;
 	public $description;
-	public $photos;
+	public $photos = array();
 	public $visibility;
 	
 	
 	public function __construct() {
-		$types = array("desertai", "gėrimai");
 		$products = array(array("Pienas", "1"), array("Miltai", "2"));
-		$photos = array("photo1", "photo2");
-		
-		$this->setId("1");
-		$this->setAuthor("admin");
-		$this->setName("kotletai");
-		$this->setScore("8");
-		$this->setType($types);
-		$this->setPortionCount("3");
-		$this->setTimeToMake("20");
 		$this->setProducts($products);
-		$this->setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis velit a mauris dapibus iaculis. Sed ac nisl quis leo malesuada rutrum sit amet ac massa. Nunc porttitor quis nibh et consequat. Mauris ultricies augue felis, eget bibendum neque blandit nec. Phasellus eu ultrices augue. Curabitur at auctor nisl. In sollicitudin felis ac dolor dapibus, nec ornare neque commodo.
-Pellentesque eu lectus ut ligula lacinia commodo. Proin leo eros, rutrum at convallis in, cursus a dolor. Sed ut dapibus elit. Nunc iaculis risus eget nunc blandit, vel suscipit ex cursus. Donec sed ornare augue. Curabitur dictum, lectus ac suscipit aliquet, mi enim condimentum elit, id congue urna sapien rhoncus diam. Maecenas scelerisque tincidunt arcu, eu eleifend lorem laoreet at. Mauris hendrerit magna ipsum, vitae congue mauris eleifend a. Vestibulum non odio urna. Sed eros quam, condimentum id risus convallis, ultrices consectetur libero. Quisque id posuere lorem. Nulla et orci porta, commodo mi sit amet, finibus justo. Proin id mi sed tellus mollis interdum vel maximus leo. Vestibulum posuere ultricies imperdiet.");
-		$this->setPhotos($photos);
-		$this->setVisibility("1");
+	}
+	
+	public static function getRecepie($id){
+		$recepie = new recepie;
+		$recepie->setID($id);
+		$recData = databaseController::getDB()->get("receptai", array("id", "=", $id))->results()[0];
+		$auth = databaseController::getDB()->query("SELECT slapyvardis from vartotojas WHERE id = ?", array($recData->Autorius));
+		$recepie->setAuthor($auth->results()[0]->slapyvardis);
+		$recepie->setName($recData->Pavadinimas);
+		$recepie->setPortionCount($recData->Porciju_skaicius);
+		$recepie->setTimeToMake($recData->Gamybos_trukme);
+		$recepie->setDescription($recData->Aprasymas);
+		$recepie->setVisibility($recData->Viesumas);		
+		$recScrs = databaseController::getDB()->get("vertinimai", array("receptas", "=", $id))->results();
+		foreach($recScrs as $result){
+			$u = databaseController::getDB()->query("SELECT slapyvardis from vartotojas WHERE id = ?", array($result->Vertintojas))->results()[0]->slapyvardis;
+			$recepie->scores[$u] = $result->Vertinimas;
+		}
+		$recepie->mean();
+		$recTypes = databaseController::getDB()->get("recepto_tipai", array("receptas", "=", $id))->results();
+		foreach($recTypes as $type){
+			$typeName = databaseController::getDB()->query("SELECT Pavadinimas FROM tipas WHERE id = ?", array($type->Tipas))->results()[0]->Pavadinimas;
+			array_push($recepie->type, $typeName);
+		}
+		$recPictures = databaseController::getDB()->get("receptu_nuotraukos", array("receptas", "=", $id))->results();
+		foreach($recPictures as $picture){
+			array_push($recepie->photos, $picture->Nuotrauka);
+		}
+		return $recepie;
+	}
+	
+	private function mean(){
+		$count = count($this->scores);
+		$sum = array_sum($this->scores);
+	    $this->score = $sum/$count;
 	}
 	
 	// get functions

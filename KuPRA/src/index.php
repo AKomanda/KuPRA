@@ -64,7 +64,9 @@
 <?php
 include_once "display/recepieDisplay.php";
 include_once "class/databaseController.php";
-databaseController::getDB ();
+include_once "class/recepie.php";
+$user = databaseController::getDB()->get("recepto_tipai", array('tipas', '=', 2));
+recepie::getRecepie(1);
 ?>
 </body>
 
