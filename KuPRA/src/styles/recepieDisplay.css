@@ -1,20 +1,4 @@
 @CHARSET "ISO-8859-1";
-
-body {
-    background-color: #005B9A;
-    font-family: "Arial";
-    color: #294752;
-}
-
-h1 {
-
-}
-
-p {
-    font-family: "Times New Roman";
-    font-size: 20px;
-}
-
 .recepieContainer {
 	padding: 15px;
 	background-color: #FAFAFA;
