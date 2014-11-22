@@ -3,7 +3,7 @@ include_once "./class/recepie.php";
 $receptas = recepie::getRecepie(1);
 ?>
 
-<div class="recepieContainer">
+<div class="mainContainer">
 	<div class="recepieTop">
 		<div class="recepieName">
 		<?php echo "<h1>" . $receptas->getName()."</h1>"?>
@@ -114,6 +114,7 @@ $receptas = recepie::getRecepie(1);
 			?>
 		</div>
 	</div>
+</div>
 </div>
 
 <?

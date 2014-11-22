@@ -2,10 +2,7 @@
 <html>
 <head>
 <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>  -->
-<link rel="stylesheet" type="text/css" href="styles/recepieDisplay.css">
 <link rel="stylesheet" type="text/css" href="styles/main.css">
-<link rel="stylesheet" type="text/css" href="styles/topBar.css">
-<link rel="stylesheet" type="text/css" href="styles/topNav.css">
 
 <!-- jQuery library (served from Google) -->
 <script
@@ -70,8 +67,10 @@
 include_once "display/topBar.php";
 include_once "display/topNav.php";
 include_once "display/recepieDisplay.php";
+include_once "display/newRecepieDisplay.php";
 include_once "class/databaseController.php";
 include_once "class/recepie.php";
+
 $user = databaseController::getDB()->get("recepto_tipai", array('tipas', '=', 2));
 recepie::getRecepie(1);
 ?>
