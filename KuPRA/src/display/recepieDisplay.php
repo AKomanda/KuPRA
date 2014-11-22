@@ -1,6 +1,6 @@
 <?php
 include_once "./class/recepie.php";
-$receptas = new recepie ();
+$receptas = recepie::getRecepie(1);
 ?>
 
 <div class="recepieContainer">
