@@ -55,48 +55,58 @@ $receptas = recepie::getRecepie(1);
 		</div>
 		<div class="recepiePhotos">
 			<?php
+// 			$out = "";
+// 			$out2 = "";
+// 			$out .= '<div id="carousel-wrapper"><div id="carousel">';
+// 			for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
+// 				$out .= '<span id="' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
+// 				$out2 .= '<span id="#' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
+// 			}
+// 			$out .= '</div></div>';
 			
-			//for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
-			//	echo $receptas->getPhotos ()[$i];
-			//}
+// 			$out .= '<div id="thumbs-wrapper"><div id="thumbs">';
+// 			$out .= $out2;
+// 			$out .= '</div>';
+// 			$out .= '<a id="prev" href="#"></a><a id="next" href="#"></a>';
+// 			$out .= '</div>';
+// 			echo $out;
+			
+
 			?>
 			
 			<div id="carousel-wrapper">
 				<div id="carousel">
-					<span id="pixar"><img src="../resources/testavimoSumetimai/kotletai.jpg" /></span>
-					<span id="bugs"><img src="../resources/testavimoSumetimai/kotletai2.jpeg" /></span>
-					<span id="cars"><img src="../resources/testavimoSumetimai/kotletai3.jpg" /></span>
-					<span id="incred"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="monsters"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="nemo"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="rat"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="toystory"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="up"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
-					<span id="walle"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></span>
+				<?php 
+
+				for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
+					echo '<span id="' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
+				}
+
+				?>
+
 				</div>
 			</div>
 			<div id="thumbs-wrapper">
 				<div id="thumbs">
-					<a href="#pixar" class="selected"><img src="../resources/testavimoSumetimai/kotletai.jpg" /></a>
-					<a href="#bugs"><img src="../resources/testavimoSumetimai/kotletai2.jpeg" /></a>
-					<a href="#cars"><img src="../resources/testavimoSumetimai/kotletai3.jpg" /></a>
-					<a href="#incred"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
-					<a href="#monsters"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
-					<a href="#nemo"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
-					<a href="#rat"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
-					<a href="#toystory"><img src="../resources/testavimoSumetimai/kotletai4.jpg"  /></a>
-					<a href="#up"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
-					<a href="#walle"><img src="../resources/testavimoSumetimai/kotletai4.jpg" /></a>
+				<?php 
+				for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
+					echo '<a href="#' . $i . '" class="selected"><img src="' . $receptas->getPhotos ()[$i] . '" /></a>';
+				}
+				
+				?>
+
 				</div>
 				<a id="prev" href="#"></a>
 				<a id="next" href="#"></a>
 			</div>
+			
+		</div>
 
 		<div class="clear"></div>
 		<div class="recepieScore">
 			<?php
 			$out = "";
-			for($i = 0; $i <  $receptas->getScore (); $i ++) {
+			for($i = 0; $i < round($receptas->getScore (), 0, PHP_ROUND_HALF_DOWN); $i ++) {
 				$out .= "<div id='starFull'></div>";
 			}
 			for($i = 0; $i <  10-$receptas->getScore (); $i ++) {

@@ -14,29 +14,15 @@ class meniu
 	/*
 	 * receptu masyvas
 	 */
-	public $recepies;
-	/*
-	 * duomenu bazes valdytojas
-	 */
-	private $databaseController = null;
+	public $recepies = array();
+
 	
 
 
-	public function __construct($author) {
-		$databaseController = new databaseController();
-		/*
-		 * grazina integer
-		 */
-		$this->setId($databaseController->getMeniuId($author)); //kazkokia funkcija kuri is duomenu bazes traukia id
-		/*
-		 * grazina integer
-		 */
-		$this->setAuthor($author);
-		/*
-		 * grazina array
-		 */
-		$this->setRecepies($databaseController->getMeniuRecepies($author)); //kazkokia funckija kuri is domenu bazes traukia meniu
+	public function __construct() {
 	}
+	
+	
 	
 	//get functions
 
@@ -67,10 +53,5 @@ class meniu
 	}
 
 }
-/*
- * usage
- * $menu = new meniu('1');
- * echo $menu->getRecepies()[0][0];
- */
 
 ?>
