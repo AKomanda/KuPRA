@@ -7,7 +7,7 @@ body {
 }
 
 .awesomePage {
-	width: 950px;
+	width: 1050px;
     margin-left: auto;
     margin-right: auto;    
 	
@@ -26,7 +26,7 @@ p {
 .mainContainer {
 	padding: 15px;
 	background-color: #FAFAFA;
-	width: 660px;
+	width: 760px;
 	height: auto;
 	border-radius: 5px;
 }
@@ -412,3 +412,48 @@ p {
     color: #fff;
 }
 
+
+/* Ne pilnu receptu display */
+
+.recepieContainer {
+	width: 223px;
+	margin: 10px 10px 10px 10px;
+	min-height: 200px;
+	box-shadow: 0 0 5px #ccc;
+	border:  5px solid #fff;
+	background: #fff;
+	text-align: justify;
+	display:block;
+}
+
+.receptoPavadinimas {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.receptoNuotrauka {
+	display: block;
+	height: auto;
+	vertical-align: bottom;
+}
+
+.receptoNuotrauka img {
+	width: 100%;
+}
+
+.miniReceptoBottom {
+	position: relative;
+	height: 15px;
+}
+
+.porcijuSkaicius {
+	position: absolute;
+	display: inline;
+	left: 0;
+}
+
+.gaminimoData {
+	position: absolute;
+	display: inline;
+	right: 0;
+}

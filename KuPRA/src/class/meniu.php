@@ -3,10 +3,6 @@
 include_once "databaseController.php";
 class meniu
 {
-	/*
-	 * meniu id
-	 */
-	private $id;
 	/* 
 	 * meniu autorius
 	 */
@@ -22,13 +18,32 @@ class meniu
 	public function __construct() {
 	}
 	
+	public static function getMeniu($author){
+		$meniu = new meniu;
+		$meniu->setAuthor($author);
+		$meniuData = databaseController::getDB()->get("valgiarastis", array("Vartotojas", "=", $author))->results();
+		
+		
+		foreach($meniuData as $receptas) {
+			$receptoNuotraukos = databaseController::getDB()->query("SELECT Nuotrauka FROM receptu_nuotraukos WHERE receptas = ?", array($receptas->Receptas))->results();
+			$receptas->Nuotraukos = $receptoNuotraukos;
+		}
+		
+		foreach($meniuData as $receptas) {
+			$recepieName = databaseController::getDB()->query("SELECT Pavadinimas FROM receptai WHERE id = ?", array($receptas->Receptas))->results()[0]->Pavadinimas;
+			$receptas->Receptas = $recepieName;
+		}
+
+		$meniu->recepies = $meniuData;
+		
+		
+		return $meniu;
+	}
 	
 	
 	//get functions
 
-	public function getId() {
-		return $this->id;
-	}
+
 
 	public function getAuthor() {
 		return $this->author;
@@ -40,9 +55,6 @@ class meniu
 	
 	//set functions
 	
-	public function setId($val) {
-		$this->id = $val;
-	}
 	
 	public function setAuthor($val) {
 		$this->author = $val;

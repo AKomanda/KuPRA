@@ -1,6 +1,7 @@
 <?php
 include_once "./class/recepie.php";
-$receptas = recepie::getRecepie(1);
+$id=$_GET['id'];
+$receptas = recepie::getRecepie($id);
 ?>
 
 <div class="mainContainer">
@@ -54,26 +55,7 @@ $receptas = recepie::getRecepie(1);
 	?>
 		</div>
 		<div class="recepiePhotos">
-			<?php
-// 			$out = "";
-// 			$out2 = "";
-// 			$out .= '<div id="carousel-wrapper"><div id="carousel">';
-// 			for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
-// 				$out .= '<span id="' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
-// 				$out2 .= '<span id="#' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
-// 			}
-// 			$out .= '</div></div>';
-			
-// 			$out .= '<div id="thumbs-wrapper"><div id="thumbs">';
-// 			$out .= $out2;
-// 			$out .= '</div>';
-// 			$out .= '<a id="prev" href="#"></a><a id="next" href="#"></a>';
-// 			$out .= '</div>';
-// 			echo $out;
-			
-
-			?>
-			
+		
 			<div id="carousel-wrapper">
 				<div id="carousel">
 				<?php 
