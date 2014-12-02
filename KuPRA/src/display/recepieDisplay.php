@@ -68,19 +68,23 @@ $receptas = recepie::getRecepie($id);
 
 				</div>
 			</div>
-			<div id="thumbs-wrapper">
-				<div id="thumbs">
+			<div id='thumbs-wrapper'>
+			<div id='thumbs'>
+				
 				<?php 
-				for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
-					echo '<a href="#' . $i . '" class="selected"><img src="' . $receptas->getPhotos ()[$i] . '" /></a>';
+				if (sizeOf($receptas->getPhotos()) >= 2) {
+					echo "";
+					for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
+						echo '<a href="#' . $i . '" class="selected"><img src="' . $receptas->getPhotos ()[$i] . '" /></a>';
+					}
+					echo "";
 				}
 				
-				?>
-
+				?>	
 				</div>
-				<a id="prev" href="#"></a>
-				<a id="next" href="#"></a>
-			</div>
+				<a id='prev' href='#'></a>
+				<a id='next' href='#'></a>
+				</div>		
 			
 		</div>
 

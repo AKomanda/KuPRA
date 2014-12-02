@@ -28,6 +28,10 @@ class meniu
 			$receptoNuotraukos = databaseController::getDB()->query("SELECT Nuotrauka FROM receptu_nuotraukos WHERE receptas = ?", array($receptas->Receptas))->results();
 			$receptas->Nuotraukos = $receptoNuotraukos;
 		}
+	
+		foreach($meniuData as $receptas) {
+			$receptas->ID = $receptas->Receptas;
+		}
 		
 		foreach($meniuData as $receptas) {
 			$recepieName = databaseController::getDB()->query("SELECT Pavadinimas FROM receptai WHERE id = ?", array($receptas->Receptas))->results()[0]->Pavadinimas;

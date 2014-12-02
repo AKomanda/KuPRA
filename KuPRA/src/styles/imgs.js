@@ -1,7 +1,7 @@
 			$(function() {
 				
 				$('#carousel span').append('<img src="styles/img/gui/carousel_glare.png" class="glare" />');
-				$('#thumbs a').append('<img src="styles/img/gui/carousel_glare_small.png" class="glare" />');
+				//$('#thumbs a').append('<img src="styles/img/gui/carousel_glare_small.png" class="glare" />');
 
 				$('#carousel').carouFredSel({
 					responsive: true,
@@ -26,7 +26,7 @@
 					next: '#next',
 					items: {
 						visible: {
-							min: 2,
+							min: 0,
 							max: 6
 						},
 						height: '66%'

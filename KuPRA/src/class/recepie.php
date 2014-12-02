@@ -1,7 +1,7 @@
 <?php
 include_once "databaseController.php";
 class recepie {
-	private $id;
+	public $id;
 	public $author;
 	public $name;
 	public $score;
