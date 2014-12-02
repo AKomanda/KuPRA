@@ -32,6 +32,15 @@ class user
     	$user->setId($id);
     	$userData = databaseController::getDB()->get("vartotojas", array("id", "=", $id))->results()[0];
     	$user->class = $userData->Teises;
+    	$user->setName($userData->Vardas);
+    	$user->setSurname($userData->Pavarde);
+    	$user->setAdress($userData->Adresas);
+    	$user->setNick($userData->Slapyvardis);
+    	$user->setDescription($userData->Aprasymas);
+    	$user->setPhoto($userData->Nuotrauka);
+    	$user->setLogin($userData->Slapyvardis);
+    	$user->setPassword($userData->Slaptazodis);
+    	$user->menu = meniu::getMeniu($id);
     	return $user;
     }
     
