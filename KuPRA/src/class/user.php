@@ -6,6 +6,7 @@ include_once "databaseController.php";
 
 class user
 {
+	public $id;
     public $class;
     public $nick;
     private $name;
@@ -23,6 +24,17 @@ class user
 
     //####################### GETERIAI #############################
 
+    public function __construct() {
+    }
+    
+    public static function getUser($id) {
+    	$user = new user;
+    	$user->setId($id);
+    	$userData = databaseController::getDB()->get("vartotojas", array("id", "=", $id))->results()[0];
+    	$user->class = $userData->Teises;
+    	return $user;
+    }
+    
     public function getClass(){
         return $this->class;
     }
@@ -66,6 +78,10 @@ class user
 
     //###################### SETERIAI #############################
 
+    private function setId($id){
+    	$this->id = $id;
+    }
+    
     private function setPassword($pass){
         $this->password = $pass;
     }
