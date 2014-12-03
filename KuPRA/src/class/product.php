@@ -30,6 +30,8 @@ class product {
 	
 	
 	
+	
+	
 	public function setId($val) {
 		$this->id = $val;
 	}
