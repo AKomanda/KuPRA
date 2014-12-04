@@ -80,6 +80,48 @@ class databaseController {
 		return $this->action("DELETE", $table, $where);
 	}
 	
+	public function insert($table, $data = array()){
+		if(count($data)){
+			$fields = array_keys($data);
+			$values = '';
+			$counter = 1;
+			
+			foreach($data as $d){
+				$values .= '?';
+				if($counter < count($data)){
+					$values .= ', ';
+				}
+				$counter ++;
+			}
+			
+			$query = "INSERT INTO {$table} (`" . implode('`,`', $fields) . "`) VALUES ({$values})";
+			if (!$this->query($query, $data)->error()){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		return false;
+	}
+	
+	public function update($table, $fields = array(), $where){
+		$values = '';
+		$counter = 1;
+		foreach(array_keys($fields) as $field){
+			$values .= "{$field} = ?";
+			if ($counter < count($fields)){
+				$values .= ', ';
+			}
+			$counter ++ ;
+		}
+		$query = "UPDATE {$table} SET {$values} WHERE {$where}";
+		if (!$this->query($query, $fields)->error()){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
  	public function error(){
  		return $this->_error;
  	}
