@@ -13,6 +13,10 @@ body {
 	
 }
 
+.clear {
+	clear: both;
+}
+
 h1 {
 
 }
@@ -313,113 +317,6 @@ p {
 	margin-bottom: 5px;
 }
 
-@CHARSET "ISO-8859-1";
-
-.topContainer {
-	height: 150px;
-	padding: 15px;
-	background-color: #FAFAFA;
-	border-radius: 5px;
-	margin-bottom: 5px;
-}
-
-
-.title h1 {
-	font-size: 32px;
-	font-style: normal;
-	text-transform: capitalize;
-}
-
-.title h1 {
-	text-align: center;
-}
-
-.form-style-2{
-    max-width: 500px;
-    padding: 20px 12px 10px 20px;
-    font: 13px Arial, Helvetica, sans-serif;
-}
-.form-style-2-heading{
-    font-weight: bold;
-    font-style: italic;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px;
-    font-size: 15px;
-    padding-bottom: 3px;
-}
-.form-style-2 label{
-    display: block;
-    margin: 0px 0px 15px 0px;
-}
-.form-style-2 label > span{
-    width: 145px;
-    font-weight: bold;
-    float: left;
-    padding-top: 8px;
-    padding-right: 5px;
-}
-.form-style-2 span.required{
-    color:red;
-}
-.form-style-2 input.input-field{
-    width: 48%;
-    margin-bottom: 5px;
-}
-
-.form-style-2 input.mid-input {
-	width: 32%;
-}
-
-.form-style-2 input.short-input {
-	width: 12%;
-}
-
-.form-style-2 input.input-field, 
-.form-style-2 .tel-number-field, 
-.form-style-2 .textarea-field, 
- .form-style-2 .select-field{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    padding: 7px;
-    outline: none;
-}
-.form-style-2 .input-field:focus, 
-.form-style-2 .tel-number-field:focus, 
-.form-style-2 .textarea-field:focus,  
-.form-style-2 .select-field:focus{
-    border: 1px solid #3366CC;
-}
-.form-style-2 .textarea-field{
-    height:100px;
-    width: 55%;
-}
-.form-style-2 input[type=submit],
-.form-style-2 input[type=button]{
-    border: none;
-    padding: 8px 15px 8px 15px;
-    background: #3366CC;
-    color: #fff;
-    box-shadow: 1px 1px 4px #3366CC;
-    -moz-box-shadow: 1px 1px 4px #3366CC;
-    -webkit-box-shadow: 1px 1px 4px #3366CC;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-}
-.form-style-2 input[type=submit]:hover,
-.form-style-2 input[type=button]:hover{
-    background: #005B9A;
-    color: #fff;
-}
-
 
 /* Ne pilnu receptu display */
 
@@ -464,4 +361,56 @@ p {
 	position: absolute;
 	display: inline;
 	right: 0;
+}
+
+/* Recepto kurimo forma */
+
+
+.createForm {
+	height: inherit;
+	overflow: hidden;
+}
+
+
+.leftSide {
+	float: left;
+	width: 70%;
+}
+
+.rightSide {
+	float: right;
+	width: 30%;
+}
+
+.recipesForm fieldset {
+	border: none;
+}
+
+.recipesForm label {
+	float: left;
+	width: 125px;
+	margin-top: 5px;
+}
+
+.recipesForm fieldset > input[type=text] {
+	margin-top: 5px;
+	width: 225px;
+}
+
+input.small {
+	width: 25px;
+}
+
+input.add {
+	width: 5px;
+	margin: 0 0 0 0;
+}
+
+td > input {
+	width: 205px;
+	
+}
+
+.recipesForm table {
+	width: 225px;
 }

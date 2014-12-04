@@ -1,3 +1,5 @@
-function pridetiEilute() {
-	$(".addProducts").append("labas<br>");
-}
+$("document").ready(function() {
+	$(".newPr").click(function() {
+		$(".addProducts").before("labas<br>");
+	});
+});
