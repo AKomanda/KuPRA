@@ -6,9 +6,8 @@
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 
 <!-- jQuery library (served from Google) -->
-<script	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script	src="styles/jquery-1.11.1.min.js"></script>
 <script src="styles/jquery.carouFredSel-6.0.4-packed.js"></script>
-<script src="styles/imgs.js"></script>
 <script src="styles/newrRecepie.js"></script>
 
 </head>

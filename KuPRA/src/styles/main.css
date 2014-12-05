@@ -1,16 +1,15 @@
 @CHARSET "ISO-8859-1";
 
 body {
-    background-color: #005B9A;
-    font-family: "Arial";
-    color: #294752;
+	background-color: #005B9A;
+	font-family: "Arial";
+	color: #294752;
 }
 
 .awesomePage {
 	width: 1050px;
-    margin-left: auto;
-    margin-right: auto;    
-	
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .clear {
@@ -18,15 +17,16 @@ body {
 }
 
 h1 {
-
+	
 }
 
 p {
-    font-family: "Times New Roman";
-    font-size: 20px;
+	font-family: "Times New Roman";
+	font-size: 20px;
 }
 
 @CHARSET "ISO-8859-1";
+
 .mainContainer {
 	padding: 15px;
 	background-color: #FAFAFA;
@@ -95,14 +95,14 @@ p {
 
 .recepieTimeToMakeIco {
 	display: inline;
-	content:url(../../resources/icons/clock.png);
+	content: url(../../resources/icons/clock.png);
 	width: 20px;
 	height: auto;
 }
 
 .recepiePortionCountIco {
 	display: inline;
-	content:url(../../resources/icons/plate.png);
+	content: url(../../resources/icons/plate.png);
 	width: 20px;
 	height: auto;
 }
@@ -123,7 +123,7 @@ p {
 	-moz-box-shadow: 0 0 5px #ccc;
 	-webkit-box-shadow: 0 0 5px #ccc;
 	box-shadow: 0 0 5px #ccc;
-	border:  5px solid #fff;
+	border: 5px solid #fff;
 	background: #fff;
 }
 
@@ -143,14 +143,14 @@ p {
 
 .recepieScore #starFull {
 	display: inline;
-	content:url(../../resources/icons/full_star.png);
+	content: url(../../resources/icons/full_star.png);
 	width: 20px;
 	height: auto;
 }
 
 .recepieScore #starEmpty {
 	display: inline;
-	content:url(../../resources/icons/empty_star.png);
+	content: url(../../resources/icons/empty_star.png);
 	width: 20px;
 	height: auto;
 }
@@ -166,10 +166,10 @@ p {
 .recepieDescription {
 	padding: 15px 10px 10px 10px;
 	box-shadow: 0 0 5px #ccc;
-	border:  5px solid #fff;
+	border: 5px solid #fff;
 	background: #fff;
 	text-align: justify;
-	display:block;
+	display: block;
 }
 
 /* .bottom-slider { */
@@ -193,7 +193,6 @@ p {
 /* 	width: 50px; */
 /* 	height: auto; */
 /* } */
-
 #carousel-wrapper {
 	position: relative;
 	-moz-box-shadow: 0 0 5px #ccc;
@@ -229,7 +228,7 @@ p {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width:280px;
+	width: 280px;
 	height: auto;
 }
 
@@ -255,8 +254,8 @@ p {
 	white-space: nowrap;
 	overflow-x: auto;
 	line-height: 1em;
-	
 }
+
 #thumbs a {
 	width: 50px;
 	height: auto;
@@ -273,10 +272,8 @@ p {
 	border-color: #566;
 }
 
-
 #prev, #next {
-	background: transparent url('img/gui/carousel_nav.png') no-repeat
-		0 0;
+	background: transparent url('img/gui/carousel_nav.png') no-repeat 0 0;
 	display: block;
 	width: 19px;
 	height: 20px;
@@ -317,18 +314,16 @@ p {
 	margin-bottom: 5px;
 }
 
-
 /* Ne pilnu receptu display */
-
 .recepieContainer {
 	width: 223px;
 	margin: 10px 10px 10px 10px;
 	min-height: 200px;
 	box-shadow: 0 0 5px #ccc;
-	border:  5px solid #fff;
+	border: 5px solid #fff;
 	background: #fff;
 	text-align: justify;
-	display:block;
+	display: block;
 }
 
 .receptoPavadinimas {
@@ -364,13 +359,10 @@ p {
 }
 
 /* Recepto kurimo forma */
-
-
 .createForm {
 	height: inherit;
 	overflow: hidden;
 }
-
 
 .leftSide {
 	float: left;
@@ -392,12 +384,12 @@ p {
 	margin-top: 5px;
 }
 
-.recipesForm fieldset > input[name=recipeName] {
+.recipesForm fieldset>input[name=recipeName] {
 	margin-top: 5px;
 	width: 225px;
 }
 
-.recipesForm fieldset > input.short {
+.recipesForm fieldset>input.short {
 	margin-top: 5px;
 	width: 45px;
 }
@@ -416,9 +408,8 @@ input.del {
 	margin: 0 0 0 0;
 }
 
-td > input {
+td>input {
 	width: 205px;
-	
 }
 
 .recipesForm table {
@@ -426,4 +417,24 @@ td > input {
 	padding: 0 0 0 0;
 	margin: 0 0 0 0;
 	border-spacing: 0px;
+}
+
+td>#result {
+	position: absolute;
+	width: 200px;
+	padding: 4px;
+	display: none;
+	margin-top: -1px;
+	border-top: 0px;
+	overflow: hidden;
+	border: 1px #CCC solid;
+	background-color: white;
+}
+
+td .show {
+	padding: 5px;
+}
+
+td .show:hoover {
+	padding: 50px;
 }

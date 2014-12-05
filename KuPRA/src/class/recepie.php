@@ -57,6 +57,10 @@ class recepie {
 		return $recepie;
 	}
 	
+	public static function sendRecepie($user) {
+		
+	}
+	
 	private function mean(){
 		$count = count($this->scores);
 		$sum = array_sum($this->scores);
