@@ -1,5 +1,5 @@
 <?php
-require_once 'class/databaseController.php';
+include_once 'core/init.php';
 class Validation{
 	private $_errors = array();
 	private $_email_regex = "/[a-zA-Z0-9_.+]+@[a-zA-Z0-9]+.[a-zA-Z]/";
@@ -68,6 +68,15 @@ class Validation{
 			}
 		}
 		
+	}
+	
+	public function loginValidation($login, $password){
+		if(strlen($login) == 0){
+			$this->_errors[] = 'Prisijungimo vardo laukas negali būti tuščias';
+		}
+		if(strlen($password) == 0){
+			$this->_errors[] = 'Slaptažodžio laukas negali būti tuščias';
+		}
 	}
 	
 	public function getErrors(){

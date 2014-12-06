@@ -1,5 +1,5 @@
 <?php
-include_once "databaseController.php";
+include_once 'core/init.php';
 class recepie {
 	public $id;
 	public $author;

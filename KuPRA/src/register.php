@@ -25,8 +25,6 @@ include_once "display/topNav.php";
 include_once "display/sideNav.php";
 include_once "display/registerDisplay.php";
 include_once "class/databaseController.php";
-include_once "class/meniu.php";
-include_once "class/recepie.php";
 include_once "class/user.php";
 include_once "class/Validation.php";
 

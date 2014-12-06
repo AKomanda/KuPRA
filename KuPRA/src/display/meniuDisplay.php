@@ -1,5 +1,5 @@
 <?php
-include_once "class/meniu.php";
+include_once 'core/init.php';
 $meniu = meniu::getMeniu ( $id );
 ?>
 <div class="mainContainer">

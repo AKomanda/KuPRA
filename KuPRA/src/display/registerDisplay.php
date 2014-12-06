@@ -1,6 +1,5 @@
 <?php
-  include_once 'class/user.php';
-  include_once 'class/Validation.php'; 
+  include_once 'core/init.php'; 
   
   $errors = array();
   $email = '';
@@ -29,18 +28,18 @@
 		<?php 	foreach($errors as $error){
   				echo "<font size='3' color='red'>{$error}</font><br>";
   				} ?>
-		<form action = "" method = "post">
+		<form action="" method="post">
 			<div class= "field">
 				<label for="email">Email</label>
 				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off"> <br><br>
 			</div>
 			<div class= "field">
 				<label for="login">Prisijungimo vardas</label>
-				<input type = "login" name = "login" value = "<?php echo $login;  ?>"> <br><br>
+				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"> <br><br>
 			</div>
 			<div class= "field">
 				<label for="nick">Slapyvardis</label>
-				<input type = "nick" name = "nick" value = "<?php echo $nick;  ?>"> <br><br>
+				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"> <br><br>
 			</div>
 			<div class= "field">
 				<label for="password">Slaptažodis</label>
