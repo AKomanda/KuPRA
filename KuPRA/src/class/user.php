@@ -1,8 +1,6 @@
 <?php
 
-include_once "meniu.php";
-include_once "recepie.php";
-include_once "databaseController.php";
+include_once 'core/init.php';
 
 class user
 {
@@ -22,10 +20,11 @@ class user
     public $fridge;
     public $SIUnits; //SI sistemos matavimo vienetai
 
-    //####################### GETERIAI #############################
+    //####################### KONSTRUKTORIUS #######################
 
     public function __construct() {
     }
+    //####################### STATINIAI METODAI ####################
     
     public static function getUser($id) {
     	$user = new user;
@@ -43,6 +42,88 @@ class user
     	$user->menu = meniu::getMeniu($id);
     	return $user;
     }
+    
+    public static function create($data = array()){
+    	return databaseController::getDB()->insert('vartotojas', array(
+    		'teises' => 'user',
+    		'vardas' => '',
+    		'pavarde' => '',
+    		'adresas' => '',
+    		'slapyvardis'=> $data['nick'],
+    		'nuotrauka' => '',
+    		'slaptazodis' => password_hash($data['password'], PASSWORD_DEFAULT),
+    		'aprasymas' => '',
+    		'login' => $data['login'],
+    		'pastas' => $data['email']));
+    }
+    
+    public static function find_by_id($id){
+    	$user = databaseController::getDB()->get('vartotojas', array('id', '=', $id));
+    	if ($user->count() > 0){
+    		return $user->results()[0];
+    	}else{
+    		return false;
+    	}
+    }
+    
+    public static function find_by_login($login){
+    	$user = databaseController::getDB()->get('vartotojas', array('login', '=', $login));
+    	if ($user->count() > 0){
+    		return $user->results()[0];
+    	}else{
+    		return false;
+    	}
+    }
+    
+    public static function login($login, $password){
+    	if(!User::isLoggedIn()){
+    		if($user = User::find_by_login($login)){
+    			if(User::authenticate($user, $password)){
+    				$_SESSION['current_user'] = User::getUser($user->ID);
+    				#self::$current_user = User::getUser($user->ID);
+    				return true;
+    			}else{
+    				return false;
+    			}
+    		}else{
+    			return false;
+    		}
+    	}else{
+    		return false;
+    	}
+    }
+    
+    public static function authenticate($user = null, $password = null){
+    	if($user){
+    		if($password){
+    			return password_verify($password, $user->Slaptazodis);
+    		}
+    	}else{
+    		return false;
+    	}	
+    }
+    
+    public static function current_user(){
+    	return $_SESSION['current_user'];
+    	#return self::$current_user;
+    }
+    
+    public static function isLoggedIn(){
+    	if(isset($_SESSION['current_user'])){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
+    public static function logOut(){
+    	if(User::isLoggedIn()){ 
+    		unset($_SESSION['current_user']);
+    	}
+    }
+    
+    //####################### INSTANCE METHODS ####################
+    //####################### GETERIAI ############################
     
     public function getClass(){
         return $this->class;

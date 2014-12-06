@@ -1,5 +1,5 @@
 <?php
-include_once "./class/recepie.php";
+include_once 'core/init.php';
 $id=$_GET['id'];
 $receptas = recepie::getRecepie($id);
 ?>

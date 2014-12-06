@@ -1,5 +1,5 @@
 <?php
-include ('../class/databaseController.php');
+  include_once 'core/init.php';
 if ($_POST) {
 	$q = $_POST ['search'];
 	$qb = "%" . $q . "%";
