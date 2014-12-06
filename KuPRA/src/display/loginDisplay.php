@@ -18,7 +18,6 @@
   	}
   }
   echo User::isLoggedIn();
-  echo session_id();
 ?>
 <div class="mainContainer">
 	<div id="container" class="js-masonry">

@@ -1,4 +1,6 @@
 <?php
+
+include_once 'core/init.php';
 ?>
 
 <!DOCTYPE html>
