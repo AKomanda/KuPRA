@@ -51,5 +51,12 @@ $(document).ready(
 			$('#searchid').on(function() {
 				$("#result").fadeIn();
 			});
+			
+			  $(function() {
+				     $("input:file").change(function (){
+				       var fileName = $(this).val();
+				       $(".filename").html(fileName);
+				     });
+				  });
 
 		});

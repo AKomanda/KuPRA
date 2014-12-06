@@ -122,6 +122,10 @@ class databaseController {
 		}
 	}
 	
+	public function getLast(){
+		return $this->_pdo->lastInsertId();
+	}
+	
  	public function error(){
  		return $this->_error;
  	}

@@ -57,14 +57,26 @@ class recepie {
 		return $recepie;
 	}
 	
-	public static function sendRecepie($user) {
+	public static function sendRecepie($user, $name, $portion, $length, $descr, $publ) {
+		databaseController::getDB()->insert("receptai", array (
+					"Autorius" => $user,
+					"Pavadinimas" => $name, 
+					"Porciju_skaicius" => $portion,
+					"Gamybos_trukme" => $length, 
+					"Aprasymas" => $descr, 
+					"Viesumas" => $publ
+		));
 		
 	}
 	
 	private function mean(){
 		$count = count($this->scores);
-		$sum = array_sum($this->scores);
-	    $this->score = $sum/$count;
+		if($count > 0) {
+			$sum = array_sum($this->scores);
+	   		$this->score = $sum/$count;
+		} else {
+			$this->score = 0;
+		}
 	}
 	
 	// get functions

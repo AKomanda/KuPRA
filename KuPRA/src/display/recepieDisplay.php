@@ -60,9 +60,15 @@ $receptas = recepie::getRecepie($id);
 				<div id="carousel">
 				<?php 
 
-				for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
-					echo '<span id="' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
+				if(sizeOf ( $receptas->getPhotos ()) <= 0) {
+					echo '<span id="1"><img src="../resources/default/recepie/default.png"/></span>';
+				} else {
+				
+					for($i = 0; $i < sizeOf ( $receptas->getPhotos () ); $i ++) {
+						echo '<span id="' . $i . '"><img src="' . $receptas->getPhotos ()[$i] . '" /></span>';
+					}
 				}
+				
 
 				?>
 
