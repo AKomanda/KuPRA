@@ -1,8 +1,8 @@
 <?php
 
-include_once "meniu.php";
-include_once "recepie.php";
-include_once "databaseController.php";
+include_once "./class/meniu.php";
+include_once "./class/recepie.php";
+include_once "./class/databaseController.php";
 
 class user
 {
@@ -42,6 +42,20 @@ class user
     	$user->setPassword($userData->Slaptazodis);
     	$user->menu = meniu::getMeniu($id);
     	return $user;
+    }
+    
+    public static function create($data = array()){
+    	return databaseController::getDB()->insert('vartotojas', array(
+    		'teises' => 'user',
+    		'vardas' => '',
+    		'pavarde' => '',
+    		'adresas' => '',
+    		'slapyvardis'=> $data['nick'],
+    		'nuotrauka' => '',
+    		'slaptazodis' => $data['password'],
+    		'aprasymas' => '',
+    		'login' => $data['login'],
+    		'pastas' => $data['email']));
     }
     
     public function getClass(){

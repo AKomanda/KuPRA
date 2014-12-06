@@ -94,7 +94,7 @@ class databaseController {
 				$counter ++;
 			}
 			
-			$query = "INSERT INTO {$table} (`" . implode('`,`', $fields) . "`) VALUES ({$values})";
+			echo $query = "INSERT INTO {$table} (`" . implode('`,`', $fields) . "`) VALUES ({$values})";
 			if (!$this->query($query, $data)->error()){
 				return true;
 			}else{
