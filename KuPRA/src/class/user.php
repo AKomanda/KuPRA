@@ -119,6 +119,9 @@ class user
     public static function logOut(){
     	if(User::isLoggedIn()){ 
     		unset($_SESSION['current_user']);
+    		if(session_destroy()){
+    			//redirect
+    		}
     	}
     }
     
