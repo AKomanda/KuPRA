@@ -28,8 +28,8 @@
 <div class="container">
 <?php
 include_once "display/topBar.php";
-include_once "display/topNav.php";
-include_once "display/sideNav.php";
+//include_once "display/topNav.php";
+//include_once "display/sideNav.php";
 include_once "display/loginDisplay.php";
 ?>
 </div>

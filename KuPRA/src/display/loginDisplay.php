@@ -11,29 +11,28 @@
   	$login = $_POST['login'];
   	if(empty($errors)){
   		if(User::login($_POST['login'], $_POST['password'])){
-  			//success message
+  			header('Location: index.php');
   		}else{
   			$errors[] = 'Neteisingi prisijungimo vardas ir/arba slaptažodis';
   		}
   	}
   }
-  echo User::isLoggedIn();
 ?>
-<div class="mainContainer">
-	<div id="container" class="js-masonry">
-		<?php 	foreach($errors as $error){
-  				echo "<font size='3' color='red'>{$error}</font><br>";
-  				} ?>
+<div class="col-md-4 col-md-offset-4 panel panel-default">
+	<div id="container" class="panel-body">
+		<?php 	$count = 1;
+				foreach($errors as $error){
+  				echo "<font size='3' color='red'>{$count}.{$error}</font><br>";
+  				$count ++;
+				} ?>
 		<form action="" method="post">
 			<div class= "field">
-				<label for="login">Prisijungimo vardas</label>
-				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"> <br><br>
+				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off" placeholder='Prisijungimo vardas' class='form-control'> <br><br>
 			</div>
 			<div class= "field">
-				<label for="password">Slaptažodis</label>
-				<input type = "password" name = "password" value = ""> <br><br>
+				<input type = "password" name = "password" value = "" placeholder='Slaptažodis' class='form-control'> <br><br>
 			</div>
-			<input type = "submit", value = "Prisijungti">
+			<input type = "submit", value = "Prisijungti" class="btn btn-success btn-block">
 		</form>
 	</div>
 </div>

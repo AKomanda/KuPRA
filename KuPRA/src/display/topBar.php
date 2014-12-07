@@ -3,7 +3,7 @@
 	
 	function logout(){
 		User::logout();
-		header('Location: index.php');
+		header('Location: login.php');
 	}
 	
 	if(isset($_GET['logout'])){
@@ -12,7 +12,13 @@
 ?>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
-    <a href='' id="logo">KuPRA</a>
+  	<?php 
+		if(User::isLoggedIn()){
+			echo '<a href="index.php" id="logo">KuPRA</a>';
+		}else{
+			echo '<a href="" id="logo">KuPRA</a>';
+		}
+  	?>
     <nav>
       <ul class="nav navbar-nav pull-right">
         <?php if(User::isLoggedIn()){

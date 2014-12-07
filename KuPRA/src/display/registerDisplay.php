@@ -23,29 +23,31 @@
   }
 
 ?>
-<div class="mainContainer">
-	<div id="container" class="js-masonry">
-		<?php 	foreach($errors as $error){
-  				echo "<font size='3' color='red'>{$error}</font><br>";
+<div class="col-md-4 col-md-offset-4 panel panel-default">
+	<div id="container" class="panel-body">
+		<?php 	$count = 1;
+				foreach($errors as $error){
+  				echo "<font size='3' color='red'>{$count}.{$error}</font><br>";
+  				$count +=1;
   				} ?>
 		<form action="" method="post">
 			<div class= "field">
-				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off" placeholder='El. Paštas'> <br><br>
+				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off" placeholder='El. Paštas' class='form-control'> <br><br>
 			</div>
 			<div class= "field">
-				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"placeholder='Prisijungimo vardas'> <br><br>
+				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"placeholder='Prisijungimo vardas' class='form-control'> <br><br>
 			</div>
 			<div class= "field">
-				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"placeholder='Slapyvardis'> <br><br>
+				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"placeholder='Slapyvardis' class='form-control'> <br><br>
 			</div>
 			<div class= "field">
-				<input type = "password" name = "password" value = ""placeholder='Slaptažodis'> <br><br>
+				<input type = "password" name = "password" value = ""placeholder='Slaptažodis' class='form-control'> <br><br>
 			</div>
 			<div class= "field">
-				<input type = "password" name = "password_again" value = ""placeholder='Pakartoti slaptažodį'> <br><br>
+				<input type = "password" name = "password_again" value = ""placeholder='Pakartoti slaptažodį' class='form-control'> <br><br>
 			</div>
 			
-			<input type = "submit", value = "register">
+			<input type = "submit", value = "register", class="btn btn-success btn-block">
 		</form>
 	</div>
 </div>

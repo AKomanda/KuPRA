@@ -21,7 +21,6 @@
 
 include_once "display/topBar.php";
 //include_once "display/topNav.php";
-include_once "display/sideNav.php";
 include_once "class/databaseController.php";
 include_once "core/init.php";
 
@@ -43,6 +42,7 @@ include_once "core/init.php";
 		</div>
 		<div class = 'col-xs-3'>
 		  <div class = 'jumbotron'>
+			<?php include_once "display/sideNav.php"; ?>
 		  </div>
 		</div>
 	</div>
