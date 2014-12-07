@@ -5,7 +5,7 @@
 <html>
 <head>
 <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>  -->
-<link rel="stylesheet" type="text/css" href="styles/main.css">
+<!-- <link rel="stylesheet" type="text/css" href="styles/main.css"> -->
 
 <!-- jQuery library (served from Google) -->
 <script	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -25,9 +25,10 @@
 </head>
 
 <body>
+<?php include_once "display/topBar.php";?>
 <div class="container">
 <?php
-include_once "display/topBar.php";
+
 //include_once "display/topNav.php";
 //include_once "display/sideNav.php";
 include_once "display/loginDisplay.php";

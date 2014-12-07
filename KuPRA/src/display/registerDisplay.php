@@ -23,32 +23,43 @@
   }
 
 ?>
-<div class="col-md-4 col-md-offset-4 panel panel-default">
-	<div id="container" class="panel-body">
-		<?php 	$count = 1;
+
+<div class="container">
+    <div class="row">
+		<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Registracija</h3>
+			 	</div>
+			  	<div class="panel-body">
+			  	<?php 	$count = 1;
 				foreach($errors as $error){
   				echo "<font size='3' color='red'>{$count}.{$error}</font><br>";
   				$count +=1;
   				} ?>
-		<form action="" method="post">
-			<div class= "field">
-				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off" placeholder='El. Paštas' class='form-control'> <br><br>
+			    	<form method="post" accept-charset="UTF-8" role="form">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" value="<?php echo $email;  ?>" placeholder="El. Paštas" name="email" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    		    <input class="form-control" value="<?php echo $login;  ?>" placeholder="Prisijungimo vardas" name="login" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    		    <input class="form-control" value="<?php echo $nick;  ?>" placeholder="Slapyvardis" name="nick" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    		    <input class="form-control" placeholder="Slaptažodis" name="password" type="password">
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Slaptažodis" name="password_again" type="password" value="">
+			    		</div>
+			    		<input class="btn btn-success btn-block" type="submit" value="Registruotis">
+			    	</fieldset>
+			      	</form>
+			    </div>
 			</div>
-			<div class= "field">
-				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"placeholder='Prisijungimo vardas' class='form-control'> <br><br>
-			</div>
-			<div class= "field">
-				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"placeholder='Slapyvardis' class='form-control'> <br><br>
-			</div>
-			<div class= "field">
-				<input type = "password" name = "password" value = ""placeholder='Slaptažodis' class='form-control'> <br><br>
-			</div>
-			<div class= "field">
-				<input type = "password" name = "password_again" value = ""placeholder='Pakartoti slaptažodį' class='form-control'> <br><br>
-			</div>
-			
-			<input type = "submit", value = "register", class="btn btn-success btn-block">
-		</form>
+		</div>
 	</div>
 </div>
 

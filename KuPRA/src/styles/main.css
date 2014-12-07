@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+
 @CHARSET "ISO-8859-1";
 
 body {
 	background-color: #005B9A;
 	font-family: "Arial";
 	color: #294752;
-	padding-top: 60px;
+	padding-top: 50px;
 }
 
 .awesomePage {
@@ -897,5 +897,4 @@ td .show {
 
 td .show:hoover {
 	padding: 50px;
->>>>>>> branch 'master' of https://github.com/AKomanda/KuPRA.git
 }

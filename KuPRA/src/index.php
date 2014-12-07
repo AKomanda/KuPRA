@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="styles/main.css">
+<!-- <link rel="stylesheet" type="text/css" href="styles/main.css"> -->
 
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -17,6 +17,9 @@
 <title>Title of the document</title>
 </head>
 
+
+
+<body>
 <?php
 
 include_once "display/topBar.php";
@@ -26,8 +29,6 @@ include_once "core/init.php";
 
 
 ?>
-
-<body>
 	<div class="container">
 
 	<div class = 'row'>
