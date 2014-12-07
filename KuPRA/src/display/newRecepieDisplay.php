@@ -71,7 +71,6 @@ if ($_POST) {
 }
 ?>
 
-<div class="mainContainer">
 	<div class="title">
 		<h1>Pridėti receptą</h1>
 	</div>
@@ -142,4 +141,3 @@ if ($_POST) {
 			</div>
 		</form>
 	</div>
-</div>

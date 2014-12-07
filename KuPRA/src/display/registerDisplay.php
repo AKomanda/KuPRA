@@ -15,7 +15,7 @@
   	$nick = $_POST['nick'];
   	if(empty($errors)){
   		if(User::create($_POST)){
-  			//redirect to index
+  			header('Location: index.php');
   		}else{
   			$errors[] = 'something vent wrong';
   		}
@@ -30,24 +30,19 @@
   				} ?>
 		<form action="" method="post">
 			<div class= "field">
-				<label for="email">Email</label>
-				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off"> <br><br>
+				<input type = "text" name = "email" value = "<?php echo $email;  ?>" autocomplete = "off" placeholder='El. Paštas'> <br><br>
 			</div>
 			<div class= "field">
-				<label for="login">Prisijungimo vardas</label>
-				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"> <br><br>
+				<input type = "text" name="login" value = "<?php echo $login;  ?>" autocomplete = "off"placeholder='Prisijungimo vardas'> <br><br>
 			</div>
 			<div class= "field">
-				<label for="nick">Slapyvardis</label>
-				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"> <br><br>
+				<input type="text" name="nick" value="<?php echo $nick;  ?>" autocomplete = "off"placeholder='Slapyvardis'> <br><br>
 			</div>
 			<div class= "field">
-				<label for="password">Slaptažodis</label>
-				<input type = "password" name = "password" value = ""> <br><br>
+				<input type = "password" name = "password" value = ""placeholder='Slaptažodis'> <br><br>
 			</div>
 			<div class= "field">
-				<label for="password_again">Pakartoti slaptažodį</label>
-				<input type = "password" name = "password_again" value = ""> <br><br>
+				<input type = "password" name = "password_again" value = ""placeholder='Pakartoti slaptažodį'> <br><br>
 			</div>
 			
 			<input type = "submit", value = "register">

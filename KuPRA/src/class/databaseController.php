@@ -43,7 +43,6 @@ class databaseController {
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
 			}else{
-				echo 'error';
 				$this->_error = true;
 			}
 		}
@@ -94,7 +93,7 @@ class databaseController {
 				$counter ++;
 			}
 			
-			echo $query = "INSERT INTO {$table} (`" . implode('`,`', $fields) . "`) VALUES ({$values})";
+			$query = "INSERT INTO {$table} (`" . implode('`,`', $fields) . "`) VALUES ({$values})";
 			if (!$this->query($query, $data)->error()){
 				return true;
 			}else{

@@ -1,14 +1,30 @@
 <?php
+	include_once "core/init.php";
+	
+	function logout(){
+		User::logout();
+		header('Location: index.php');
+	}
+	
+	if(isset($_GET['logout'])){
+		logout();
+	}
 ?>
-
-<div class="topContainer">
-	<div class="contentContainer">
-		<div class="pageLogo"></div>
-		<div class="pageMoto"></div>
-		<div class="userPane">
-			<div class="userPhoto"></div>
-			<div class="userName"></div>
-			<div class="logout"></div>
-		</div>
-	</div>
-</div>
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <a href='' id="logo">KuPRA</a>
+    <nav>
+      <ul class="nav navbar-nav pull-right">
+        <?php if(User::isLoggedIn()){
+        	echo "<li><a href=''>Pradžia</a></li>";
+        	echo "<li><a href=''>Pagalba</a></li>";
+        	echo "<li><a href=''>Profilis</a></li>";
+        	echo "<li><a href='index.php?logout=true'>Atsijungti</a></li>";
+        }else{
+        	echo "<li><a href='register.php'>Registracija</a></li>";
+        	echo '<li><a href="login.php">Prisijungti</a></li>';
+        }?>
+      </ul>
+    </nav>
+  </div>
+</header>
