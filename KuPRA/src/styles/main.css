@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @CHARSET "ISO-8859-1";
 
 body {
@@ -457,4 +458,444 @@ a#logo {
 a#logo:hover {
   color: #fff;
   text-decoration: none;
+=======
+@CHARSET "ISO-8859-1";
+
+body {
+	background-color: #005B9A;
+	font-family: "Arial";
+	color: #294752;
+}
+
+.awesomePage {
+	width: 1050px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.clear {
+	clear: both;
+}
+
+h1 {
+	
+}
+
+p {
+	font-family: "Times New Roman";
+	font-size: 20px;
+}
+
+@CHARSET "ISO-8859-1";
+
+.mainContainer {
+	padding: 15px;
+	background-color: #FAFAFA;
+	width: 760px;
+	height: auto;
+	border-radius: 5px;
+}
+
+.recepieTop {
+	float: top;
+	border-radius: 5px;
+	padding: 3px;
+}
+
+.recepieName {
+	display: inline;
+	margin-left: 35px;
+}
+
+.recepieName h1 {
+	display: inline;
+	font-size: 32px;
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+.recepieBy {
+	display: inline;
+	color: #6B9DB3;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.recepieName:first-letter {
+	text-transform: capitalize;
+}
+
+.recepieAuthor {
+	display: inline;
+}
+
+.recepieTypes {
+	display: inline;
+	position: relative;
+	float: right;
+	padding-top: 5px;
+	color: #6B9DB3;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.recepieTopInfo {
+	margin-left: 35px;
+	margin-right: 35px;
+	padding: 2px;
+	padding-bottom: 15px;
+}
+
+.recepieTimeToMake {
+	display: inline;
+}
+
+.recepiePortionCount {
+	display: inline;
+}
+
+.recepieTimeToMakeIco {
+	display: inline;
+	content: url(../../resources/icons/clock.png);
+	width: 20px;
+	height: auto;
+}
+
+.recepiePortionCountIco {
+	display: inline;
+	content: url(../../resources/icons/plate.png);
+	width: 20px;
+	height: auto;
+}
+
+.recepieMid {
+	margin-left: 35px;
+	margin-right: 35px;
+	padding-bottom: 15px;
+}
+
+.recepieProducts {
+	display: inline;
+	float: left;
+}
+
+.recepieProducts table {
+	width: 235px;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+}
+
+.recepiePhotos {
+	display: inline;
+	float: right;
+}
+
+.recepiePhotos img {
+	width: 250px;
+	height: auto;
+}
+
+.recepieScore {
+	float: right;
+}
+
+.recepieScore #starFull {
+	display: inline;
+	content: url(../../resources/icons/full_star.png);
+	width: 20px;
+	height: auto;
+}
+
+.recepieScore #starEmpty {
+	display: inline;
+	content: url(../../resources/icons/empty_star.png);
+	width: 20px;
+	height: auto;
+}
+
+.clear {
+	clear: both;
+}
+
+.recepieBottom {
+	padding-top: 15px;
+}
+
+.recepieDescription {
+	padding: 15px 10px 10px 10px;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	text-align: justify;
+	display: block;
+}
+
+/* .bottom-slider { */
+/* 	-moz-box-shadow: 0 0 5px #ccc; */
+/* 	-webkit-box-shadow: 0 0 5px #ccc; */
+/* 	box-shadow: 0 0 5px #ccc; */
+/* 	border:  5px solid #fff; */
+/* 	background: #fff; */
+/* 	left: -5px; */
+/* 	width: 95%; */
+/*     white-space: nowrap; */
+/*     overflow-x: auto; */
+/*     line-height: 1em; */
+/* } */
+
+/* .bottom-slider a { */
+/*     display: inline-block; */
+/* } */
+
+/* .bottom-slider img { */
+/* 	width: 50px; */
+/* 	height: auto; */
+/* } */
+#carousel-wrapper {
+	position: relative;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	white-space: nowrap;
+	line-height: 1em;
+}
+
+#carousel, #thumbs {
+	overflow: hidden;
+	width: 230px;
+	height: auto;
+}
+
+#carousel-wrapper .caroufredsel_wrapper {
+	box-shadow: 0 0 5px #899;
+}
+
+#carousel span, #carousel img, #thumbs a, #thumbs img {
+	display: block;
+	float: left;
+}
+
+#carousel span, #carousel a, #thumbs span, #thumbs a {
+	position: relative;
+}
+
+#carousel img, #thumbs img {
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 280px;
+	height: auto;
+}
+
+#carousel img.glare, #thumbs img.glare {
+	width: 102%;
+	height: auto;
+}
+
+#carousel span {
+	width: 100%;
+	height: auto;
+}
+
+#thumbs-wrapper {
+	padding-left: 21px;
+	padding-right: 21px;
+	position: relative;
+	-moz-box-shadow: 0 0 5px #ccc;
+	-webkit-box-shadow: 0 0 5px #ccc;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	white-space: nowrap;
+	overflow-x: auto;
+	line-height: 1em;
+}
+
+#thumbs a {
+	width: 50px;
+	height: auto;
+	margin: 0 5px;
+	overflow: hidden;
+}
+
+#thumbs img {
+	width: 50px;
+	height: auto;
+}
+
+#thumbs a:hover, #thumbs a.selected {
+	border-color: #566;
+}
+
+#prev, #next {
+	background: transparent url('img/gui/carousel_nav.png') no-repeat 0 0;
+	display: block;
+	width: 19px;
+	height: 20px;
+	margin-top: -10px;
+	position: absolute;
+	top: 50%;
+}
+
+#prev {
+	background-position: 0 0;
+	left: 0px;
+}
+
+#next {
+	background-position: -19px 0;
+	right: 0px;
+}
+
+#prev:hover {
+	background-position: 0 -20px;
+}
+
+#next:hover {
+	background-position: -19px -20px;
+}
+
+#prev.disabled, #next.disabled {
+	display: none !important;
+}
+
+
+.topNav {
+	height: 25px;
+	padding: 5px;
+	background-color: #FAFAFA;
+	border-radius: 5px;
+	margin-bottom: 5px;
+}
+
+/* Ne pilnu receptu display */
+.recepieContainer {
+	width: 223px;
+	margin: 10px 10px 10px 10px;
+	min-height: 200px;
+	box-shadow: 0 0 5px #ccc;
+	border: 5px solid #fff;
+	background: #fff;
+	text-align: justify;
+	display: block;
+}
+
+.receptoPavadinimas {
+	margin-top: 5px;
+	text-align: center;
+}
+
+.receptoNuotrauka {
+	display: block;
+	height: auto;
+	vertical-align: bottom;
+}
+
+.receptoNuotrauka img {
+	width: 100%;
+}
+
+.miniReceptoBottom {
+	position: relative;
+	height: 15px;
+}
+
+.porcijuSkaicius {
+	position: absolute;
+	display: inline;
+	left: 0;
+}
+
+.gaminimoData {
+	position: absolute;
+	display: inline;
+	right: 0;
+}
+
+/* Recepto kurimo forma */
+.createForm {
+	height: inherit;
+	overflow: hidden;
+}
+
+.leftSide {
+	float: left;
+	width: 70%;
+}
+
+.rightSide {
+	float: right;
+	width: 30%;
+}
+
+.recipesForm fieldset {
+	border: none;
+}
+
+.recipesForm label {
+	float: left;
+	width: 125px;
+	margin-top: 5px;
+}
+
+.recipesForm fieldset>input[name=recipeName] {
+	margin-top: 5px;
+	width: 225px;
+}
+
+.recipesForm fieldset>input.short {
+	margin-top: 5px;
+	width: 45px;
+}
+
+input.small {
+	width: 25px;
+}
+
+input.add {
+	width: 5px;
+	margin: 0 0 0 0;
+}
+
+input.del {
+	width: 5px;
+	margin: 0 0 0 0;
+}
+
+td>input {
+	width: 205px;
+}
+
+.recipesForm table {
+	width: 225px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+	border-spacing: 0px;
+}
+
+td>#result {
+	position: absolute;
+	width: 200px;
+	padding: 4px;
+	display: none;
+	margin-top: -1px;
+	border-top: 0px;
+	overflow: hidden;
+	border: 1px #CCC solid;
+	background-color: white;
+}
+
+td .show {
+	padding: 5px;
+}
+
+td .show:hoover {
+	padding: 50px;
+>>>>>>> branch 'master' of https://github.com/AKomanda/KuPRA.git
 }
