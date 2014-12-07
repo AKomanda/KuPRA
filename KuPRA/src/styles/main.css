@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 body {
-	background-color: #333333;
+	background-color: #005B9A;
 	font-family: "Arial";
 	color: #294752;
 	padding-top: 60px;
@@ -309,7 +309,6 @@ p {
 	display: none !important;
 }
 
-@CHARSET "ISO-8859-1";
 
 .topNav {
 	height: 25px;
