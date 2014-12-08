@@ -42,12 +42,12 @@ include_once "display/topBar.php";
 	</div>
 	<div class='row'>
 		<div class = 'col-xs-9'>
-		  <div class = 'jumbotron'>
+		  <div class = 'mainContainer'>
 		  	<?php include_once "display/meniuDisplay.php"; ?>
 		  </div>
 		</div>
 		<div class = 'col-xs-3'>
-		  <div class = 'jumbotron'>
+		  <div class = 'mainContainer'>
 		  	<?php include_once "display/sideNav.php"; ?>
 		  </div>
 		</div>

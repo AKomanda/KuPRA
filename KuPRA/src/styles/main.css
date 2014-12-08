@@ -19,7 +19,7 @@ body {
 }
 
 h1 {
-	
+	text-align: center;
 }
 
 .btn-group-justified{
@@ -36,10 +36,31 @@ p {
 .mainContainer {
 	padding: 15px;
 	background-color: #FAFAFA;
-	width: 760px;
+	width: auto;
 	height: auto;
 	border-radius: 5px;
 }
+
+.listContainer {
+	padding: 5px;
+	background-color: #F0F0F0;
+	width: auto;
+	height: auto;
+	border-radius: 5px;
+}
+
+.listItemContainer {
+	padding: 1px;
+	background-color: #EAEAEA;
+	width: auto;
+	height: auto;
+}
+
+.listItemContainer:hover{
+	background-color: #F0F0F0;
+}
+
+
 
 .recepieTop {
 	float: top;
@@ -344,6 +365,11 @@ p {
 
 .receptoNuotrauka img {
 	width: 100%;
+}
+
+.produktoNuotrauka img{
+	heigth: auto;
+	width: 64px;
 }
 
 .miniReceptoBottom {

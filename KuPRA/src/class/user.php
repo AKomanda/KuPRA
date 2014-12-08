@@ -50,7 +50,7 @@ class user
     		'pavarde' => '',
     		'adresas' => '',
     		'slapyvardis'=> $data['nick'],
-    		'nuotrauka' => '',
+    		'nuotrauka' => '../resources/default/user/default.png',
     		'slaptazodis' => password_hash($data['password'], PASSWORD_DEFAULT),
     		'aprasymas' => '',
     		'login' => $data['login'],

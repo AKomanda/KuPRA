@@ -4,6 +4,8 @@ include_once './class/measure.php';
 include_once './class/product.php';
 include_once './class/databaseController.php';
 include_once './class/fileUploadController.php';
+include_once 'core/init.php';
+include_once 'class/user.php';
 
 $measureUnits = measure::getAllMeasures ();
 

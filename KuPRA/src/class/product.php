@@ -59,6 +59,10 @@ class product {
 		databaseController::getDB()->insert("recepto_produktai", array("Receptas" => $recp, "Produktas" => $prod, "Kiekis" => $quan, "Matavimo_vienetas" => $meas));
 	}
 	
+	public static function all(){
+		return databaseController::getDB()->get("maisto_produktai", array())->results();
+	}
+	
 	
 	
 	public function setId($val) {

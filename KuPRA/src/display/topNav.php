@@ -26,7 +26,12 @@
 	  			  <button type="button" class="btn btn-success">Šaldytuvas</button>
 	 		</div>
 	  		<div class="btn-group" role="group">
-	    		<button type="button" class="btn btn-success">Produktai</button>
+	    		<button type="button" class="btn btn-success"id="products">Produktai</button>
+	    		<script type="text/javascript">
+		   			document.getElementById("products").onclick = function () {
+		        	location.href = "products.php";
+		    		};
+				</script>
 	  		</div>
 		</div>
 	</div>
