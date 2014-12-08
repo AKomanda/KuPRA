@@ -1,15 +1,10 @@
 <?php
-include_once './class/recepie.php';
-include_once './class/measure.php';
-include_once './class/product.php';
-include_once './class/databaseController.php';
-include_once './class/fileUploadController.php';
-include_once 'core/init.php';
-include_once 'class/user.php';
+
+include_once './core/init.php';
+
 
 $measureUnits = measure::getAllMeasures ();
 
-echo "DEMESIO: reikes pakeisti @ newRecepieDisplay.php";
 
 if ($_POST) {
 
@@ -43,14 +38,14 @@ if ($_POST) {
 					$visibility = 1;
 				}
 				
-				recepie::sendRecepie ( "1", $recName, $portions, $time, $descrp, $visibility );
+				recepie::sendRecepie ( user::current_user()->id, $recName, $portions, $time, $descrp, $visibility );
 				$newRecpId = databaseController::getDB ()->getLast ();
 				
 				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
 					$ingr = product::checkIfExists($ingredients[$i]);
 					$meaId = measure::getMeasureByName ( $measr [$i] )->id;
 					if (empty($ingr)) {
-						product::sendMinProduct ( "1", $ingredients [$i] );
+						product::sendMinProduct ( user::current_user()->id, $ingredients [$i] );
 						$pr = databaseController::getDB ()->getLast ();
 						measure::sendProductMeasure ( $pr, $meaId );
 					} else {
@@ -60,7 +55,7 @@ if ($_POST) {
 				}
 				
 				if(isset($_FILES['photo'])) {
-					fileUploadController::uplRecepieFile($newRecpId, $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . "login/" . $newRecpId . "/");
+					fileUploadController::uplRecepieFile($newRecpId, $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . user::current_user()->login . "/" . $newRecpId . "/");
 				}
 				
 				header('location: recepie.php?id=' . $newRecpId);
@@ -74,7 +69,7 @@ if ($_POST) {
 ?>
 
 	<div class="title">
-		<h1>Pridėti receptą</h1>
+		<h3>Pridėti receptą</h3>
 	</div>
 	<div class="recipesForm">
 		<form method="post" class="createForm" enctype="multipart/form-data">
@@ -111,7 +106,7 @@ if ($_POST) {
 										?>
 								</select></td>
 								<td><input class="small" type="text" name="quantity[]" /></td>
-								<td><input type="button" class="add" name="add" value="+" /></td>
+								<td><input type="button" class="add btn btn-default btn-sm" name="add" value="+" /></td>
 							</tr>
 						</tbody>
 					</table>
