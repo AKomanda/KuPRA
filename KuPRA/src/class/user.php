@@ -7,12 +7,12 @@ class user
 	public $id;
     public $class;
     public $nick;
-    private $name;
-    private $surname;
-    private $photo;
-    private $adress;
-    private $description;
-    private $login;
+    public $name;
+    public $surname;
+    public $photo;
+    public $adress;
+    public $description;
+    public $login;
     private $password;
     public $menu; //valgiarastis (valgiarascio objektas)
     public $recipes;

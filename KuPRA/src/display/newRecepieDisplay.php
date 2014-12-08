@@ -42,14 +42,16 @@ if ($_POST) {
 				$newRecpId = databaseController::getDB ()->getLast ();
 				
 				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
-					$ingr = product::checkIfExists($ingredients[$i]);
+					$ingr = product::checkIfExists($ingredients[$i]);		
 					$meaId = measure::getMeasureByName ( $measr [$i] )->id;
 					if (empty($ingr)) {
 						product::sendMinProduct ( user::current_user()->id, $ingredients [$i] );
 						$pr = databaseController::getDB ()->getLast ();
 						measure::sendProductMeasure ( $pr, $meaId );
-					} else {
-						$pr = product::getProductByName ( $ingredients [$i] )->id;
+					} else {	
+						$pr = product::getProductIdByName ( $ingredients[$i] );
+						var_dump($pr);
+						measure::sendProductMeasure ( $ingr[0]->ID, $meaId );
 					}
 					product::addToRecepie($newRecpId, $pr, $quantity[$i], $meaId);
 				}
