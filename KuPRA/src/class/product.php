@@ -20,9 +20,9 @@ class product {
 		$product->setPicture($productData->Nuotrauka);
 		$measuresData = databaseController::getDB()->get("produkto_matavimo_vienetai", array("Produktas", "=", $id))->results();
 		foreach ($measuresData as $measure) {
-			$measureName = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $measure->Produktas))->results();
+			$measureName = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $measure->Matavimo_vienetas))->results();
 			$measureShort = $measureName[0]->Trumpinys;
-			$measureInfo = array($measure->Produktas, $measureShort);
+			$measureInfo = array($measure->Produktas, $measureShort, $measureName[0]->Pavadinimas);
 			array_push($product->measurementUnits, $measureInfo);
 		}
 		return $product;
@@ -68,6 +68,7 @@ class product {
 		return databaseController::getDB()->get("maisto_produktai", array())->results();
 	}
 	
+
 	
 	
 	public function setId($val) {

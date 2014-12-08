@@ -363,7 +363,19 @@ h1 {
 
 .produktoNuotrauka img{
 	heigth: auto;
-	width: 64px;
+	width: 80px;
+}
+
+.produktoNuotraukosStulpelis {
+	width: 10%;
+}
+
+.produktoPavadinimoStulpelis {
+	width: 20%;
+}
+
+.produktoMatStulpelis {
+	width: 25%;
 }
 
 .miniReceptoBottom {
