@@ -67,7 +67,21 @@ class recepie {
 					"Aprasymas" => $descr, 
 					"Viesumas" => $publ
 		));
-		
+	}
+	
+	public static function allPublic(){
+		$receptai = array();
+		$receptaiA = databaseController::getDB()->get("receptai", array("Viesumas", "=", 1))->results();
+		foreach($receptaiA as $receptas) {
+			if(empty($nuotrauka = databaseController::getDB()->get("receptu_nuotraukos", array("receptas", "=", $receptas->ID))->results())) {
+				$nuotrauka = "../resources/default/recepie/default.png";
+			} else {
+				$nuotrauka = $nuotrauka[0]->Nuotrauka;
+			}
+			$info = array($receptas, $nuotrauka);
+			array_push($receptai, $info);
+		}
+		return $receptai;
 	}
 	
 	private function mean(){
@@ -79,6 +93,8 @@ class recepie {
 			$this->score = 0;
 		}
 	}
+	
+	
 	
 	// get functions
 	public function getId() {

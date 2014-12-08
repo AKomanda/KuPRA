@@ -26,12 +26,7 @@ h1 {
 	padding-bottom:20px;
 }
 
-p {
-	font-family: "Times New Roman";
-	font-size: 20px;
-}
 
-@CHARSET "ISO-8859-1";
 
 .mainContainer {
 	padding: 15px;
@@ -240,7 +235,6 @@ p {
 #carousel-wrapper .caroufredsel_wrapper {
 	box-shadow: 0 0 5px #899;
 }
-
 #carousel span, #carousel img, #thumbs a, #thumbs img {
 	display: block;
 	float: left;
@@ -342,7 +336,7 @@ p {
 
 /* Ne pilnu receptu display */
 .recepieContainer {
-	width: 223px;
+	width: 29%;
 	margin: 10px 10px 10px 10px;
 	min-height: 200px;
 	box-shadow: 0 0 5px #ccc;
@@ -484,3 +478,28 @@ a#logo {
 a#logo:hover {
   color: #fff;
   text-decoration: none;
+} 
+  
+/*   width: 29%; */
+/* 	margin: 10px 10px 10px 10px; */
+/* 	min-height: 200px; */
+/* 	box-shadow: 0 0 5px #ccc; */
+/* 	border: 5px solid #fff; */
+/* 	background: #fff; */
+/* 	text-align: justify; */
+/* 	display: block; */
+
+.thumbnail {
+	width: 31.3%;
+    position: relative;
+}
+
+.thumbnail .caption {
+	padding: 0px;
+}
+
+
+.thumbnail img {
+	padding: -5px;
+    width: 100%;
+}

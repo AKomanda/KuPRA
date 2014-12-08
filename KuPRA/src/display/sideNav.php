@@ -11,7 +11,7 @@
 		location.href = "newrecepie.php";
 		};
 		document.getElementById("myRecepie").onclick = function () {
-		location.href = "";
+		location.href = "myrecepies.php";
 		};
 		document.getElementById("myMenu").onclick = function () {
 		location.href = "mymeniu.php";

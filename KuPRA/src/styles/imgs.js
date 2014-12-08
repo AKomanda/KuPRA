@@ -43,13 +43,14 @@
 			});
 			
 			// jQuery
-			var $container = jQuery('#container');
+			var $container = jQuery('.container-fluid');
 			// initialize
 			$container.masonry({
 			  columnWidth: 200,
-			  itemSelector: '.recepieContainer'
+			  gutterWidth: 20,
+			  itemSelector: '.thumbnail'
 			});
 
-			
+
 
 			
