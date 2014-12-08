@@ -4,7 +4,6 @@ $id=$_GET['id'];
 $receptas = recepie::getRecepie($id);
 ?>
 
-<div class="mainContainer">
 	<div class="recepieTop">
 		<div class="recepieName">
 		<?php echo "<h1>" . $receptas->getName()."</h1>"?>
@@ -116,8 +115,6 @@ $receptas = recepie::getRecepie($id);
 			?>
 		</div>
 	</div>
-</div>
-</div>
 
 <?
 

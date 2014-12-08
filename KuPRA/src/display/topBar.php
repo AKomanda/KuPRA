@@ -30,7 +30,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <?php if(User::isLoggedIn()){
-        	echo "<li><a href=''>Pradžia</a></li>";
+        	echo "<li><a href='index.php'>Pradžia</a></li>";
         	echo "<li><a href=''>Pagalba</a></li>";
         	echo "<li><a href=''>Profilis</a></li>";
         	echo "<li><a href='index.php?logout=true'>Atsijungti</a></li>";

@@ -19,7 +19,7 @@
 
 
 
-<body>
+
 <?php
 
 include_once "display/topBar.php";
@@ -29,6 +29,7 @@ include_once "core/init.php";
 
 
 ?>
+<body>
 	<div class="container">
 
 	<div class = 'row'>
