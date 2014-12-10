@@ -1,6 +1,6 @@
 <?php
 include_once 'core/init.php';
-$recepies = recepie::allPublic ();
+$recepies = recepie::allForUserById (user::current_user()->id);
 ?>
 <div class="row">
 	<div class="container-fluid js-masonry"

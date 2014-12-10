@@ -84,6 +84,21 @@ class recepie {
 		return $receptai;
 	}
 	
+	public static function allForUserById($user){
+		$receptai = array();
+		$receptaiA = databaseController::getDB()->get("receptai", array("Autorius", "=", $user))->results();
+		foreach($receptaiA as $receptas) {
+			if(empty($nuotrauka = databaseController::getDB()->get("receptu_nuotraukos", array("receptas", "=", $receptas->ID))->results())) {
+				$nuotrauka = "../resources/default/recepie/default.png";
+			} else {
+				$nuotrauka = $nuotrauka[0]->Nuotrauka;
+			}
+			$info = array($receptas, $nuotrauka);
+			array_push($receptai, $info);
+		}
+		return $receptai;
+	}
+	
 	private function mean(){
 		$count = count($this->scores);
 		if($count > 0) {
