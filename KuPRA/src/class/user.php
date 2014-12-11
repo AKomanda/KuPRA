@@ -16,8 +16,8 @@ class user
     private $password;
     public $menu; //valgiarastis (valgiarascio objektas)
     public $recipes;
-    public $foodstuff; //maisto produktai (maisto produktu objektas)
     public $fridge;
+    public $foodstuff; //maisto produktai (maisto produktu objektas)
     public $SIUnits; //SI sistemos matavimo vienetai
 
     //####################### KONSTRUKTORIUS #######################
@@ -40,6 +40,19 @@ class user
     	$user->setLogin($userData->Slapyvardis);
     	$user->setPassword($userData->Slaptazodis);
     	$user->menu = meniu::getMeniu($id);
+    	$products = databaseController::getDB()->get('saldytuvas', array('Vartotojas', '=', $id))->results();
+    	$fridge = array();
+    	foreach($products as $item){
+    		$product = Product::getProduct($item->Produktas);
+    		$amount = $item->Kiekis;
+    		$mesure = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $item->Matavimo_vienetas))->results();
+    		$fridge[] = array(
+    				'id' => $item->Produktas,
+    				'product' => $product,
+    				'amount' => $amount,
+    				'mesure' => $item->Matavimo_vienetas);
+    	}
+    	$user->fridge = $fridge;
     	return $user;
     }
     
@@ -130,6 +143,27 @@ class user
     
     public function getClass(){
         return $this->class;
+    }
+    
+    public function getFridgeContent(){
+    	$this->updateFridge();
+    	return $this->fridge;
+    }
+    
+    private function updateFridge(){
+    	$products = databaseController::getDB()->get('saldytuvas', array('Vartotojas', '=', $this->id))->results();
+    	$fridge = array();
+    	foreach($products as $item){
+    		$product = Product::getProduct($item->Produktas);
+    		$amount = $item->Kiekis;
+    		$mesure = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $item->Matavimo_vienetas))->results();
+    		$fridge[$item->ID] = array(
+    				'id' => $item->ID,
+    				'product' => $product,
+    				'amount' => $amount,
+    				'mesure' => $item->Matavimo_vienetas);
+    	}
+    	$this->fridge = $fridge;
     }
 
     public function getNick(){

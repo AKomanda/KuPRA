@@ -23,7 +23,7 @@ class product {
 			$measureName = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $measure->Matavimo_vienetas))->results();
 			$measureShort = $measureName[0]->Trumpinys;
 			$measureInfo = array($measure->Produktas, $measureShort, $measureName[0]->Pavadinimas);
-			array_push($product->measurementUnits, $measureInfo);
+			$product->measurementUnits[$measure->Matavimo_vienetas] = $measureInfo;
 		}
 		return $product;
 	}

@@ -23,7 +23,7 @@
 	   			<button type="button" class="btn btn-success">Ieškoti receptų</button>
 	  		</div>
 	  		<div class="btn-group" role="group">
-	  			  <button type="button" class="btn btn-success">Šaldytuvas</button>
+	  			  <button type="button" class="btn btn-success" id="fridge">Šaldytuvas</button>
 	 		</div>
 	  		<div class="btn-group" role="group">
 	    		<button type="button" class="btn btn-success" id="products">Produktai</button>
@@ -34,6 +34,9 @@
 		    	document.getElementById("recepies").onclick = function () {
 			       	location.href = "recepies.php";
 			    	};
+			    document.getElementById("fridge").onclick = function () {
+				   	location.href = "fridge.php";
+				    };
 				</script>
 	  		</div>
 		</div>

@@ -44,6 +44,14 @@ h1 {
 	border-radius: 5px;
 }
 
+.fridgeSearchContainer{
+	padding: 5px;
+	background-color: #F0F0F0;
+	width: auto;
+	min-height: 475px;
+	border-radius: 5px;
+}
+
 .listItemContainer {
 	padding: 1px;
 	background-color: #EAEAEA;
@@ -362,9 +370,12 @@ h1 {
 }
 
 .produktoNuotrauka img{
+	max-width: 80px;
+	max-heigth: 80px;
 	heigth: auto;
-	width: 80px;
+	width: auto;
 }
+
 
 .produktoNuotraukosStulpelis {
 	width: 10%;
@@ -376,6 +387,24 @@ h1 {
 
 .produktoMatStulpelis {
 	width: 25%;
+}
+
+.produktoPaieskosNuotrauka img{
+	max-width: 40px;
+	max-heigth: 40px;
+	heigth: auto;
+	width: auto;
+}
+
+.produktoPaieskosNuotraukosStulpelis{
+	width: 15%;
+}
+
+.produktoPaieskosPavadinimoStulpelis{
+	width:20%;
+}
+.produktoKiekioStulpelis{
+	width:25%;
 }
 
 .miniReceptoBottom {

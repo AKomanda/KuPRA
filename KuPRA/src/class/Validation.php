@@ -3,7 +3,8 @@ include_once 'core/init.php';
 class Validation{
 	private $_errors = array();
 	private $_email_regex = "/[a-zA-Z0-9_.+]+@[a-zA-Z0-9]+.[a-zA-Z]/";
-	private $regex = "/[a-zA-Z0-9]/";
+	private $regex = "/[a-zA-Z0-9\pL]/";
+	private $regex_with_space = "/[a-zA-Z0-9 \pL]/";
 	private $db;
 	
 	public function __construct(){
@@ -77,6 +78,15 @@ class Validation{
 		if(strlen($password) == 0){
 			$this->_errors[] = 'Slaptažodžio laukas negali būti tuščias';
 		}
+	}
+	
+	public function productSearchValidation($input){
+		if(strlen($input) < 3){
+			$this->_errors[] = 'Į paiešką įrašykite bent 3 simbolius';
+		}elseif(!preg_match($this->regex_with_space, $input)){
+			$this->_errors[] = 'Paieškoje naudokite tik raides ir skaicius';
+		}
+		
 	}
 	
 	public function getErrors(){
