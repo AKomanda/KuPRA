@@ -1,7 +1,25 @@
 <?php
 include_once 'core/init.php';
 $id = $_GET ['id'];
-$receptas = recepie::getRecepie ( $id );
+$receptas = recepie::getRecepie ($id);
+
+if ($_POST) {
+	$error = false;
+	if ((isset($_POST['portion'])) && (isset($_POST['date']))) {
+		$portion = $_POST['portion'];
+		$date = $_POST['date'];
+		
+		if (!ctype_digit($portion)) {
+			$error = true;
+		}
+		
+		if(!$error) {
+			meniu::addNewRecepie(user::current_user()->id, $id, $date, $portion);			
+		}
+		
+	}
+	
+}
 ?>
 
 <div class="container-fluid">
@@ -120,4 +138,37 @@ $receptas = recepie::getRecepie ( $id );
 			</div>
 		</div>
 	</div>
+	<!-- Gaminti  -->
+	<?php if (true) {?>
+	<div class="row">
+	<div class="col-md-10"></div>
+	<div class="col-md-1">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Gaminti</button>
+	</div>
+	</div>
+		<div class="modal fade">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        				<h4 class="modal-title">Gaminti receptą</h4>
+      				</div>
+      				<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+      					<div class="modal-body">
+      					<fieldset>
+      						<div class="form-group">
+      							<input class="form-control" value="" placeholder="Porcijų skaičius" name="portion" type="number" min="1">
+      							<input class="form-control" value="" placeholder="Data: YYYY-MM-DD" name="date" type="text">
+      						</div>
+      					</fieldset>
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
+        					<button type="submit" name="addToMenu" class="btn btn-primary">Pridėti į valgiaraštį</button>
+      					</div>
+      				</form>
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	<?php } ?>
 </div>

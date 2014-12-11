@@ -4,7 +4,7 @@ $recepies = recepie::allPublic ();
 ?>
 <div class="row">
 	<div class="container-fluid js-masonry"
-		data-masonry-options='{ "gutter": 10, "isResizeBound": false }'>
+		data-masonry-options='{ "gutter": 10 }'>
 	<?php
 	foreach ( $recepies as $receptas ) {
 		?>

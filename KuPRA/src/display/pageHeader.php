@@ -11,9 +11,7 @@
 <script src="styles/imgs.js"></script>
 
 <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
-
 <link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.min.css">
-
 <script src="styles/bootstrap/js/bootstrap.min.js"></script>
 
 <meta charset="UTF-8">

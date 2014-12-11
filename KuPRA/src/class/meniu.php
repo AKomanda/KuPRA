@@ -45,6 +45,16 @@ class meniu
 	}
 	
 	
+	public static function addNewRecepie($user, $recepie, $date, $portion) {
+		databaseController::getDB()->insert("valgiarastis", array (
+		"Vartotojas" => $user,
+		"Gaminimo_data" => $date,
+		"Porciju_skaicius" => $portion,
+		"Receptas" => $recepie
+		));
+	}
+	
+	
 	//get functions
 
 
