@@ -113,7 +113,7 @@ class databaseController {
 			}
 			$counter ++ ;
 		}
-		$query = "UPDATE {$table} SET {$values} WHERE {$where}";
+		$query = "UPDATE {$table} SET {$values} WHERE {$where[0]} {$where[1]} {$where[2]}";
 		if (!$this->query($query, $fields)->error()){
 			return true;
 		}else{

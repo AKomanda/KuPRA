@@ -370,8 +370,8 @@ h1 {
 }
 
 .produktoNuotrauka img{
-	max-width: 80px;
-	max-heigth: 80px;
+	max-width: 40px;
+	max-heigth: 40px;
 	heigth: auto;
 	width: auto;
 }
