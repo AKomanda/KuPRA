@@ -85,22 +85,22 @@ class Validation{
 		$this->measureNameValidation($name);
 	}
 	public function measureShortValidation($short){
-		if(strlen($short) == 0){
-			$this->_errors[] = 'Sutrumpinimo laukas negali būti tuščias';
+		if(strlen($short) == 0 || strlen($short) > 16){
+			$this->_errors[] = 'sutrumpinimas gali būti 1-16 simbolių ilgio';
 		}elseif(!preg_match($this->regex, $short)){
 			$this->_errors[] = 'Sutrumpinimui naudokite tik raides ir skaičius';
 		}
 	}
 	
 	public function measureNameValidation($name){
-		if(strlen($name) > 0){
+		if(strlen($name) > 0 && strlen($name) < 16){
 			if(!preg_match($this->regex, $name)){
 				$this->_errors[] = 'Pavadinimui naudokite tik raides ir skaičius';
 			}elseif(databaseController::getDB()->get('matavimo_vienetai', array('Pavadinimas', '=', $name))->count() > 0){
 				$this->_errors[] = 'Matavimo vieneto pavadinimas jau egzistuoja';
 			}
 		}else{
-			$this->_errors[] = 'Pavadinimo laukas negali bųti tuščias';
+			$this->_errors[] = 'Pavadinimas gali būti 1-16 simbolių ilgio';
 		}
 	}
 	

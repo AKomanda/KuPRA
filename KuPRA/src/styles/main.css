@@ -406,12 +406,12 @@ h1 {
 }
 
 .matVntVeiksStulpelis{
+	min-width:100px;
 	width:25%;
 }
 
-table {
-    table-layout: fixed;
-    word-wrap: break-word;
+.matVntPavStulpelis{
+
 }
 
 .produktoPaieskosNuotraukosStulpelis{
