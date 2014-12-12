@@ -130,8 +130,8 @@ class recepie {
 			return true;
 		}
 	}
-	public function isMadeByUser($user, $id) {
-		if (0 == (databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE vartotojas = ? AND receptas = ? AND ID = ?", array($user, $this->getId(), $id))->results()[0]->Pagamintas)) {
+	public static function isMadeByUser($user, $id) {
+		if (0 == (databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE vartotojas = ? AND ID = ?", array($user, $id))->results()[0]->Pagamintas)) {
 			return false;
 		} else {
 			return true;

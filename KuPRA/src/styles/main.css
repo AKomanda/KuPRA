@@ -3,9 +3,6 @@
 
 
 body {
-	background-color: #005B9A;
-	font-family: "Arial";
-	color: #294752;
 	padding-top: 70px;
 }
 
@@ -580,4 +577,8 @@ a#logo:hover {
 .thumbnail img {
 	padding: -5px;
     width: 100%;
+}
+
+.recepieMade {
+	border-color: #5cb85c;
 }

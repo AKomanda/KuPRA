@@ -2,7 +2,7 @@
 <html>
 <head>
 <!-- <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>  -->
-<link rel="stylesheet" type="text/css" href="styles/main.css">
+
 
 <!-- jQuery library (served from Google) -->
 <script	src="styles/jquery-1.11.1.min.js"></script>
@@ -15,6 +15,8 @@
 <link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.min.css">
 <script src="styles/bootstrap/js/bootstrap.min.js"></script>
 <script src="styles/bootstrap/rating/js/star-rating.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="styles/main.css">
 
 <meta charset="UTF-8">
 <title>Title of the document</title>

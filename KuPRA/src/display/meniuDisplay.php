@@ -8,7 +8,7 @@ $meniu = meniu::getMeniu ( $id );
 	<?php 
 	foreach ( $meniu->recepies as $receptas ) {
 		echo ""?>
-		<div class='thumbnail'>
+		<div class='thumbnail <?php if (recepie::isMadeByUser(user::current_user()->id, $receptas->MeniuID)) { echo " recepieMade"; } ?>'>
 			<div class='receptoPavadinimas'><?php echo $receptas->Receptas; ?></div>
 			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "&m=". $receptas->MeniuID . "'>" ?>
 			<div class='receptoNuotrauka'><img src="<?php if (count($receptas->Nuotraukos) > 0) { echo $receptas->Nuotraukos[0]->Nuotrauka; } ?>" /></div>
