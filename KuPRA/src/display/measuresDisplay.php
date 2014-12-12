@@ -105,7 +105,7 @@
 						<input type = 'hidden' name = 'id', value = <?php echo $measure->ID;?>>
 						<td class = 'matVntPavStulpelis'><input class="form-control" type = "text" name="editName" value="<?php echo $measure->Pavadinimas; ?>"></td>
 						<td class = 'matVntTrumpStulpelis'><input class="form-control" type = "text" name="editShort" value="<?php echo $measure->Trumpinys; ?>"></td>
-						<td>
+						<td class = 'matVntVeiksStulpelis'>
 							<div class="btn-group" role="group" aria-label="...">
 								<div class="btn-group" role="group">
 								<button name='complete'  type="submit" class="btn btn-success" >
