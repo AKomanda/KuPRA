@@ -109,6 +109,24 @@ class recepie {
 		}
 	}
 	
+	public function isInMenu($user) {
+		if (empty(databaseController::getDB()->query("SELECT * FROM valgiarastis WHERE Vartotojas = ? AND Receptas = ?", array($user, $this->getId()))->results())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	public function isMadeByUser($user) {
+		if (empty(databaseController::getDB()->query("SELECT * FROM pagaminti_receptai WHERE vartotojas = ? AND receptas = ?", array($user, $this->getId()))->results())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public function prepareRecepie($user, $date, $portion) {
+		
+	}
 	
 	
 	// get functions

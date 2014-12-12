@@ -19,6 +19,10 @@ class fridge {
 		return $fridge;
 	}
 	
+	public static function removeProducts($product = array(), $quantity = array()) {
+		
+	}
+	
 	public function setId($val) {
 		$this->id = $val;
 	}

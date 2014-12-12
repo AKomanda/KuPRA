@@ -2,21 +2,23 @@
 include_once 'core/init.php';
 $meniu = meniu::getMeniu ( $id );
 ?>
-<div id="container" class="js-masonry">
+<div class="row">
+<div class="container-fluid js-masonry"
+		data-masonry-options='{ "gutter": 10 }'>
 	<?php 
-	foreach($meniu->recepies as $receptas) {
+	foreach ( $meniu->recepies as $receptas ) {
 		echo ""?>
-		<div class='recepieContainer'>
+		<div class='thumbnail'>
 			<div class='receptoPavadinimas'><?php echo $receptas->Receptas; ?></div>
 			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "'>" ?>
 			<div class='receptoNuotrauka'><img src="<?php if (count($receptas->Nuotraukos) > 0) { echo $receptas->Nuotraukos[0]->Nuotrauka; } ?>" /></div>
 			</a>
-			<div class='miniReceptoBottom'>
-				<div class='porcijuSkaicius'><?php  echo $receptas->Porciju_skaicius; ?></div>
-				<div class='gaminimoData'><?php  echo $receptas->Gaminimo_data; ?></div>
+			<div class='caption'>
+				<p><?php echo substr($receptas->Aprasymas, 0, 100); ?></p>
 			</div>
 		</div>
 		<?php 
 	}
 	?>
 	</div>
+</div>
