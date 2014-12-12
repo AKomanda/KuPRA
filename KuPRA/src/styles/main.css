@@ -28,6 +28,10 @@ h1 {
 }
 
 
+#productTA{
+	resize:vertical;
+}
+
 
 .mainContainer {
 	padding: 15px;
@@ -379,8 +383,15 @@ h1 {
 }
 
 .produktoNuotrauka img{
-	max-width: 40px;
-	max-heigth: 40px;
+	max-width: 80px;
+	max-heigth: 80px;
+	heigth: auto;
+	width: auto;
+}
+
+.saldytuvoNuotrauka img{
+	max-width: 60px;
+	max-heigth: 60px;
 	heigth: auto;
 	width: auto;
 }
@@ -407,7 +418,7 @@ h1 {
 
 .matVntVeiksStulpelis{
 	min-width:100px;
-	width:25%;
+	width:10%;
 }
 
 .matVntPavStulpelis{
@@ -471,6 +482,14 @@ h1 {
 .recipesForm fieldset>input[name=recipeName] {
 	margin-top: 5px;
 	width: 225px;
+}
+
+.productPhoto{
+	max-width: 200px;
+}
+
+.produktoAprStulpelis{
+	width:40%;
 }
 
 .recipesForm fieldset>input.short {

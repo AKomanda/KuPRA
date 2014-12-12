@@ -141,7 +141,7 @@
 				<tbody>
 					<?php foreach($products as $item){ ?>
 					<tr class="listItemContainer">
-						<td class="produktoNuotraukosStulpelis"><div class="produktoNuotrauka"><img src=<?php echo $item['product']->picture; ?>></div></td>
+						<td class="produktoNuotraukosStulpelis"><div class="saldytuvoNuotrauka"><img src=<?php echo $item['product']->picture; ?>></div></td>
 						<td class="produktoPavadinimoStulpelis"><h4><?php echo $item['product']->name; ?></h4></td>
 						<?php if($item['id'] == $edit_item){ ?>
 						
