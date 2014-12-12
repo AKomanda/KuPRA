@@ -47,7 +47,7 @@
 
 <div class='row'>
 	<?php if($admin){ ?>
-	<div class='col-xs-5'>
+	<div class='col-xs-4'>
 		<div class="panel panel-default">
 			  	<div class="panel-heading">
 			    	<h3 class="panel-title">Matavimo vieneto kūrimias</h3>
@@ -76,7 +76,7 @@
 			    </div>
 			</div>
 	</div>
-	<div class='col-xs-7'>
+	<div class='col-xs-8'>
 	<?php }else{ echo "<div class='col-xs-12'>";} ?>
 		<div class="listContainer">
 			<?php 	
