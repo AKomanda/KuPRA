@@ -103,7 +103,7 @@
 					<td class="">
 						<select class="form-control" name = 'vnt'>
 							<?php 
-								#$name = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $vnt->Matavimo_vienetas))->results()[0]->Pavadinimas;							
+						
 								foreach($product->measurementUnits as $key => $vnt){
 									echo "<option value = {$key}>";
 									echo $vnt[2];

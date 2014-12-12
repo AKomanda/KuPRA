@@ -50,7 +50,28 @@
 			  gutterWidth: 20,
 			  itemSelector: '.thumbnail'
 			});
-
+$(document).ready(function() {
+	$("#rating").rating({
+		'min': 1,
+		'max': 10,
+		'step':1,
+		'size':'xs',
+		'stars':'10',
+		'glyphicon' : false,
+		'starCaptions':{
+		    	1: 'Bent valgoma',
+		    	2: 'Prastai',
+		    	3: 'Silpnai',
+		    	4: 'Patenkinamai',
+		    	5: 'Vidutiniškai',
+		    	6: 'Skanu',
+		    	7: 'Pakartočiau',
+		    	8: 'Gerai',
+		    	9: 'Labai gerai',
+		    	10: 'Puiku!'
+			}
+		});
+});
 
 
 			
