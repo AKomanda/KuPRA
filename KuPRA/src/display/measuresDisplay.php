@@ -3,6 +3,8 @@
 	$errors = array();
 	$success = array();
 	$admin = User::current_user()->isAdmin();
+	$edit_id = 0;
+	$editErrors = array();
 	
 	if(isset($_POST['name'])){
 		$validator = new Validation();
@@ -20,6 +22,25 @@
 		databaseController::getDB()->delete('matavimo_vienetai', array('ID', '=', $_POST['item']));
 	}
 	if(isset($_POST['edit'])){
+		$edit_id = $_POST['item'];
+	}
+	if(isset($_POST['back'])){
+		$edit_id = 0;
+	}
+	if(isset($_POST['complete'])){
+		$validator = new Validation();
+		$m = Measure::getById($_POST['id']);
+		if($m->Trumpinys != $_POST['editShort'] && $m->Pavadinimas != $_POST['editName']){
+			$validator->measureValidation($_POST['editShort'], $_POST['editName']);
+		}elseif($m->Trumpinys != $_POST['editShort']){
+			$validator->measureShortValidation($_POST['editShort']);
+		}elseif($m->Pavadinimas != $_POST['editName']){
+			$validator->measureNameValidation($_POST['editName']);
+		}
+		$editErrors = $validator->getErrors();
+		if(empty($editErrors)){
+			databaseController::getDB()->update('matavimo_vienetai', array('Trumpinys'=> $_POST['editShort'], 'Pavadinimas' => $_POST['editName']), array('ID', '=', $_POST['id']));
+		}
 	}
 	$measures = Measure::getAllMeasures();
 ?>
@@ -56,6 +77,12 @@
 	</div>
 	<div class='col-xs-7'>
 		<div class="listContainer">
+			<?php 	
+			  	$count = 1;
+				foreach($editErrors as $error){
+  					echo "<font size='2' color='red'>{$count}.{$error}</font><br>";
+  					$count +=1;
+  				} ?>
 			<div class="table-responsive">
 				<table class="table table-boarded table-stripped">
 					<thead>
@@ -73,9 +100,34 @@
 						?>
 						<tr class="listItemContainer">
 						<td class = 'matVntAutStulpelis'><?php echo $authName; ?></td>
+						<?php if ($measure->ID == $edit_id){?>
+						<form name="form" action="" method="post">
+						<input type = 'hidden' name = 'id', value = <?php echo $measure->ID;?>>
+						<td class = 'matVntPavStulpelis'><input class="form-control" type = "text" name="editName" value="<?php echo $measure->Pavadinimas; ?>"></td>
+						<td class = 'matVntTrumpStulpelis'><input class="form-control" type = "text" name="editShort" value="<?php echo $measure->Trumpinys; ?>"></td>
+						<td>
+							<div class="btn-group" role="group" aria-label="...">
+								<div class="btn-group" role="group">
+								<button name='complete'  type="submit" class="btn btn-success" >
+									<span class=" glyphicon glyphicon-ok">
+									</span>
+								</button>
+								</div>
+								<div class="btn-group" role="group">
+								<button name="back" type="submit" class="btn btn-danger" >
+									<span class="glyphicon glyphicon-remove">
+									</span>
+								</button>
+								</div>
+							</div>
+						</td>
+						</form>
+						<?php }else{?>
 						<td class = 'matVntPavStulpelis'><?php echo $measure->Pavadinimas; ?></td>
 						<td class = 'matVntTrumpStulpelis'><?php echo $measure->Trumpinys; ?></td>
-						<?php if($admin && !Measure::isUsed($measure->ID)){?>
+						<?php if($admin){
+								if(!Measure::isUsed($measure->ID)){
+						?>
 						<td class = 'matVntVeiksStulpelis'>
 							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'item', value = <?php echo $measure->ID;?>>
@@ -95,7 +147,7 @@
 								</div>
 							</form>
 						</td>
-						<?php }else{ echo '<td></td>'; } ?>
+						<?php }else{ echo '<td></td>'; }}} ?>
 						</tr>
 						<?php } ?>
 					</tbody>

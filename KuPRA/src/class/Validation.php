@@ -81,6 +81,18 @@ class Validation{
 	}
 	
 	public function measureValidation($short, $name){
+		$this->measureShortValidation($short);
+		$this->measureNameValidation($name);
+	}
+	public function measureShortValidation($short){
+		if(strlen($short) == 0){
+			$this->_errors[] = 'Sutrumpinimo laukas negali būti tuščias';
+		}elseif(!preg_match($this->regex, $short)){
+			$this->_errors[] = 'Sutrumpinimui naudokite tik raides ir skaičius';
+		}
+	}
+	
+	public function measureNameValidation($name){
 		if(strlen($name) > 0){
 			if(!preg_match($this->regex, $name)){
 				$this->_errors[] = 'Pavadinimui naudokite tik raides ir skaičius';
@@ -89,11 +101,6 @@ class Validation{
 			}
 		}else{
 			$this->_errors[] = 'Pavadinimo laukas negali bųti tuščias';
-		}
-		if(strlen($short) == 0){
-			$this->_errors[] = 'Sutrumpinimo laukas negali būti tuščias';
-		}elseif(!preg_match($this->regex, $short)){
-			$this->_errors[] = 'Sutrumpinimui naudokite tik raides ir skaičius';
 		}
 	}
 	

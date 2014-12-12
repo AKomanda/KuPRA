@@ -405,6 +405,15 @@ h1 {
 	width: auto;
 }
 
+.matVntVeiksStulpelis{
+	width:25%;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
 .produktoPaieskosNuotraukosStulpelis{
 	width: 15%;
 }
