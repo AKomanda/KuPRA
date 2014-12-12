@@ -46,6 +46,7 @@
 ?>
 
 <div class='row'>
+	<?php if($admin){ ?>
 	<div class='col-xs-5'>
 		<div class="panel panel-default">
 			  	<div class="panel-heading">
@@ -76,6 +77,7 @@
 			</div>
 	</div>
 	<div class='col-xs-7'>
+	<?php }else{ echo "<div class='col-xs-12'>";} ?>
 		<div class="listContainer">
 			<?php 	
 			  	$count = 1;
