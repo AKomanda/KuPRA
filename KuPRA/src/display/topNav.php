@@ -11,9 +11,7 @@
 	  		<div class="btn-group" role="group">
 	   			 <button type="button" class="btn btn-success"  id="pradzia">Pagrindinis</button>
 	   			 <script type="text/javascript">
-		   			document.getElementById("pradzia").onclick = function () {
-		        	location.href = "index.php";
-		    		};
+		   			
 				</script>
 	  		</div>
 	  		<div class="btn-group" role="group">
@@ -27,7 +25,11 @@
 	 		</div>
 	  		<div class="btn-group" role="group">
 	    		<button type="button" class="btn btn-success" id="products">Produktai</button>
-	    		<script type="text/javascript">
+	  		</div>
+	  		<div class="btn-group" role="group">
+	    		<button type="button" class="btn btn-success" id="mesures">Matavimo vienetai</button>
+	  		</div>
+	  		<script type="text/javascript">
 	    		document.getElementById("products").onclick = function () {
 		        	location.href = "products.php";
 		    		};
@@ -37,8 +39,13 @@
 			    document.getElementById("fridge").onclick = function () {
 				   	location.href = "fridge.php";
 				    };
+				document.getElementById("pradzia").onclick = function () {
+			       	location.href = "index.php";
+			    	};
+			   	document.getElementById("mesures").onclick = function () {
+				   	location.href = "measures.php";
+				    };
 				</script>
-	  		</div>
 		</div>
 	</div>
 </html>

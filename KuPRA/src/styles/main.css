@@ -1,6 +1,7 @@
 
 @CHARSET "ISO-8859-1";
 
+
 body {
 	background-color: #005B9A;
 	font-family: "Arial";
@@ -31,6 +32,14 @@ h1 {
 .mainContainer {
 	padding: 15px;
 	background-color: #FAFAFA;
+	width: auto;
+	height: auto;
+	border-radius: 5px;
+}
+
+.popupContainer{
+	padding: 15px;
+	background-color: #F0F0F0;
 	width: auto;
 	height: auto;
 	border-radius: 5px;

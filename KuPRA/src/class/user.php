@@ -150,6 +150,14 @@ class user
     	return $this->fridge;
     }
     
+    public function isAdmin(){
+    	if($this->class == 'admin'){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+    
     private function updateFridge(){
     	$products = databaseController::getDB()->get('saldytuvas', array('Vartotojas', '=', $this->id))->results();
     	$fridge = array();

@@ -80,6 +80,23 @@ class Validation{
 		}
 	}
 	
+	public function measureValidation($short, $name){
+		if(strlen($name) > 0){
+			if(!preg_match($this->regex, $name)){
+				$this->_errors[] = 'Pavadinimui naudokite tik raides ir skaičius';
+			}elseif(databaseController::getDB()->get('matavimo_vienetai', array('Pavadinimas', '=', $name))->count() > 0){
+				$this->_errors[] = 'Matavimo vieneto pavadinimas jau egzistuoja';
+			}
+		}else{
+			$this->_errors[] = 'Pavadinimo laukas negali bųti tuščias';
+		}
+		if(strlen($short) == 0){
+			$this->_errors[] = 'Sutrumpinimo laukas negali būti tuščias';
+		}elseif(!preg_match($this->regex, $short)){
+			$this->_errors[] = 'Sutrumpinimui naudokite tik raides ir skaičius';
+		}
+	}
+	
 	public function productSearchValidation($input){
 		if(strlen($input) < 3){
 			$this->_errors[] = 'Į paiešką įrašykite bent 3 simbolius';

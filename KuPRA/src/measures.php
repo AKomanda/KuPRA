@@ -1,11 +1,6 @@
 <?php
 include_once "display/pageHeader.php";
 
-//include_once "display/topNav.php";
-include_once "class/databaseController.php";
-include_once "core/init.php";
-
-
 ?>
 <body>
 <?php include_once "display/topBar.php"; ?>
@@ -19,15 +14,16 @@ include_once "core/init.php";
 	<div class='row'>
 		<div class = 'col-xs-9'>
 		  <div class = 'mainContainer'>
+		  	<?php include_once "display/measuresDisplay.php"; ?>
 		  </div>
 		</div>
 		<div class = 'col-xs-3'>
 		  <div class = 'mainContainer'>
-			<?php include_once "display/sideNav.php"; ?>
+		  	<?php include_once "display/sideNav.php"; ?>
 		  </div>
 		</div>
 	</div>
 	</div>
 </body>
-</html>
 
+</html>

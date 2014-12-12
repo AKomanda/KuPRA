@@ -34,6 +34,15 @@ class measure {
 		databaseController::getDB()->insert("produkto_matavimo_vienetai", array("Produktas" => $prod, "Matavimo_vienetas" => $mea));
 	}
 	
+	public static function isUsed($id){
+		$db = databaseController::getDB();
+		if($db->get('produkto_matavimo_vienetai', array('Matavimo_vienetas', '=', $id))->count() != 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
 }
 
 ?>
