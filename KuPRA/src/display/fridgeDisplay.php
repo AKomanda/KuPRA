@@ -1,8 +1,8 @@
 <?php
 	include_once 'core/init.php';
-	#$id = $_GET ['id'];
 	$errors = array();
 	$found_products = array();
+	$edit_item = 0;
 	
 	function add($p){
 		if(!array_key_exists($p['id'], User::current_user()->fridge)){
@@ -56,6 +56,17 @@
 			#echo $_POST['removeItem'];
 			databaseController::getDB()->delete('saldytuvas', array('ID', '=', $_POST['removeItem']));
 		}
+		if(isset($_POST['edit'])){
+			$edit_item = $_POST['editItem'];
+		}
+		if(isset($_POST['back'])){
+			$edit_item = 0;
+		}
+		if(isset($_POST['complete'])){
+			if($_POST['amount'] > 0){
+				databaseController::getDB()->update('saldytuvas', array('Kiekis' => $_POST['amount'], 'Matavimo_vienetas' => $_POST['vnt']), array('ID', '=', $_POST['item']));
+			}		
+		}
 	}
 	$products = User::current_user()->getFridgeContent();
 ?>
@@ -92,7 +103,7 @@
 					<td class="">
 						<select class="form-control" name = 'vnt'>
 							<?php 
-								$name = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $vnt->Matavimo_vienetas))->results()[0]->Pavadinimas;							
+								#$name = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $vnt->Matavimo_vienetas))->results()[0]->Pavadinimas;							
 								foreach($product->measurementUnits as $key => $vnt){
 									echo "<option value = {$key}>";
 									echo $vnt[2];
@@ -132,6 +143,35 @@
 					<tr class="listItemContainer">
 						<td class="produktoNuotraukosStulpelis"><div class="produktoNuotrauka"><img src=<?php echo $item['product']->picture; ?>></div></td>
 						<td class="produktoPavadinimoStulpelis"><h4><?php echo $item['product']->name; ?></h4></td>
+						<?php if($item['id'] == $edit_item){ ?>
+						
+						<form name="form" action="" method="post">
+						<td class = "produktoKiekioStulpelis"><input type="number" step="0.01" name ='amount' class="form-control" value="<?php echo $item['amount'] ?>"></td>
+						<td class="matavimoVienetoStulpelis">
+							<select class="form-control" name = 'vnt'>
+								<?php 
+									#$name = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $vnt->Matavimo_vienetas))->results()[0]->Pavadinimas;							
+									foreach($item['product']->measurementUnits as $key => $vnt){
+										echo "<option value = {$key}>";
+										echo $vnt[2];
+										echo '</option>';
+									}
+								?>
+							</select>
+						</td>
+						<td>
+								<input type = 'hidden' name = 'item', value = <?php echo $item['id'];?>>
+								<button name='complete' type="submit" class="btn btn-success" >
+									<span class="glyphicon glyphicon-ok">
+									</span>
+								</button>
+								<button name = 'back' type="submit" class="btn btn-danger" >
+									<span class="glyphicon glyphicon-remove">
+									</span>
+								</button>
+						</td>
+						</form>
+						<?php }else{?>
 						<td class = "produktoKiekioStulpelis"><?php echo $item['amount'] ?></td>
 						<td class="matavimoVienetoStulpelis">
 							<?php echo $item['product']->measurementUnits[$item['mesure']][2] ?>					
@@ -139,19 +179,20 @@
 						<td>
 							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'editItem', value = <?php echo $item['id'];?>>
-								<button  type="submit" class="btn btn-success" >
+								<button name = "edit"  type="submit" class="btn btn-success" >
 									<span class=" glyphicon glyphicon-edit">
 									</span>
 								</button>
 							</form>
 							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'removeItem', value = <?php echo $item['id'];?>>
-								<button  type="submit" class="btn btn-danger" >
+								<button type="submit" class="btn btn-danger" >
 									<span class="glyphicon glyphicon-remove">
 									</span>
 								</button>
 							</form>
 						 </td>
+						 <?php }?>
 					</tr>
 					<?php }?>
 				</tbody>
