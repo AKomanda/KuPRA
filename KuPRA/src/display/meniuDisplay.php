@@ -10,7 +10,7 @@ $meniu = meniu::getMeniu ( $id );
 		echo ""?>
 		<div class='thumbnail'>
 			<div class='receptoPavadinimas'><?php echo $receptas->Receptas; ?></div>
-			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "'>" ?>
+			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "&m=". $receptas->MeniuID . "'>" ?>
 			<div class='receptoNuotrauka'><img src="<?php if (count($receptas->Nuotraukos) > 0) { echo $receptas->Nuotraukos[0]->Nuotrauka; } ?>" /></div>
 			</a>
 			<div class='caption'>

@@ -19,9 +19,47 @@ class fridge {
 		return $fridge;
 	}
 	
-	public static function removeProducts($product = array(), $quantity = array()) {
+	public static function searchMissing($user, $data = array()) {
+		$fullFridge = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Vartotojas = ?", array($user))->results();
+		$missing = array();
+		$foundMes = false;
+		$foundProd = false;
+		$foundQuan = false;
+		foreach ($data as $reqProd) {
+			foreach($fullFridge as $ownProd) {
+				if ($reqProd->Produktas == $ownProd->Produktas) {
+					$foundProd = true;
+					if ($reqProd->Kiekis <= $ownProd->Kiekis) {
+						$foundQuan = true;
+						if ($reqProd->Matavimo_vienetas == $ownProd->Matavimo_vienetas) {
+							$foundMes = true;
+						}
+					} else {
+						$missingQuan = $reqProd->Kiekis - $ownProd->Kiekis;
+					}
+				}
+			}
+			
+			if (!$foundProd) {
+				array_push($missing, array($reqProd->Produktas, $reqProd->Kiekis, $reqProd->Matavimo_vienetas));
+			} else if ((!$foundQuan) && (!$foundMes)) {
+				array_push($missing, array($reqProd->Produktas, $missingQuan, $reqProd->Matavimo_vienetas));
+			} else if (!$foundQuan) {
+				array_push($missing, array($reqProd->Produktas, $missingQuan, $reqProd->Matavimo_vienetas));
+			} else if (!$foundMes) {
+				array_push($missing, array($reqProd->Produktas, $reqProd->Kiekis, $reqProd->Matavimo_vienetas));
+			}
+			$foundMes = false;
+			$foundProd = false;
+			$foundQuan = false;
+		}
+		return $missing;
+	}
+	
+	public static function removeProducts($product = array()) {
 		
 	}
+	
 	
 	public function setId($val) {
 		$this->id = $val;

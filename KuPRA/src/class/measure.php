@@ -39,6 +39,11 @@ class measure {
 		return $measure;
 	}
 	
+	public static function getMeasureNameById($id) {
+		$productData = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $id))->results()[0]->Pavadinimas;
+		return $productData;
+	}
+	
 	public static function isUsed($id){
 		$db = databaseController::getDB();
 		if($db->get('produkto_matavimo_vienetai', array('Matavimo_vienetas', '=', $id))->count() != 0){

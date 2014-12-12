@@ -99,6 +99,20 @@ class recepie {
 		return $receptai;
 	}
 	
+	public static function getRequiredProducts($id) {
+		$produktai = databaseController::getDB()->get("recepto_produktai", array("Receptas", "=", $id))->results();
+		$result = array();
+		
+		foreach ($produktai as $produktas) {
+			$a = new stdClass();
+			$a->Produktas = $produktas->Produktas;
+			$a->Kiekis = $produktas->Kiekis;
+			$a->Matavimo_vienetas = $produktas->Matavimo_vienetas;
+			array_push($result, $a);
+		}
+		return $result;
+	}
+	
 	private function mean(){
 		$count = count($this->scores);
 		if($count > 0) {
@@ -116,19 +130,26 @@ class recepie {
 			return true;
 		}
 	}
-	public function isMadeByUser($user) {
-		if (empty(databaseController::getDB()->query("SELECT * FROM pagaminti_receptai WHERE vartotojas = ? AND receptas = ?", array($user, $this->getId()))->results())) {
+	public function isMadeByUser($user, $id) {
+		if (0 == (databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE vartotojas = ? AND receptas = ? AND ID = ?", array($user, $this->getId(), $id))->results()[0]->Pagamintas)) {
 			return false;
 		} else {
 			return true;
 		}
 	}
 	
-	public function prepareRecepie($user, $date, $portion) {
-		
+	public static function prepareRecepie($idInMenu) {
+		databaseController::getDB()->update("valgiarastis", array ("Pagamintas" => '1'), array("ID", "=", $idInMenu));
+		$recepie = databaseController::getDB()->get("valgiarastis", array("ID", "=", $idInMenu))->results()[0]->Receptas;
+		$reqProducts = recepie::getRequiredProducts($recepie);
+		fridge::removeProducts($reqProducts);
 	}
 	
-	
+	public static function canBePrepared($id) {
+		$user = user::current_user()->id;
+		$produktai = recepie::getRequiredProducts($id);
+		
+	}
 	// get functions
 	public function getId() {
 		return $this->id;

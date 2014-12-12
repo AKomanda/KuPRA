@@ -51,6 +51,11 @@ class product {
 		return $productData;
 	}
 	
+	public static function getProductNameById($id) {
+		$productData = databaseController::getDB()->get("maisto_produktai", array("ID", "=", $id))->results()[0]->Pavadinimas;
+		return $productData;
+	}
+	
 	public static function checkIfExists($name) {
 		$productData = databaseController::getDB()->get("maisto_produktai", array("Pavadinimas", "=", $name))->results();
 		return $productData;

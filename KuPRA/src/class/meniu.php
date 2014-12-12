@@ -23,14 +23,15 @@ class meniu
 		$meniu->setAuthor($author);
 		$meniuData = databaseController::getDB()->get("valgiarastis", array("Vartotojas", "=", $author))->results();
 		
-		
 		foreach($meniuData as $receptas) {
 			$receptoNuotraukos = databaseController::getDB()->query("SELECT Nuotrauka FROM receptu_nuotraukos WHERE receptas = ?", array($receptas->Receptas))->results();
 			$receptas->Nuotraukos = $receptoNuotraukos;
 		}
 	
 		foreach($meniuData as $receptas) {
+			$receptas->MeniuID = $receptas->ID;
 			$receptas->ID = $receptas->Receptas;
+			
 		}
 		
 		foreach($meniuData as $receptas) {

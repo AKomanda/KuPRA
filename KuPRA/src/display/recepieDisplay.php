@@ -1,21 +1,52 @@
 <?php
 include_once 'core/init.php';
 $id = $_GET ['id'];
+$missingProducts = array();
 $receptas = recepie::getRecepie ($id);
-echo $receptas->isInMenu(user::current_user()->id);
-echo $receptas->isMadeByUser(user::current_user()->id);
+$alreadyMade = false;
+if (isset($_GET['m'])) {
+	$fromMenu = $_GET['m'];
+	$alreadyMade =  $receptas->isMadeByUser(user::current_user()->id, $fromMenu);
+}
+if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, recepie::getRequiredProducts($id)))) {
+	$notEnoughProducts = false;
+} else {
+	$notEnoughProducts = true;
+}
+
 if ($_POST) {
 	$error = false;
-	if ((isset($_POST['portion'])) && (isset($_POST['date']))) {
-		$portion = $_POST['portion'];
-		$date = $_POST['date'];
-		
-		if (!ctype_digit($portion)) {
-			$error = true;
+	if (((isset($_POST['portion'])) && (isset($_POST['date']))) || (isset($_POST['prepareSubmit']))) {
+		if (isset($_POST['portion'])) {
+			$portion = $_POST['portion'];
+			if (!ctype_digit($portion)) {
+				$error = true;
+			}
+		}
+		if (isset($_POST['date'])) {
+			$date = $_POST['date'];
 		}
 		
+		
 		if(!$error) {
-			meniu::addNewRecepie(user::current_user()->id, $id, $date, $portion);			
+			if ((isset ( $_POST ['prepare'] ) || (isset($_POST['prepareSubmit'])))) {
+				$prepare = true;
+			} else {
+				$prepare = false;
+			}
+			if (!isset($_POST['prepareSubmit'])) {
+				meniu::addNewRecepie(user::current_user()->id, $id, $date, $portion);	
+			}
+			if ($prepare) {
+				if (isset($_POST['prepareSubmit'])) {
+					$insertionId = $_GET['m'];
+				} else {
+					$insertionId = databaseController::getDB()->getLast();
+				}
+				recepie::prepareRecepie($insertionId);
+			}
+			header("location: mymeniu.php");
+					
 		}
 		
 	}
@@ -142,12 +173,59 @@ if ($_POST) {
 		</div>
 	</div>
 	<!-- Gaminti  -->
+	<?php if (!$alreadyMade) { ?>
 	<div class="row">
 	<div class="col-md-10"></div>
 	<div class="col-md-1">
+		<?php if(!isset($_GET['m'])) { ?>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Pridėti į valgiaraštį</button>
+		<?php  } else { 
+			if ($notEnoughProducts) {
+			?>
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
+			<?php } else {?>
+		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+		<button type="submit" name="prepareSubmit" class="btn btn-primary">Gaminti</button>
+		</form>
+		<?php }
+		} ?>
 	</div>
 	</div>
+<!-- 	Trukstami produktai -->
+	<?php if ($notEnoughProducts) { ?>
+		<div class="modal fade">
+  			<div class="modal-dialog">
+    			<div class="modal-content">
+      				<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        				<h4 class="modal-title">Ko man trūksta?</h4>
+      				</div>
+      					<div class="modal-body">
+      					<?php
+      					$out = "";
+      					$out .= "<table class='table table-striped'>";
+      					foreach ($missingProducts as $missing) {
+      						$out .= "<tr>";
+      						$out .= "<td>" . product::getProductNameById($missing[0]) . "</td>";
+      						$out .= "<td>" . $missing[1] . "</td>";
+      						$out .= "<td>" . measure::getMeasureNameById($missing[2]) . "</td>";
+      						$out .= "<tr>";
+      					}
+      					$out .= "</table>";
+      					
+      					echo $out;
+      					
+      					?>
+      					</div>
+      					<div class="modal-footer">
+        					<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
+      					</div>
+      				</form>
+    			</div><!-- /.modal-content -->
+  			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<?php } else {?>
+<!-- 		Pridet į valgiarasti -->
 		<div class="modal fade">
   			<div class="modal-dialog">
     			<div class="modal-content">
@@ -156,6 +234,7 @@ if ($_POST) {
         				<h4 class="modal-title">Pridėti į valgiaraštį</h4>
       				</div>
       				<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+      					<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
       					<div class="modal-body">
       					<fieldset>
       						<div class="form-group">
@@ -164,12 +243,17 @@ if ($_POST) {
       						</div>
       					</fieldset>
       					</div>
+      				
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
+        					Gaminti? &nbsp;<input name="prepare" type="checkbox" />
         					<button type="submit" name="addToMenu" class="btn btn-primary">Pridėti į valgiaraštį</button>
       					</div>
+      					</form>
       				</form>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+		<?php }
+		} ?>
 </div>
