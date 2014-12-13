@@ -19,7 +19,7 @@ class fridge {
 		return $fridge;
 	}
 	
-	public static function searchMissing($user, $data = array()) {
+	public static function searchMissing($user, $data = array(), $modifier) {
 		$fullFridge = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Vartotojas = ?", array($user))->results();
 		$missing = array();
 		$foundMes = false;
@@ -29,25 +29,25 @@ class fridge {
 			foreach($fullFridge as $ownProd) {
 				if ($reqProd->Produktas == $ownProd->Produktas) {
 					$foundProd = true;
-					if ($reqProd->Kiekis <= $ownProd->Kiekis) {
+					if (($reqProd->Kiekis*$modifier) <= $ownProd->Kiekis) {
 						$foundQuan = true;
 						if ($reqProd->Matavimo_vienetas == $ownProd->Matavimo_vienetas) {
 							$foundMes = true;
 						}
 					} else {
-						$missingQuan = $reqProd->Kiekis - $ownProd->Kiekis;
+						$missingQuan = ($reqProd->Kiekis*$modifier) - $ownProd->Kiekis;
 					}
 				}
 			}
 			
 			if (!$foundProd) {
-				array_push($missing, array($reqProd->Produktas, $reqProd->Kiekis, $reqProd->Matavimo_vienetas));
+				array_push($missing, array($reqProd->Produktas, ($reqProd->Kiekis*$modifier), $reqProd->Matavimo_vienetas));
 			} else if ((!$foundQuan) && (!$foundMes)) {
 				array_push($missing, array($reqProd->Produktas, $missingQuan, $reqProd->Matavimo_vienetas));
 			} else if (!$foundQuan) {
 				array_push($missing, array($reqProd->Produktas, $missingQuan, $reqProd->Matavimo_vienetas));
 			} else if (!$foundMes) {
-				array_push($missing, array($reqProd->Produktas, $reqProd->Kiekis, $reqProd->Matavimo_vienetas));
+				array_push($missing, array($reqProd->Produktas, ($reqProd->Kiekis*$modifier), $reqProd->Matavimo_vienetas));
 			}
 			$foundMes = false;
 			$foundProd = false;
@@ -56,8 +56,12 @@ class fridge {
 		return $missing;
 	}
 	
-	public static function removeProducts($product = array()) {
-		
+	public static function removeProducts($product = array(), $modifier) {
+		var_dump($product);
+		foreach ($product as $pr) {
+			$currentProduct = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Produktas = ? AND Matavimo_vienetas = ?", array($pr->Produktas, $pr->Matavimo_vienetas))->results()[0];
+			databaseController::getDB()->query("UPDATE saldytuvas SET Kiekis = ? WHERE Produktas = ? AND Matavimo_vienetas = ?", array(($currentProduct->Kiekis - round(($pr->Kiekis*$modifier), 2)), $pr->Produktas, $pr->Matavimo_vienetas));
+		}
 	}
 	
 	

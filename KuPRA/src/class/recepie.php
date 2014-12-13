@@ -138,11 +138,11 @@ class recepie {
 		}
 	}
 	
-	public static function prepareRecepie($idInMenu) {
+	public static function prepareRecepie($idInMenu, $modifier) {
 		databaseController::getDB()->update("valgiarastis", array ("Pagamintas" => '1'), array("ID", "=", $idInMenu));
 		$recepie = databaseController::getDB()->get("valgiarastis", array("ID", "=", $idInMenu))->results()[0]->Receptas;
 		$reqProducts = recepie::getRequiredProducts($recepie);
-		fridge::removeProducts($reqProducts);
+		fridge::removeProducts($reqProducts, $modifier);
 	}
 	
 	public static function canBePrepared($id) {

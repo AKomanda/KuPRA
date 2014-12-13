@@ -59,4 +59,26 @@ $(document).ready(
 				     });
 				  });
 
-		});
+	
+		
+//
+//			  $(".portionIn").change(function() {
+//				  var portion = $(this).val();
+//				  var id = $('#recpId').val();
+//				  var defaultP = $('#recpP').val();
+//					if (portion != '') {
+//						$.ajax({
+//							type : "POST",
+//							url : "./ajax/checkIfEnoughProducts.php",
+//							data : ({portion: portion, id: id, defaultP: defaultP}),
+//							cache : false,
+//							success : function(data) {
+//								$("#testt").html(data);
+//							}
+//						});
+//					}
+//					return false;
+//				});
+			  
+
+});

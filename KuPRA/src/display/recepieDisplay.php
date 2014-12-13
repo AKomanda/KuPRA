@@ -4,11 +4,14 @@ $id = $_GET ['id'];
 $missingProducts = array();
 $receptas = recepie::getRecepie ($id);
 $alreadyMade = false;
+$portion = $receptas->getPortionCount ();
 if (isset($_GET['m'])) {
 	$fromMenu = $_GET['m'];
 	$alreadyMade =  $receptas->isMadeByUser(user::current_user()->id, $fromMenu);
+	$portion = meniu::getPortionById($_GET['m']);
 }
-if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, recepie::getRequiredProducts($id)))) {
+$modifier = $portion/$receptas->getPortionCount ();
+if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, recepie::getRequiredProducts($id), $modifier))) {
 	$notEnoughProducts = false;
 } else {
 	$notEnoughProducts = true;
@@ -43,7 +46,7 @@ if ($_POST) {
 				} else {
 					$insertionId = databaseController::getDB()->getLast();
 				}
-				recepie::prepareRecepie($insertionId);
+				recepie::prepareRecepie($insertionId, $modifier);
 			}
 			header("location: mymeniu.php");
 					
@@ -64,7 +67,11 @@ if ($_POST) {
                     	<div class="recepiePortionCount">
 							<div class="recepiePortionCountIco"></div>
 							<?php
-							echo $receptas->getPortionCount ();
+							if (isset($_GET['m'])) {
+								echo $portion;
+							} else {
+								echo $receptas->getPortionCount ();
+							}
 							?>
 						</div>
 						<div class="recepieTimeToMake">
@@ -93,6 +100,8 @@ if ($_POST) {
 									if ($subkey != 'Receptas') {
 										if ($subkey == 'Produktas') {
 											$out .= "<td style='width: 75%'>$subelement</td>";
+										} else if ($subkey == "Kiekis") {
+											$out .= "<td>" . round(($subelement * $modifier),2) . "</td>";
 										} else {
 											$out .= "<td>$subelement</td>";
 										}
@@ -238,15 +247,18 @@ if ($_POST) {
       					<div class="modal-body">
       					<fieldset>
       						<div class="form-group">
-      							<input class="form-control" value="" placeholder="Porcijų skaičius" name="portion" type="number" min="1">
+      							<input class="form-control portionIn" value="" placeholder="Porcijų skaičius" name="portion" type="number" min="1">
       							<input class="form-control" value="" placeholder="Data: YYYY-MM-DD" name="date" type="text">
       						</div>
       					</fieldset>
+      					<p id="testt"></p>
       					</div>
       				
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
-        					<?php if (!$notEnoughProducts) { ?>Gaminti? &nbsp;<input name="prepare" type="checkbox" /> <?php } ?>
+        					<?php //if (!$notEnoughProducts) { ?>
+<!--         					Gaminti? &nbsp;<input name="prepare" type="checkbox" /> -->
+        					 <?php //} ?>
         					<button type="submit" name="addToMenu" class="btn btn-primary">Pridėti į valgiaraštį</button>
       					</div>
       					</form>

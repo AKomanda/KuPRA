@@ -9,6 +9,7 @@
 <script src="styles/jquery.carouFredSel-6.0.4-packed.js"></script>
 <script src="http://masonry.desandro.com/masonry.pkgd.min.js"></script>
 <script src="styles/imgs.js"></script>
+<script src="styles/newrRecepie.js"></script>
 
 <link rel="stylesheet" href="styles/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="styles/bootstrap/rating/css/star-rating.min.css">

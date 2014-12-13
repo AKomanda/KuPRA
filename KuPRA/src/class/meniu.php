@@ -56,6 +56,9 @@ class meniu
 		));
 	}
 	
+	public static function getPortionById($id) {
+		return databaseController::getDB()->query("SELECT Porciju_skaicius FROM valgiarastis WHERE ID = ?", array($id))->results()[0]->Porciju_skaicius;
+	}
 	
 	//get functions
 
