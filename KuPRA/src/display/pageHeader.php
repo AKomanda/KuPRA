@@ -15,9 +15,6 @@
 <link rel="stylesheet" href="styles/bootstrap/css/bootstrap-theme.min.css">
 <script src="styles/bootstrap/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" href="styles/bootstrap/css/bootstrap-rating.css">
-<script src="styles/bootstrap/js/bootstrap-rating.min.js"></script>
-
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 
 <meta charset="UTF-8">
