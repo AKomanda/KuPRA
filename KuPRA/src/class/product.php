@@ -73,6 +73,14 @@ class product {
 		return databaseController::getDB()->get("maisto_produktai", array())->results();
 	}
 	
+	public static function isUsed($id){
+		$db = databaseController::getDB();
+		if($db->get('Saldytuvas', array('Produktas', '=', $id))->count() == 0 && $db->get('recepto_produktai', array('Produktas', '=', $id))->count() == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	
 	
