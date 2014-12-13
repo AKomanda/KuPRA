@@ -89,19 +89,30 @@
 		</div>
 		</form>
 		<?php if(!empty($found_products)){?>
-		<table class="table table-boarded table-stripped">
+		<table class="">
 			<tbody>
 				<?php foreach($found_products as $product){?>
-				<tr class="listItemContainer" >
-					<td class="produktoPaieskosNuotraukosStulpelis">
+				
+				<form name='form' action='' method='post'>
+				<tr class='mainRow'>
+					<td rowspan = '2' class="produktoPaieskosNuotraukosStulpelis">
 						<div class="produktoPaieskosNuotrauka">
 							<img src=<?php echo $product->picture; ?>>
 						</div>
 					</td>
-					<form name='form' action='' method='post'>
-					<td class="produktoPaieskosPavadinimoStulpelis"><?php echo $product->name; ?></td>
-					<td class = "produktoKiekioStulpelis"><input type="number" min="0.01" value ="0.01" step="0.01" name ='amount' class="form-control"></td>
-					<td class="">
+					<td colspan = '2' class="produktoPaieskosPavadinimoStulpelis"><?php echo $product->name; ?></td>
+					<td rowspan = '2' class='pPPMcol'>
+						<input type = 'hidden' name = 'product', value = '<?php echo $product->id ?>'>
+						<button  type="submit" class="btn btn-success" >
+							<span class=" glyphicon glyphicon-plus-sign">
+							</span>
+						</button>	
+					</td>
+					
+				</tr>
+				<tr>
+					<td  class = "produktoKiekioStulpelis"><input type="number" min="0.01" value ="0.01" step="0.01" name ='amount' class="form-control"></td>
+					<td  class="pPMcol">
 						<select class="form-control" name = 'vnt'>
 							<?php 
 						
@@ -113,15 +124,8 @@
 							?>
 						</select>
 					</td>
-					<td>
-						<input type = 'hidden' name = 'product', value = '<?php echo $product->id ?>'>
-						<button  type="submit" class="btn btn-success" >
-							<span class=" glyphicon glyphicon-plus-sign">
-							</span>
-						</button>	
-					</td>
-					</form>
 				</tr>
+				</form>
 				<?php }?>
 			</tbody>
 		</table>

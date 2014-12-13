@@ -69,6 +69,10 @@ h1 {
 	height: auto;
 }
 
+.mainRow{
+	border-top: 2px solid #DDDDDD;
+}
+
 .listItemContainer:hover{
 	background-color: #F0F0F0;
 }
@@ -407,12 +411,15 @@ h1 {
 }
 
 .produktoPaieskosNuotrauka img{
-	max-width: 40px;
-	max-heigth: 40px;
+	max-width: 60px;
+	max-heigth: 60px;
 	heigth: auto;
 	width: auto;
 }
 
+.pPPMcol{
+	width:auto;
+}
 .matVntVeiksStulpelis{
 	min-width:100px;
 	width:10%;
@@ -422,15 +429,12 @@ h1 {
 
 }
 
-.produktoPaieskosNuotraukosStulpelis{
-	width: 15%;
+.produktoPaieskosPavadinimoStulpelis{
+	padding: 2px;
 }
 
-.produktoPaieskosPavadinimoStulpelis{
-	width:20%;
-}
-.produktoKiekioStulpelis{
-	width:25%;
+.pPMcol{
+	width:50%;
 }
 
 .miniReceptoBottom {
