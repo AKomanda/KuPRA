@@ -192,7 +192,7 @@ if ($_POST) {
 	</div>
 	</div>
 <!-- 	Trukstami produktai -->
-	<?php if ($notEnoughProducts) { ?>
+	<?php if (($notEnoughProducts) && (isset($_GET['m']))) { ?>
 		<div class="modal fade">
   			<div class="modal-dialog">
     			<div class="modal-content">
@@ -246,7 +246,7 @@ if ($_POST) {
       				
       					<div class="modal-footer">
         					<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
-        					Gaminti? &nbsp;<input name="prepare" type="checkbox" />
+        					<?php if (!$notEnoughProducts) { ?>Gaminti? &nbsp;<input name="prepare" type="checkbox" /> <?php } ?>
         					<button type="submit" name="addToMenu" class="btn btn-primary">Pridėti į valgiaraštį</button>
       					</div>
       					</form>
