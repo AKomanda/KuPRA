@@ -58,6 +58,7 @@
 		}
 		if(isset($_POST['edit'])){
 			$edit_item = $_POST['editItem'];
+			echo "<script type='text/javascript'>$(document).ready(function(){ $('#myModal').modal('show');});</script>";
 		}
 		if(isset($_POST['back'])){
 			$edit_item = 0;
@@ -99,7 +100,7 @@
 					</td>
 					<form name='form' action='' method='post'>
 					<td class="produktoPaieskosPavadinimoStulpelis"><?php echo $product->name; ?></td>
-					<td class = "produktoKiekioStulpelis"><input type="number" step="0.01" name ='amount' class="form-control"></td>
+					<td class = "produktoKiekioStulpelis"><input type="number" min="0.01" value ="0.01" step="0.01" name ='amount' class="form-control"></td>
 					<td class="">
 						<select class="form-control" name = 'vnt'>
 							<?php 
@@ -143,35 +144,7 @@
 					<tr class="listItemContainer">
 						<td class="produktoNuotraukosStulpelis"><div class="saldytuvoNuotrauka"><img src=<?php echo $item['product']->picture; ?>></div></td>
 						<td class="produktoPavadinimoStulpelis"><h4><?php echo $item['product']->name; ?></h4></td>
-						<?php if($item['id'] == $edit_item){ ?>
 						
-						<form name="form" action="" method="post">
-						<td class = "produktoKiekioStulpelis"><input type="number" step="0.01" name ='amount' class="form-control" value="<?php echo $item['amount'] ?>"></td>
-						<td class="matavimoVienetoStulpelis">
-							<select class="form-control" name = 'vnt'>
-								<?php 
-									#$name = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $vnt->Matavimo_vienetas))->results()[0]->Pavadinimas;							
-									foreach($item['product']->measurementUnits as $key => $vnt){
-										echo "<option value = {$key}>";
-										echo $vnt[2];
-										echo '</option>';
-									}
-								?>
-							</select>
-						</td>
-						<td>
-								<input type = 'hidden' name = 'item', value = <?php echo $item['id'];?>>
-								<button name='complete' type="submit" class="btn btn-success" >
-									<span class="glyphicon glyphicon-ok">
-									</span>
-								</button>
-								<button name = 'back' type="submit" class="btn btn-danger" >
-									<span class="glyphicon glyphicon-remove">
-									</span>
-								</button>
-						</td>
-						</form>
-						<?php }else{?>
 						<td class = "produktoKiekioStulpelis"><?php echo $item['amount'] ?></td>
 						<td class="matavimoVienetoStulpelis">
 							<?php echo $item['product']->measurementUnits[$item['mesure']][2] ?>					
@@ -179,7 +152,7 @@
 						<td>
 							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'editItem', value = <?php echo $item['id'];?>>
-								<button name = "edit"  type="submit" class="btn btn-success" >
+								<button name = "edit"  type="submit" class="btn btn-success">
 									<span class=" glyphicon glyphicon-edit">
 									</span>
 								</button>
@@ -192,12 +165,51 @@
 								</button>
 							</form>
 						 </td>
-						 <?php }?>
 					</tr>
 					<?php }?>
 				</tbody>
 			</table>
 		</div>
 	</div>
+</div>
+
+<div id ="myModal" class="modal fade">
+	<?php 
+		if($edit_item != 0){
+			$p = databaseController::getDB()->get('saldytuvas', array('ID', '=', $edit_item))->results()[0];
+		}?>
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        		<h4 class="modal-title">Saldytuvo turinio redagavimas</h4>
+        		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+      				<div class="modal-body">
+      				<fieldset>
+      					<div class="form-group">
+      						<input class="form-control" value='<?php if($edit_item != 0){echo $p->Kiekis;} ?>' placeholder="Kiekis" name="amount" type="number" min="0.01" step = "0.01">
+      						<select class="form-control" name ="vnt">
+      						<?php
+      								if($edit_item != 0){
+      								$pr = Product::getProduct($p->Produktas);
+      								foreach($pr->measurementUnits as $key => $vnt){
+									echo "<option value = {$key}>";
+									echo $vnt[2];
+									echo '</option>';}
+								} ?>
+      						</select>
+      						<input type='hidden' name='item' value='<?php if($edit_item != 0){echo $edit_item;} ?>'>
+      					</div>
+      				</fieldset>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
+        				<button type="submit" name="complete" class="btn btn-primary">Redaguoti</button>
+      				</div>
+      			</form>
+      		</div>
+      	</div>
+      </div>
+
 </div>
 </div>
