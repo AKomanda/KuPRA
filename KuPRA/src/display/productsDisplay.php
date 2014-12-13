@@ -38,11 +38,20 @@
 			}
 		}
 		
-		foreach($errors as $error){
-			echo $error;
-		}
-		
 	}
+	if(isset($_POST['remove'])){		
+		$id = $_POST['removeItem'];
+		databaseController::getDB()->delete('maisto_produktai', array('ID', '=', $id));
+	}
+	if(isset($_POST['edit'])){
+		$edit_item = $_POST['editItem'];
+		echo "<script type='text/javascript'>$(document).ready(function(){ $('#myModal').modal('show');});</script>";
+	}
+	
+	foreach($errors as $error){
+		echo $error;
+	}
+	
 ?>
 <div class='row'>
 	<div class="col-xs-4">
@@ -124,6 +133,7 @@
 							</td>
 							<?php if($admin){ ?>
 							<td>
+								<?php if(!Product::isUsed($product->id)){?>
 								<form name="form" action="" method="post">
 									<input type = 'hidden' name = 'editItem', value = <?php echo $product->id;?>>
 									<button name = "edit"  type="submit" class="btn btn-success" >
@@ -133,11 +143,12 @@
 								</form>
 								<form name="form" action="" method="post">
 									<input type = 'hidden' name = 'removeItem', value = <?php echo $product->id;?>>
-									<button type="submit" class="btn btn-danger" >
+									<button name = 'remove' type="submit" class="btn btn-danger" >
 										<span class="glyphicon glyphicon-remove">
 										</span>
 									</button>
 								</form>
+								<?php }else{echo "<t>Panaudotas</t>";}?>
 							</td>
 							<?php }?>
 						</tr>
@@ -147,4 +158,48 @@
 			</div>
 		</div>
 	</div>
+	<div id ="myModal" class="modal fade">
+	<?php 
+		if($edit_item != 0){
+			$p = Product::getProduct($edit_item);
+		}?>
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+      		<div class="modal-header">
+        		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        		<h4 class="modal-title">Saldytuvo turinio redagavimas</h4>
+        		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+      				<div class="modal-body">
+      				<fieldset>
+      					<div class="form-group">
+      						<textarea class="form-control" id="productTA" rows='2' name="description" placeholder="Aprašymas"><?php echo $p->description; ?></textarea>
+      						<select multiple class="form-control" size='3' name ="vnt">
+      						<?php
+									$measures = Measure::getAllMeasures();
+									foreach($measures as $m){
+										if(array_key_exists($m->ID, $p->measurementUnits)){
+											echo"<option value ='{$m->ID}' selected='selected'>";
+										}else{
+											echo "<option value ='{$m->ID}'>";
+										}
+										echo $m->Pavadinimas;
+										echo "</option>";
+									}
+            					?>
+      						</select>
+      						<input name="photos[]" type="file" accept="image/*" >
+      						<input type='hidden' name='item' value='<?php if($edit_item != 0){echo $edit_item;} ?>'>
+      					</div>
+      				</fieldset>
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Uždaryti</button>
+        				<button type="submit" name="complete" class="btn btn-primary">Redaguoti</button>
+      				</div>
+      			</form>
+      		</div>
+      	</div>
+      </div>
+
+</div>
 </div>
