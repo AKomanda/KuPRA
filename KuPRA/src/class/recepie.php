@@ -131,11 +131,25 @@ class recepie {
 		}
 	}
 	public static function isMadeByUser($user, $id) {
-		if (0 == (databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE vartotojas = ? AND ID = ?", array($user, $id))->results()[0]->Pagamintas)) {
-			return false;
-		} else {
-			return true;
+		$info = databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE Vartotojas = ? AND ID = ?", array($user, $id))->results();
+		$a = false;
+		foreach ($info as $i) {
+			if ($i->Pagamintas == '1') {
+				$a = true;
+			}
 		}
+		return $a;
+	}
+	
+	public static function alreadyMade($user, $id) {
+		$info = databaseController::getDB()->query("SELECT Pagamintas FROM valgiarastis WHERE Vartotojas = ? AND Receptas = ?", array($user, $id))->results();
+		$a = false;
+		foreach ($info as $i) {
+			if ($i->Pagamintas == '1') {
+				$a = true;
+			}
+		}
+		return $a;
 	}
 	
 	public static function prepareRecepie($idInMenu, $modifier) {
@@ -148,8 +162,17 @@ class recepie {
 	public static function canBePrepared($id) {
 		$user = user::current_user()->id;
 		$produktai = recepie::getRequiredProducts($id);
-		
 	}
+	
+	public static function sendScore($user, $recepie, $score) {
+		$scoreByThisUser = databaseController::getDB()->query("SELECT * FROM vertinimai WHERE Vertintojas = ? AND Receptas = ?", array($user, $recepie))->results();
+		if (!empty($scoreByThisUser)) {
+			databaseController::getDB()->query("UPDATE vertinimai SET Vertinimas = ? WHERE Vertintojas = ? AND Receptas = ?", array($score, $user, $recepie));
+		} else {
+			databaseController::getDB()->insert("vertinimai", array("Vertintojas" => $user, "Receptas" => $recepie, "Vertinimas" => $score));
+		}
+	}
+	
 	// get functions
 	public function getId() {
 		return $this->id;

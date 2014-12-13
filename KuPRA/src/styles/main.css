@@ -586,3 +586,15 @@ a#logo:hover {
 .recepieMade {
 	border-color: #5cb85c;
 }
+
+.score {
+	display: inline-block;
+}
+
+.scoreSub {
+	padding-top:5px;
+}
+
+.rating {
+	display: inline-block;
+}

@@ -19,7 +19,10 @@ if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, rec
 
 if ($_POST) {
 	$error = false;
-	if (((isset($_POST['portion'])) && (isset($_POST['date']))) || (isset($_POST['prepareSubmit']))) {
+	if (isset($_POST['subScore'])) {
+		recepie::sendScore(user::current_user()->id, $id, $_POST['rating']);
+		header("Location: recepie.php?id=$id");
+	} else if (((isset($_POST['portion'])) && (isset($_POST['date']))) || (isset($_POST['prepareSubmit']))) {
 		if (isset($_POST['portion'])) {
 			$portion = $_POST['portion'];
 			if (!ctype_digit($portion)) {
@@ -166,7 +169,27 @@ if ($_POST) {
 		</div>
 
 	</div>
-	<input id="rating" type="number" class="rating" >
+	<div class="col-xs-12">
+	<?php  if(recepie::alreadyMade(user::current_user()->id, $id)) {?>
+	<form method="post" class="form-inline scoreSub" role="form">
+	<select name="rating">
+		<option>Pasirinkite įvetinimą</option>
+		<option>10 Puiku!</option>
+		<option>9 Labai gerai</option>
+		<option>8 Gerai</option>
+		<option>7 Pakartočiau</option>
+		<option>6 Skanu</option>
+		<option>5 Vidutiniškai</option>
+		<option>4 Patenkinamai</option>
+		<option>3 Silpnai</option>
+		<option>2 Prastai</option>
+		<option>1 Bent valgoma</option>
+	</select>
+	<input type="submit" class="btn btn-default btn-xs subScore" name="subScore" value="Įvertinti">
+	</form>
+	<?php } ?>
+	<div class="score" ><?php echo $receptas->getScore(); ?>/10</div>
+	</div>
                     </figure>
                     
                 </div>			
@@ -242,7 +265,6 @@ if ($_POST) {
         				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         				<h4 class="modal-title">Pridėti į valgiaraštį</h4>
       				</div>
-      				<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
       					<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
       					<div class="modal-body">
       					<fieldset>
@@ -262,7 +284,6 @@ if ($_POST) {
         					<button type="submit" name="addToMenu" class="btn btn-primary">Pridėti į valgiaraštį</button>
       					</div>
       					</form>
-      				</form>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
