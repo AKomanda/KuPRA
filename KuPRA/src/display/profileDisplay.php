@@ -4,16 +4,17 @@ $user = User::current_user();
 ?>
 
 <div class='row'>
-	<div class="col-xs-4">
+<div class="panel panel-success">
+		<div class="panel-heading"><h3 class="panel-title"><?php echo $user->nick ?></h3></div>
+	<div class="col-xs-4" style = "padding-top: 15px;">
 		<div class = 'profilePicture'>
 			<img class ="img-thumbnail" src=<?php echo $user->photo; ?>>
 		</div><br>
 		<button class="btn btn-success btn-block" id="editProfilePic">Keisti profilio nuotrauką</button>	
 		<button class="btn btn-success btn-block" id="editProfile">Redaguoti profilį</button>
 	</div>
-	<div class="col-xs-8">
-		<div class="panel panel-success">
-			<div class="panel-heading"><h3 class="panel-title"><?php echo $user->nick ?></h3></div>
+	<div class="col-xs-8 " style = "padding-top: 15px;">
+		
 			<table class="table">
 				<tbody>
 					<tr>

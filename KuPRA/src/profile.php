@@ -13,7 +13,7 @@ include_once "display/pageHeader.php";
 	</div>
 	<div class='row'>
 		<div class = 'col-xs-9'>
-		  <div class = 'mainContainer'>
+		  <div class = 'profileContainer'>
 		  	<?php include_once "display/profileDisplay.php"; ?>
 		  </div>
 		</div>
