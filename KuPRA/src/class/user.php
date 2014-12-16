@@ -6,6 +6,7 @@ class user
 {
 	public $id;
     public $class;
+    public $email;
     public $nick;
     public $name;
     public $surname;
@@ -39,6 +40,7 @@ class user
     	$user->setPhoto($userData->Nuotrauka);
     	$user->setLogin($userData->Slapyvardis);
     	$user->setPassword($userData->Slaptazodis);
+    	$user->setEmail($userData->pastas);
     	$user->menu = meniu::getMeniu($id);
     	$products = databaseController::getDB()->get('saldytuvas', array('Vartotojas', '=', $id))->results();
     	$fridge = array();
@@ -219,6 +221,10 @@ class user
 
     private function setId($id){
     	$this->id = $id;
+    }
+    
+    private function setEmail($email){
+    	$this->email = $email;
     }
     
     private function setPassword($pass){

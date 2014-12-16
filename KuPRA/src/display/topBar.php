@@ -32,7 +32,7 @@
             <?php if(User::isLoggedIn()){
         	echo "<li><a href='index.php'>Pradžia</a></li>";
         	echo "<li><a href=''>Pagalba</a></li>";
-        	echo "<li><a href=''>Profilis</a></li>";
+        	echo "<li><a href='profile.php'>Profilis</a></li>";
         	echo "<li><a href='index.php?logout=true'>Atsijungti</a></li>";
         }else{
         	echo "<li><a href='register.php'>Registracija</a></li>";

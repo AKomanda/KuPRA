@@ -103,7 +103,7 @@
 							<textarea class="form-control" id="productTA" name="description"></textarea>
 			    		</div>
 			    		<div class='form-group'>
-			    			
+			    			<label for="description">Matavimo vienetai:</label>
 			    			<select multiple name = 'measures[]' class="form-control" title = 'Prispauskite "ctrl", kad pasirinkti kelis matavimo vienetus'>
             					<?php
 									$measures = Measure::getAllMeasures();
