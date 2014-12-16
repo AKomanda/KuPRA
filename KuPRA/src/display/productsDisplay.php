@@ -148,7 +148,11 @@
 								<h4><?php echo $product->name; ?></h4>
 								<a href=""><?php echo User::getUser($product->author)->nick; ?></a>
 							</td>
-							<td class="produktoAprStulpelis" data-toggle="tooltip" data-placement="left" title="Tooltip on bottom" data-container="body"><t><?php echo $product->description ?></t></td>
+							<?php if(strlen($product->description) > 40){ ?>
+							<td class="produktoAprStulpelis" data-toggle="tooltip" data-placement="left" title="<?php echo $product->description; ?>" data-container="body"><t><?php echo substr($product->description, 0 , 37) . '...' ?></t></td>
+							<?php }else{?>
+							<td class="produktoAprStulpelis"><t><?php echo $product->description?></t></td>
+							<?php }?>
 							<td class = "produktoMatStulpelis">
 								<div class="dropdown">
 								<a data-target="#" data-toggle="dropdown" class="dropdown-toggle" href="#">

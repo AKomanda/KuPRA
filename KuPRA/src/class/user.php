@@ -162,6 +162,9 @@ class user
     	$products = databaseController::getDB()->get('saldytuvas', array('Vartotojas', '=', $this->id))->results();
     	$fridge = array();
     	foreach($products as $item){
+    		if($item->Kiekis <= 0){
+    			databaseController::getDB()->delete('saldytuvas', array('ID', '=', $item->ID));
+    		}else{
     		$product = Product::getProduct($item->Produktas);
     		$amount = $item->Kiekis;
     		$mesure = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $item->Matavimo_vienetas))->results();
@@ -170,6 +173,7 @@ class user
     				'product' => $product,
     				'amount' => $amount,
     				'mesure' => $item->Matavimo_vienetas);
+    		}
     	}
     	$this->fridge = $fridge;
     }
