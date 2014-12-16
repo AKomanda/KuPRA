@@ -56,6 +56,18 @@ h1 {
 	border-radius: 5px;
 }
 
+.descriptionCell{
+	word-wrap:break-word;
+	width: 70%;
+}
+.profileHeading{
+	width: 30%;
+}
+
+.profileContent{
+	width:70%;
+}
+
 .listContainer {
 	padding: 5px;
 	background-color: #F0F0F0;

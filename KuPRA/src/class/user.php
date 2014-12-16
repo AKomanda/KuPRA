@@ -94,7 +94,7 @@ class user
     	if(!User::isLoggedIn()){
     		if($user = User::find_by_login($login)){
     			if(User::authenticate($user, $password)){
-    				$_SESSION['current_user'] = User::getUser($user->ID);
+    				$_SESSION['current_user'] = $user->ID;
     				#self::$current_user = User::getUser($user->ID);
     				return true;
     			}else{
@@ -119,7 +119,8 @@ class user
     }
     
     public static function current_user(){
-    	return $_SESSION['current_user'];
+    	$id = $_SESSION['current_user'];
+    	return User::getUser($id);
     	#return self::$current_user;
     }
     
@@ -266,6 +267,10 @@ class user
     
     //############################ 2 - 5  UZSAKOVO REIKALAVIMAI ###########################
 
+	public function matchPassword($password){
+		return password_verify($password, $this->password);
+	}
+    
     private function makeAdmin(){
         $this->class = "Administrator"; //arba skaicius
     }

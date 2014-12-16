@@ -113,6 +113,19 @@ class Validation{
 		
 	}
 	
+	public function passwordChangeValidation($data = array()){
+			if(strlen($data['newPassword']) < 6 || strlen($data['newPassword'])> 30){
+				$this->_errors[] = 'Slaptažodis negali būti trumpesnis nei 6 ir ilgesnis nei 30 simbolių';
+			}else{
+				if(!preg_match($this->regex, $data['newPassword'])){
+					$this->_errors[] = 'Neteisingas slaptažodžio formatas naudokite tik raides ir skaicius';
+				}
+				if($data['newPassword'] != $data['newPasswordAgain']){
+					$this->_errors[] = 'Įvesti slapyvardžiai nesutampa';
+				}
+			}
+	}
+	
 	public function getErrors(){
 		return $this->_errors;
 	}

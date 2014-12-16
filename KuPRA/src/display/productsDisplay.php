@@ -173,7 +173,7 @@
 								<?php if(!Product::isUsed($product->id)){?>
 								
 									<input type = 'hidden' name = 'editItem', value = <?php echo $product->id;?>>
-									<button name = "edit"  type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-description = '<?php echo $product->description ?>' data-product = <?php echo $product->id?>>
+									<button name = "edit"  type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-description = '<?php echo $product->description ?>' data-product = <?php echo $product->id?>>
 										<span class=" glyphicon glyphicon-edit">
 										</span>
 									</button>
