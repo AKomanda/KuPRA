@@ -3,6 +3,7 @@
 	$admin = $admin = User::current_user()->isAdmin();
 	$errors = array();
 	$file_errors = array();
+	$edit_item = 0;
 	
 	if(isset($_POST['create'])){
 		if(empty($_POST['measures'])){
@@ -41,11 +42,29 @@
 	}
 	if(isset($_POST['remove'])){		
 		$id = $_POST['removeItem'];
+		if(file_exists($_POST['picpath']) && strpos($_POST['picpath'], '../uploads') === 0){
+			unlink($_POST['picpath']);
+			rmdir("../uploads/products/{$id}");
+		}
 		databaseController::getDB()->delete('maisto_produktai', array('ID', '=', $id));
 	}
-	if(isset($_POST['edit'])){
-		$edit_item = $_POST['editItem'];
-		echo "<script type='text/javascript'>$(document).ready(function(){ $('#myModal').modal('show');});</script>";
+	if(isset($_POST['complete'])){
+		if(empty($_POST['vnt'])){
+			$errors[] = 'Nepasirinktas joks matavimo vienetas';
+		}
+		if(empty($errors)){
+			databaseController::getDB()->delete('produkto_matavimo_vienetai', array('Produktas', '=', $_POST['item']));
+			foreach($_POST['vnt'] as $measure){
+				databaseController::getDB()->insert('produkto_matavimo_vienetai', array('Produktas' => $_POST['item'], 'Matavimo_vienetas' => $measure));
+			}
+			if(isset($_FILES['updphotos'])){
+				echo ':)';
+				$name = fileUploadController::uplProductFile($_FILES['updphotos'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2, "/uploads/products/" . $_POST['item'] .'/');
+				databaseController::getDB()->update('maisto_produktai', array('Aprasymas' => $_POST['description']), array('ID', '=', $_POST['item']));
+			}else{
+				databaseController::getDB()->update('maisto_produktai', array('Aprasymas' => $_POST['description']), array('ID', '=', $_POST['item']));
+			}
+		}
 	}
 	
 	foreach($errors as $error){
@@ -53,6 +72,20 @@
 	}
 	
 ?>
+
+<script type='text/javascript'>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();
+		$('#myModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+			var product = button.data('product');
+			var description = button.data('description');
+			var modal = $(this);
+			modal.find('.modal-body #product').val(product);
+			modal.find('.modal-body #description').val(description);
+		});
+	});
+</script>
 <div class='row'>
 	<div class="col-xs-4">
 		<div class="panel panel-default">
@@ -115,7 +148,7 @@
 								<h4><?php echo $product->name; ?></h4>
 								<a href=""><?php echo User::getUser($product->author)->nick; ?></a>
 							</td>
-							<td class="produktoAprStulpelis"><t><?php echo $product->description ?></t></td>
+							<td class="produktoAprStulpelis" data-toggle="tooltip" data-placement="left" title="Tooltip on bottom" data-container="body"><t><?php echo $product->description ?></t></td>
 							<td class = "produktoMatStulpelis">
 								<div class="dropdown">
 								<a data-target="#" data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -134,15 +167,16 @@
 							<?php if($admin){ ?>
 							<td>
 								<?php if(!Product::isUsed($product->id)){?>
-								<form name="form" action="" method="post">
+								
 									<input type = 'hidden' name = 'editItem', value = <?php echo $product->id;?>>
-									<button name = "edit"  type="submit" class="btn btn-success" >
+									<button name = "edit"  type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-description = '<?php echo $product->description ?>' data-product = <?php echo $product->id?>>
 										<span class=" glyphicon glyphicon-edit">
 										</span>
 									</button>
-								</form>
+								
 								<form name="form" action="" method="post">
 									<input type = 'hidden' name = 'removeItem', value = <?php echo $product->id;?>>
+									<input type = 'hidden', name = "picpath", value = <?php echo $product->picture;?>>
 									<button name = 'remove' type="submit" class="btn btn-danger" >
 										<span class="glyphicon glyphicon-remove">
 										</span>
@@ -159,36 +193,30 @@
 		</div>
 	</div>
 	<div id ="myModal" class="modal fade">
-	<?php 
-		if($edit_item != 0){
-			$p = Product::getProduct($edit_item);
-		}?>
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
         		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         		<h4 class="modal-title">Saldytuvo turinio redagavimas</h4>
-        		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+        		<form method="post" accept-charset="UTF-8" class="form-inline" role="form" enctype="multipart/form-data">
       				<div class="modal-body">
       				<fieldset>
       					<div class="form-group">
-      						<textarea class="form-control" id="productTA" rows='2' name="description" placeholder="Aprašymas"><?php echo $p->description; ?></textarea>
-      						<select multiple class="form-control" size='3' name ="vnt">
+      						<textarea class="form-control" rows='2' name="description" placeholder="Aprašymas" id='description'></textarea>
+      						<select multiple class="form-control" size='3' name ="vnt[]">
       						<?php
-									$measures = Measure::getAllMeasures();
-									foreach($measures as $m){
-										if(array_key_exists($m->ID, $p->measurementUnits)){
-											echo"<option value ='{$m->ID}' selected='selected'>";
-										}else{
-											echo "<option value ='{$m->ID}'>";
-										}
-										echo $m->Pavadinimas;
-										echo "</option>";
-									}
+      									$measures = Measure::getAllMeasures();
+      									foreach($measures as $m){
+      										echo "<option value ='{$m->ID}'>";
+      										echo $m->Pavadinimas;
+      										echo "</option>";
+      										
+      								}
+									
             					?>
       						</select>
-      						<input name="photos[]" type="file" accept="image/*" >
-      						<input type='hidden' name='item' value='<?php if($edit_item != 0){echo $edit_item;} ?>'>
+      						<input name="updphotos[]" type="file" accept="image/*" >
+      						<input type='hidden' name='item' id ='product'>
       					</div>
       				</fieldset>
       				</div>

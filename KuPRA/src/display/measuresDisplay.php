@@ -149,7 +149,7 @@
 								</div>
 							</form>
 						</td>
-						<?php }else{ echo '<td></td>'; }}} ?>
+						<?php }else{ echo '<td><t>Panaudotas</t></td>'; }}} ?>
 						</tr>
 						<?php } ?>
 					</tbody>

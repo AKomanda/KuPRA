@@ -80,12 +80,15 @@ class fileUploadController {
 					$message [] = "$name is not a valid format";
 					continue; // Skip invalid file formats
 				} else { // No error found! Move uploaded files
-					echo ':)';
-					if (!file_exists($real_path)) {
+					$ext = explode(".", $name);
+					$newName = 'product'. '.' .end($ext);
+					if (!file_exists($real_path . $newName)) {
 						mkdir($real_path, 0777, true);
+					}else{
+						unlink($real_path . $newName);
 					}
-					move_uploaded_file ( $files["tmp_name"] [$f], $real_path . $name );
-					return $name;
+					move_uploaded_file ( $files["tmp_name"] [$f], $real_path . $newName );
+					return $newName;
 							
 				}
 			}

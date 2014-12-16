@@ -4,6 +4,8 @@
 	$found_products = array();
 	$edit_item = 0;
 	
+	
+	
 	function add($p){
 		if(!array_key_exists($p['id'], User::current_user()->fridge)){
 			User::current_user()->fridge[$p['id']] = array(
@@ -70,7 +72,40 @@
 		}
 	}
 	$products = User::current_user()->getFridgeContent();
+
+	$measures = array();
+	foreach($products as $p){
+		$units = array();
+		foreach($p['product']->measurementUnits as $key => $u){
+			$units[] = array($key, $u[2]);
+		}
+		$measures[$p['product']->id] = $units;
+	}
 ?>
+
+<script type='text/javascript'>
+	$(document).ready(function(){
+		$('#myModal').on('show.bs.modal', function (event) {
+			var button = $(event.relatedTarget);
+			var amount = button.data('amount');
+			var measures = button.data('measure');
+			var item = button.data('item');
+			var modal = $(this);
+			modal.find('.modal-body #amount').val(amount);
+			modal.find('.modal-body #item').val(item);
+			var sel = document.getElementById('modalMeasure');
+			for( var x=sel.options.length-1; x >= 0; x--){
+				sel.remove(x);
+			}
+			for(var i = 0; i<measures.length; i++){
+				var opt = document.createElement('option');
+				opt.innerHTML = measures[i][1];
+				opt.value = measures[i][0];
+			    sel.appendChild(opt);
+			};
+		});
+	});
+</script>
 <div class="row">
 <div class="col-xs-6">
 	<div class="fridgeSearchContainer">
@@ -154,13 +189,12 @@
 							<?php echo $item['product']->measurementUnits[$item['mesure']][2] ?>					
 						</td>
 						<td>
-							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'editItem', value = <?php echo $item['id'];?>>
-								<button name = "edit"  type="submit" class="btn btn-success">
+								<button name = "edit"  type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-measure = '<?php echo json_encode($measures[$item['product']->id])	;?>' data-amount = '<?php echo $item['amount'] ?>' data-item = '<?php echo $item['id'];?>'>
 									<span class=" glyphicon glyphicon-edit">
 									</span>
 								</button>
-							</form>
+								
 							<form name="form" action="" method="post">
 								<input type = 'hidden' name = 'removeItem', value = <?php echo $item['id'];?>>
 								<button type="submit" class="btn btn-danger" >
@@ -191,18 +225,10 @@
       				<div class="modal-body">
       				<fieldset>
       					<div class="form-group">
-      						<input class="form-control" value='<?php if($edit_item != 0){echo $p->Kiekis;} ?>' placeholder="Kiekis" name="amount" type="number" min="0.01" step = "0.01">
-      						<select class="form-control" name ="vnt">
-      						<?php
-      								if($edit_item != 0){
-      								$pr = Product::getProduct($p->Produktas);
-      								foreach($pr->measurementUnits as $key => $vnt){
-									echo "<option value = {$key}>";
-									echo $vnt[2];
-									echo '</option>';}
-								} ?>
-      						</select>
-      						<input type='hidden' name='item' value='<?php if($edit_item != 0){echo $edit_item;} ?>'>
+      						<input class="form-control" id='amount' placeholder="Kiekis" name="amount" type="number" min="0.01" step = "0.01">
+      						<select class="form-control" id='modalMeasure' name ="vnt">
+
+      						<input type='hidden' name = 'item' id='item'>
       					</div>
       				</fieldset>
       				</div>
