@@ -146,7 +146,7 @@
 							<td class="produktoNuotraukosStulpelis"><div class="produktoNuotrauka"><img src=<?php echo $product->picture; ?>></div></td>
 							<td class="produktoPavadinimoStulpelis">
 								<h4><?php echo $product->name; ?></h4>
-								<a href=""><?php echo User::getUser($product->author)->nick; ?></a>
+								<a href="user.php?id=<?php echo User::getUser($product->author)->id; ?>"><?php echo User::getUser($product->author)->nick; ?></a>
 							</td>
 							<?php if(strlen($product->description) > 40){ ?>
 							<td class="produktoAprStulpelis" data-toggle="tooltip" data-placement="left" title="<?php echo $product->description; ?>" data-container="body"><t><?php echo substr($product->description, 0 , 37) . '...' ?></t></td>

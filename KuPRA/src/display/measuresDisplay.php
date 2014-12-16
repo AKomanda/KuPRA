@@ -99,9 +99,10 @@
 						<?php 
 						foreach($measures as $measure){
 							$authName = User::getUser($measure->Autorius)->nick;
+							$authID = User::getUser($measure->Autorius)->id;
 						?>
 						<tr class="listItemContainer">
-						<td class = 'matVntAutStulpelis'><?php echo $authName; ?></td>
+						<td class = 'matVntAutStulpelis'><a href='<?php echo "user.php?id={$authID}" ?>'><?php echo $authName; ?></a></td>
 						<?php if ($measure->ID == $edit_id){?>
 						<form name="form" action="" method="post">
 						<input type = 'hidden' name = 'id', value = <?php echo $measure->ID;?>>

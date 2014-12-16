@@ -30,7 +30,12 @@ class user
     public static function getUser($id) {
     	$user = new user;
     	$user->setId($id);
-    	$userData = databaseController::getDB()->get("vartotojas", array("id", "=", $id))->results()[0];
+    	$data = databaseController::getDB()->get("vartotojas", array("id", "=", $id));
+    	if($data->error()){
+    		return false;
+    	}else{
+    		$userData = $data->results()[0];
+    	}
     	$user->class = $userData->Teises;
     	$user->setName($userData->Vardas);
     	$user->setSurname($userData->Pavarde);

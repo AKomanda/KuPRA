@@ -4,6 +4,7 @@ include_once 'core/init.php';
 class recepie {
 	public $id;
 	public $author;
+	public $authorId;
 	public $name;
 	public $score;
 	public $scores = array();
@@ -24,7 +25,7 @@ class recepie {
 		$recepie->setID($id);
 		$recData = databaseController::getDB()->get("receptai", array("id", "=", $id))->results()[0];
 		$auth = databaseController::getDB()->query("SELECT slapyvardis from vartotojas WHERE id = ?", array($recData->Autorius));
-		$recepie->setAuthor($auth->results()[0]->slapyvardis);
+		$recepie->setAuthor($auth->results()[0]->slapyvardis, $recData->Autorius);
 		$recepie->setName($recData->Pavadinimas);
 		$recepie->setPortionCount($recData->Porciju_skaicius);
 		$recepie->setTimeToMake($recData->Gamybos_trukme);
@@ -224,8 +225,9 @@ class recepie {
 		$this->id = $val;
 	}
 	
-	public function setAuthor($val) {
+	public function setAuthor($val, $id) {
 		$this->author = $val;
+		$this->authorId = $id;
 	}
 	
 	public function setName($val) {

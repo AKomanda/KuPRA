@@ -65,7 +65,7 @@ if ($_POST) {
 		<div class="col-md-12">
 				<div class="col-xs-12 col-sm-6">
 					<h2><?php echo $receptas->getName(); ?></h2>
-                    <p>sukūrė <strong><?php echo $receptas->getAuthor(); ?></strong></p>
+                    <p>sukūrė <strong><a href = <?php echo "user.php?id={$receptas->authorId}"; ?>> <?php echo $receptas->getAuthor(); ?></a></strong></p>
                     <p>
                     	<div class="recepiePortionCount">
 							<div class="recepiePortionCountIco"></div>
