@@ -1,6 +1,9 @@
 <?php
 include_once "display/pageHeader.php";
-
+include_once 'core/init.php';
+if(!User::isLoggedIn()){
+	header("Location: welcome.php");
+}
 ?>
 <body>
 <?php include_once "display/topBar.php"; ?>

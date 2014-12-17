@@ -1,7 +1,10 @@
 
 <?php
 include_once "display/pageHeader.php";
-
+include_once 'core/init.php';
+if(!User::isLoggedIn()){
+	header("Location: welcome.php");
+}
 //include_once "display/topNav.php";
 //include_once "display/sideNav.php";
 //include_once "display/newRecepieDisplay.php";

@@ -2,7 +2,10 @@
 include_once "display/pageHeader.php";
 include_once "class/user.php";
 $id = User::current_user()->id;
-
+include_once 'core/init.php';
+if(!User::isLoggedIn()){
+	header("Location: welcome.php");
+}
 ?>
 <body>
 <?php include_once "display/topBar.php";  ?>

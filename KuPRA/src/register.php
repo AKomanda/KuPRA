@@ -1,7 +1,11 @@
 <?php
 include_once "display/pageHeader.php";
+include_once 'core/init.php';
+if(User::isLoggedIn()){
+	header("Location: index.php");
+}
 ?>
-
+<html>
 <body>
 <?php  include_once "display/topBar.php";?>
 <div class="container">
