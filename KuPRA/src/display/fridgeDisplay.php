@@ -1,5 +1,18 @@
 <?php
 	include_once 'core/init.php';
+	$perPage = 2;
+	if(isset($_GET['page'])){
+		if($_GET['page'] > 1){
+			$page = $_GET['page'];
+			$offset = ($page - 1) * $perPage; 
+		}else{
+			$page = 1;
+			$offset = 0;
+		}
+	}else{
+		$page = 1;
+		$offset = 0;
+	}
 	$errors = array();
 	$found_products = array();
 	
@@ -81,7 +94,13 @@
 			}		
 		}
 	}
-	$products = User::current_user()->getFridgeContent();
+	$allProducts = User::current_user()->getFridgeContent();
+	$recordCount = count($allProducts);
+	if($recordCount > $offset){
+		$products = array_slice($allProducts, $offset, $perPage);
+	}else{
+		$products = array();
+	}
 
 	$measures = array();
 	foreach($products as $p){
@@ -220,6 +239,25 @@
 				</tbody>
 			</table>
 		</div>
+		<div class = 'row'>
+	<div class = 'col-xs-12'>
+		<p style="text-align:center;">
+			<?php if($offset > 0){
+				$prevPage = $page - 1;
+				echo "<a href = 'fridge.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+			}
+			echo $page;
+			if($recordCount > $offset + $perPage){
+				$secondPage = $page +1;
+				echo "<a href = 'fridge.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+			}
+			//elseif(){
+				
+			//}
+			?>
+		</p>
+	</div>
+</div>
 	</div>
 </div>
 
