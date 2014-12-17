@@ -1,6 +1,11 @@
 <?php
 include_once 'core/init.php';
 $recepies = recepie::allPublic ();
+if (isset($_GET['type'])) {
+	if ($_GET['type'] == 'p') {
+		echo "labas";
+	}
+}
 ?>
 <div class="row">
 	<div class="container-fluid js-masonry"
