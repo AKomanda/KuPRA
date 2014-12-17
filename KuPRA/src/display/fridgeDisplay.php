@@ -2,9 +2,6 @@
 	include_once 'core/init.php';
 	$errors = array();
 	$found_products = array();
-	$edit_item = 0;
-	
-	
 	
 	function add($p){
 		if(!array_key_exists($p['id'], User::current_user()->fridge)){
@@ -67,7 +64,20 @@
 		}
 		if(isset($_POST['complete'])){
 			if($_POST['amount'] > 0){
-				databaseController::getDB()->update('saldytuvas', array('Kiekis' => $_POST['amount'], 'Matavimo_vienetas' => $_POST['vnt']), array('ID', '=', $_POST['item']));
+				$exists = false;
+				foreach(User::current_user()->getFridgeContent() as $i){
+					if($i['product']->id == $_POST['prod']  &&  $i['mesure'] == $_POST['vnt'] && $i['id'] != $_POST['item']){
+						databaseController::getDB()->update('saldytuvas', array('Kiekis' => $i['amount'] + $_POST['amount']), array('ID', '=', $i['id']));
+						databaseController::getDB()->delete('saldytuvas', array('ID', '=', $_POST['item']));
+						$exists = true;
+					}
+					if($exists){
+						break;
+					}
+				}
+				if(!$exists){
+					databaseController::getDB()->update('saldytuvas', array('Kiekis' => $_POST['amount'], 'Matavimo_vienetas' => $_POST['vnt']), array('ID', '=', $_POST['item']));					
+				}
 			}		
 		}
 	}
@@ -90,7 +100,9 @@
 			var amount = button.data('amount');
 			var measures = button.data('measure');
 			var item = button.data('item');
+			var product = button.data('product');
 			var modal = $(this);
+			modal.find('.modal-body #prod').val(product);
 			modal.find('.modal-body #amount').val(amount);
 			modal.find('.modal-body #item').val(item);
 			var sel = document.getElementById('modalMeasure');
@@ -190,7 +202,7 @@
 						</td>
 						<td>
 								<input type = 'hidden' name = 'editItem', value = <?php echo $item['id'];?>>
-								<button name = "edit"  type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-measure = '<?php echo json_encode($measures[$item['product']->id])	;?>' data-amount = '<?php echo $item['amount'] ?>' data-item = '<?php echo $item['id'];?>'>
+								<button name = "edit"  type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal" data-measure = '<?php echo json_encode($measures[$item['product']->id])	;?>' data-amount = '<?php echo $item['amount'] ?>' data-item = '<?php echo $item['id'];?>' data-product = '<?php echo $item['product']->id ?>'>
 									<span class=" glyphicon glyphicon-edit">
 									</span>
 								</button>
@@ -227,7 +239,7 @@
       					<div class="form-group">
       						<input class="form-control" id='amount' placeholder="Kiekis" name="amount" type="number" min="0.01" step = "0.01">
       						<select class="form-control" id='modalMeasure' name ="vnt">
-
+							<input type='hidden' name = 'prod' id='prod'>
       						<input type='hidden' name = 'item' id='item'>
       					</div>
       				</fieldset>

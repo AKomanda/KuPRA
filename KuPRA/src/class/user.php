@@ -186,6 +186,56 @@ class user
     	$this->fridge = $fridge;
     }
 
+    public function getMenuProducts(){
+    	$db = databaseController::getDB();
+    	$recepies = $db->query("SELECT * FROM valgiarastis WHERE Vartotojas = ? AND Pagamintas = ?", array($this->id, 0));
+		if($recepies->count() === 0){
+			return "Jūsų valgiaraštis yra tuščias";
+		}else{
+			$recepies = $recepies->results();
+		}
+		$products = array();
+		foreach($recepies as $recepie){
+			$recPortions = $db->get('receptai', array("ID", '=', $recepie->Receptas))->results()[0]->Porciju_skaicius;
+			$menuPortions = $recepie->Porciju_skaicius;
+			$ingridients = $db->get('recepto_produktai', array('Receptas', '=', $recepie->Receptas))->results();
+			foreach($ingridients as $ingridient){
+				$exists = false;
+				foreach($products as $key => $product){
+					if($product['product'] == $ingridient->Produktas && $product['measure'] == $ingridient->Matavimo_vienetas){
+						$products[$key]['amount'] += $ingridient->Kiekis * $menuPortions / $recPortions;
+						$exists = true;
+					}				
+				}
+				if(!$exists){
+				
+					$products[] = array('product' => $ingridient->Produktas,
+							'amount' => $ingridient->Kiekis  * $menuPortions / $recPortions,
+							'measure' => $ingridient->Matavimo_vienetas);
+				}
+			}
+		}
+		$fridge = $this->getFridgeContent();
+		#print_r($fridge);
+		foreach($products as $key => $product){
+			foreach($fridge as $f){
+				if($product['product'] == $f['product']->id && $product['measure'] == $f['mesure'] ){
+					if($product['amount'] > $f['amount']){
+						$products[$key]['amount'] -= $f['amount'];
+					}else{
+						unset($products[$key]);
+					}
+				}
+			}
+		}
+		if(!empty($products)){
+			return $products;
+		}else{
+			return 'Jums nieko netruksta';
+		}
+		
+    }
+    
     public function getNick(){
         return $this->nick;
     }
