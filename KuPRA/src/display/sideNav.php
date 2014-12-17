@@ -17,7 +17,7 @@
 		location.href = "mymeniu.php";
 		};
 		document.getElementById("whatToPrepare").onclick = function () {
-		location.href = "";
+		location.href = "recepies.php?type=p";
 		};
 	</script>
 </div>

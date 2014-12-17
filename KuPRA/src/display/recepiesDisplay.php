@@ -1,10 +1,23 @@
 <?php
 include_once 'core/init.php';
-$recepies = recepie::allPublic ();
+$rcp = recepie::allPublic ();
 if (isset($_GET['type'])) {
 	if ($_GET['type'] == 'p') {
-		echo "labas";
+		$res = array();
+		foreach($rcp as $r) {
+			$temp = array ();
+			$req = recepie::getRequiredProducts($r[0]->ID);
+			$temp = fridge::searchMissing(user::current_user()->id, $req, '1');
+			if (empty($temp)) {
+				array_push($res, $r);
+			}
+		}
+		$recepies = $res;
+	} else {
+		$recepies = $rcp;
 	}
+} else {
+	$recepies = $rcp;
 }
 ?>
 <div class="row">
