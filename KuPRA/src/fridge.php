@@ -1,6 +1,10 @@
 <?php
 include_once 'display/pageHeader.php';
-include_once "class/user.php";
+include_once 'core/init.php';
+if(!User::isLoggedIn()){
+	header("Location: welcome.php");
+}
+
 $id = User::current_user()->id;
 
 ?>

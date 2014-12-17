@@ -3,7 +3,7 @@
 	
 	function logout(){
 		User::logout();
-		header('Location: login.php');
+		header('Location: welcome.php');
 	}
 	
 	if(isset($_GET['logout'])){
