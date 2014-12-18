@@ -18,7 +18,7 @@ if ($_POST) {
 	} else {
 		$allMeas = databaseController::getDB()->query("SELECT * FROM matavimo_vienetai", array())->results();
 		foreach ($allMeas as $a) {
-			$vnt = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $a->Matavimo_vienetas))->results()[0];
+			$vnt = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $a->ID))->results()[0];
 			array_push($availableMeas, $vnt->Pavadinimas);
 		}
 	}
