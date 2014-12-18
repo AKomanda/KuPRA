@@ -46,7 +46,7 @@ class recepie {
 			$u = databaseController::getDB()->query("SELECT slapyvardis from vartotojas WHERE id = ?", array($result->Vertintojas))->results()[0]->slapyvardis;
 			$recepie->scores[$u] = $result->Vertinimas;
 		}
-		$recepie->mean();
+		$recepie->updateScore();
 		$recTypes = databaseController::getDB()->get("recepto_tipai", array("receptas", "=", $id))->results();
 		foreach($recTypes as $type){
 			$typeName = databaseController::getDB()->query("SELECT Pavadinimas FROM tipas WHERE id = ?", array($type->Tipas))->results()[0]->Pavadinimas;
@@ -113,6 +113,14 @@ class recepie {
 		}
 		return $result;
 	}
+	Public static function photo($id){
+		$f = databaseController::getDB()->get('receptu_nuotraukos', array('receptas', '=', $id))->results();
+		if(count($f) > 0){
+			return $f[0]->Nuotrauka;
+		}else{
+			return '../resources/default/recepie/default.png';
+		}
+	}
 	
 	private function mean(){
 		$count = count($this->scores);
@@ -124,6 +132,22 @@ class recepie {
 		}
 	}
 	
+	public function updateScore(){
+		$scores = databaseController::getDB()->get('vertinimai', array('Receptas', '=', $this->id ))->results();
+		$count = count($scores);
+		if($count > 0) {
+			$sum = 0;
+			foreach($scores as $score){
+				$sum += $score->Vertinimas;
+			}
+			$s = $sum/$count;
+			$this->score = round($s, 2);
+			databaseController::getDB()->update('receptai', array('Vertinimas' => $this->score), array('ID', '=', $this->id));
+		}else{
+			$this->score = 0;
+		}
+		
+	}
 	public function isInMenu($user) {
 		if (empty(databaseController::getDB()->query("SELECT * FROM valgiarastis WHERE Vartotojas = ? AND Receptas = ?", array($user, $this->getId()))->results())) {
 			return false;

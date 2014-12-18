@@ -21,6 +21,7 @@ if ($_POST) {
 	$error = false;
 	if (isset($_POST['subScore'])) {
 		recepie::sendScore(user::current_user()->id, $id, $_POST['rating']);
+		$receptas->updateScore();
 		header("Location: recepie.php?id=$id");
 	} else if (((isset($_POST['portion'])) && (isset($_POST['date']))) || (isset($_POST['prepareSubmit']))) {
 		if (isset($_POST['portion'])) {
