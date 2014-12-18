@@ -100,12 +100,12 @@ if ($_POST) {
 								<td><input type="text" name="ingredient[]" id="searchid"
 									class="search">
 									<div id="result"></div></td>
-								<td><select name="measurement[]">
+								<td><select name="measurement[]" class="mat">
 										<?php
-										foreach ( $measureUnits as $mu ) {
-											echo "<option>" . $mu->Pavadinimas . "</option>";
-										}
-										?>
+// 										foreach ( $measureUnits as $mu ) {
+// 											echo "<option>" . $mu->Pavadinimas . "</option>";
+// 										}
+// 										?>
 								</select></td>
 								<td><input class="small" type="text" name="quantity[]" /></td>
 								<td><input type="button" class="add btn btn-default btn-sm" name="add" value="+" /></td>

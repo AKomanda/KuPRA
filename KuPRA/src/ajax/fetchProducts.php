@@ -14,7 +14,7 @@ if ($_POST) {
 		$final_word = str_ireplace ($q, $bold_word, $word);
 		?>
 <div class="show">
-	<span class="name"><?php echo $final_word; ?></span>
+	<span class="name"><?php echo $word; ?></span>
 </div>
 <?php
 	}
