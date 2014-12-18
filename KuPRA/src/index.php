@@ -46,7 +46,7 @@ $first = true;
     <div class="item active">
       <div class="col-md-4">
       		<div class ='CarouselElement'>
-      		<a href="#">
+      		<a href="recepie.php?id=<?php echo $recepie->ID; ?>">
 	      		<div class="carousel-header" style = 'text-align: center;'>
           			<h3><?php echo $recepie->Pavadinimas ?></h3>
      			 </div>
@@ -59,7 +59,7 @@ $first = true;
     <div class="item">
       <div class="col-md-4">
       		<div class ='CarouselElement'>
-      		<a href="#">
+      		<a href="recepie.php?id=<?php echo $recepie->ID; ?>">
 	      		<div class="carousel-header" style = 'text-align: center;'>
           			<h3><?php echo $recepie->Pavadinimas ?></h3>
      			 </div>
