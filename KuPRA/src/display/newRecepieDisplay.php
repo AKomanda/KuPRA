@@ -50,7 +50,6 @@ if ($_POST) {
 						measure::sendProductMeasure ( $pr, $meaId );
 					} else {	
 						$pr = product::getProductIdByName ( $ingredients[$i] );
-						var_dump($pr);
 						measure::sendProductMeasure ( $ingr[0]->ID, $meaId );
 					}
 					product::addToRecepie($newRecpId, $pr, $quantity[$i], $meaId);
