@@ -1,6 +1,27 @@
 <?php
 include_once 'core/init.php';
-$rcp = recepie::allPublic ();
+$perPage = 12;
+if(isset($_GET['page'])){
+	if($_GET['page'] > 1){
+		$page = $_GET['page'];
+		$offset = ($page - 1) * $perPage;
+	}else{
+		$page = 1;
+		$offset = 0;
+	}
+}else{
+	$page = 1;
+	$offset = 0;
+}
+
+$allRcp = recepie::allPublic ();
+$recordCount = count($allRcp);
+if($recordCount > $offset){
+	$rcp = array_slice($allRcp, $offset, $perPage);
+}else{
+	$rcp = array();
+}
+
 if (isset($_GET['type'])) {
 	if ($_GET['type'] == 'p') {
 		$res = array();
@@ -43,6 +64,25 @@ if (isset($_GET['type'])) {
 		<?php
 	}
 	?>
-
-</div>
+		
+	</div>
+	<div class = 'row'>
+			<div class = 'col-xs-12'>
+				<p style="text-align:center;">
+					<?php if($offset > 0){
+						$prevPage = $page - 1;
+						echo "<a href = 'recepies.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+					}
+					if($offset > 0 || $recordCount > $offset + $perPage){
+						echo $page;
+					}
+					
+					if($recordCount > $offset + $perPage){
+						$secondPage = $page +1;
+						echo "<a href = 'recepies.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+					}
+					?>
+				</p>
+			</div>
+		</div>
 </div>

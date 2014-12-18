@@ -1,6 +1,6 @@
 <?php
 	include_once 'core/init.php';
-	$perPage = 2;
+	$perPage = 10;
 	if(isset($_GET['page'])){
 		if($_GET['page'] > 1){
 			$page = $_GET['page'];
@@ -240,24 +240,24 @@
 			</table>
 		</div>
 		<div class = 'row'>
-	<div class = 'col-xs-12'>
-		<p style="text-align:center;">
-			<?php if($offset > 0){
-				$prevPage = $page - 1;
-				echo "<a href = 'fridge.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
-			}
-			echo $page;
-			if($recordCount > $offset + $perPage){
-				$secondPage = $page +1;
-				echo "<a href = 'fridge.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
-			}
-			//elseif(){
-				
-			//}
-			?>
-		</p>
-	</div>
-</div>
+			<div class = 'col-xs-12'>
+				<p style="text-align:center;">
+					<?php if($offset > 0){
+						$prevPage = $page - 1;
+						echo "<a href = 'fridge.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+					}
+					if($offset > 0 || $recordCount > $offset + $perPage){
+						echo $page;
+					}
+					
+					if($recordCount > $offset + $perPage){
+						$secondPage = $page +1;
+						echo "<a href = 'fridge.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+					}
+					?>
+				</p>
+			</div>
+		</div>
 	</div>
 </div>
 

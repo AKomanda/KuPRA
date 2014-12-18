@@ -1,5 +1,18 @@
 <?php
 	include_once 'core/init.php';
+	$perPage = 10;
+	if(isset($_GET['page'])){
+		if($_GET['page'] > 1){
+			$page = $_GET['page'];
+			$offset = ($page - 1) * $perPage;
+		}else{
+			$page = 1;
+			$offset = 0;
+		}
+	}else{
+		$page = 1;
+		$offset = 0;
+	}
 	$admin = $admin = User::current_user()->isAdmin();
 	$errors = array();
 	$file_errors = array();
@@ -65,6 +78,15 @@
 				databaseController::getDB()->update('maisto_produktai', array('Aprasymas' => $_POST['description']), array('ID', '=', $_POST['item']));
 			}
 		}
+	}
+	
+
+	$allProducts = Product::all();
+	$recordCount = count($allProducts);
+	if($recordCount > $offset){
+		$products = array_slice($allProducts, $offset, $perPage);
+	}else{
+		$products = array();
 	}
 	
 	foreach($errors as $error){
@@ -138,7 +160,6 @@
 					<tbody>
 					
 						<?php 
-						$products = Product::all();
 						foreach($products as $productInfo){
 							$product = Product::getProduct($productInfo->ID);
 						?>
@@ -194,6 +215,26 @@
 					</tbody>
 				</table>
 			</div>
+			
+			<div class = 'row'>
+			<div class = 'col-xs-12'>
+				<p style="text-align:center;">
+					<?php if($offset > 0){
+						$prevPage = $page - 1;
+						echo "<a href = 'products.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+					}
+					if($offset > 0 || $recordCount > $offset + $perPage){
+						echo $page;
+					}
+					
+					if($recordCount > $offset + $perPage){
+						$secondPage = $page +1;
+						echo "<a href = 'products.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+					}
+					?>
+				</p>
+			</div>
+		</div>
 		</div>
 	</div>
 	<div id ="myModal" class="modal fade">

@@ -1,5 +1,19 @@
 <?php
 	include_once 'core/init.php';
+	$perPage = 10;
+	if(isset($_GET['page'])){
+		if($_GET['page'] > 1){
+			$page = $_GET['page'];
+			$offset = ($page - 1) * $perPage;
+		}else{
+			$page = 1;
+			$offset = 0;
+		}
+	}else{
+		$page = 1;
+		$offset = 0;
+	}
+	
 	$errors = array();
 	$success = array();
 	$admin = User::current_user()->isAdmin();
@@ -42,7 +56,13 @@
 			databaseController::getDB()->update('matavimo_vienetai', array('Trumpinys'=> $_POST['editShort'], 'Pavadinimas' => $_POST['editName']), array('ID', '=', $_POST['id']));
 		}
 	}
-	$measures = Measure::getAllMeasures();
+	$allMeasures = Measure::getAllMeasures();
+	$recordCount = count($allMeasures);
+	if($recordCount > $offset){
+		$measures = array_slice($allMeasures, $offset, $perPage);
+	}else{
+		$measures = array();
+	}
 ?>
 
 <div class='row'>
@@ -155,6 +175,25 @@
 						<?php } ?>
 					</tbody>
 				</table>
+			</div>
+			<div class = 'row'>
+				<div class = 'col-xs-12'>
+					<p style="text-align:center;">
+						<?php if($offset > 0){
+							$prevPage = $page - 1;
+							echo "<a href = 'measures.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+						}
+						if($offset > 0 || $recordCount > $offset + $perPage){
+							echo $page;
+						}
+						
+						if($recordCount > $offset + $perPage){
+							$secondPage = $page +1;
+							echo "<a href = 'measures.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+						}
+						?>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>

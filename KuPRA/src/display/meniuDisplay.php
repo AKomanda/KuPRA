@@ -1,7 +1,26 @@
 <?php
 include_once 'core/init.php';
-$meniu = meniu::getMeniu ( $id );
+$perPage = 12;
+if(isset($_GET['page'])){
+	if($_GET['page'] > 1){
+		$page = $_GET['page'];
+		$offset = ($page - 1) * $perPage;
+	}else{
+		$page = 1;
+		$offset = 0;
+	}
+}else{
+	$page = 1;
+	$offset = 0;
+}
 
+$meniu = meniu::getMeniu ( $id );
+$recordCount = count($meniu->recepies);
+if($recordCount > $offset){
+	$meniu->recepies = array_slice($meniu->recepies, $offset, $perPage);
+}else{
+	$meniu->recepies = array();
+}
 if(isset($_POST['buy'])){
 	if(isset($_POST['include'])){
 		$include = array();
@@ -54,8 +73,31 @@ if(isset($_POST['buy'])){
 	}
 	?>
 	</div>
-	<button type="button" class="btn btn-default" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
 </div>
+	<div class = 'row'>
+		<div class ='col-xs-2'>
+		</div>
+		<div class = 'col-xs-8'>
+			<p style="text-align:center;">
+				<?php if($offset > 0){
+					$prevPage = $page - 1;
+					echo "<a href = 'mymeniu.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+				}
+				if($offset > 0 || $recordCount > $offset + $perPage){
+					echo $page;
+				}	
+				if($recordCount > $offset + $perPage){
+					$secondPage = $page +1;
+					echo "<a href = 'mymeniu.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
+				}
+				?>
+			</p>
+		</div>
+		<div class ='col-xs-2'>
+			<button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
+		</div>
+	</div>
+
 		<div class="modal fade">
   			<div class="modal-dialog">
     			<div class="modal-content">
