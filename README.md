@@ -1,2 +1,2 @@
-Visus su projektu susijusius dokumentus (TSPi ataskaitą, funkcinius reikalavimus ir laiko fiksavimą),
-galite pamatyti čia: (paskui įdėsiu adresą, nes dabar visi gali editint)
+Visų su projektu susijusių dokumentų naujausią versiją galite pamatyti čia:
+https://drive.google.com/folderview?id=0ByfXW7B-H498S3A2UmstalF6aVk&usp=sharing
