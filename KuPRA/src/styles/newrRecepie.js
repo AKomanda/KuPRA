@@ -65,13 +65,12 @@ $(document).ready(
 					var txt = $(e.target).parent().text().replace('\t', '');
 				}
 				$(this).prev().val(txt);
+				$(this).fadeOut();
 			});
 
 			$(document).on("click", function(e) {
 				var $clicked = $(e.target);
-				$("#result").each(function() {
-					$(this).fadeOut();
-				});
+				$(this).find("#result").fadeOut();
 			});
 
 			$('#searchid').on(function() {
@@ -85,23 +84,5 @@ $(document).ready(
 				});
 			});
 
-			//
-			// $(".portionIn").change(function() {
-			// var portion = $(this).val();
-			// var id = $('#recpId').val();
-			// var defaultP = $('#recpP').val();
-			// if (portion != '') {
-			// $.ajax({
-			// type : "POST",
-			// url : "./ajax/checkIfEnoughProducts.php",
-			// data : ({portion: portion, id: id, defaultP: defaultP}),
-			// cache : false,
-			// success : function(data) {
-			// $("#testt").html(data);
-			// }
-			// });
-			// }
-			// return false;
-			// });
 
 		});
