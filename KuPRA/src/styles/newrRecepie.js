@@ -9,7 +9,7 @@ var fetchMeasures = function(loc) {
 			data : dataString,
 			cache : false,
 			success : function(html) {
-				$(smt).closest("tr").find(".mat").html(html).show();
+				$(smt).closest("tr").find("#mat").html(html).show();
 			}
 		});
 	}
@@ -33,7 +33,7 @@ $(document).ready(
 						$(".add").eq(-2).removeClass("add").addClass("del");
 					});
 
-			$(".search").keyup(function() {
+			$("#searchid").keyup(function() {
 				var smt = this;
 				var searchid = $(this).val();
 				var dataString = 'search=' + searchid;
@@ -51,11 +51,11 @@ $(document).ready(
 				return false;
 			});
 
-			$(".search").keyup(function() {
+			$("#searchid").keyup(function() {
 				fetchMeasures(this);
 			});
 			
-			$(".search").click(function() {
+			$("#searchid").click(function() {
 				fetchMeasures(this);
 			});
 
