@@ -2,15 +2,12 @@
 
 include_once './core/init.php';
 
+$regex_with_space = "/[a-zA-Z0-9 \pL]/";
 
 $measureUnits = measure::getAllMeasures ();
 
-
-if ($_POST) {
-
-	if ((isset ( $_POST ['recipeName'] )) && (isset ( $_POST ['portions'] )) && (isset ( $_POST ['time'] )) && (isset ( $_POST ['description'] ))) {
-		if ((isset ( $_POST ['ingredient'] )) && (isset ( $_POST ['measurement'] )) && (isset ( $_POST ['quantity'] ))) {
-			
+$errors = array();
+	if (isset($_POST['sukurti'])) {
 			$recName = $_POST ['recipeName'];
 			$portions = $_POST ['portions'];
 			$time = $_POST ['time'];
@@ -18,20 +15,30 @@ if ($_POST) {
 			$measr = $_POST ['measurement'];
 			$quantity = $_POST ['quantity'];
 			$descrp = $_POST ['description'];
+		
 			
-			$error = false;
 			
-			if (!ctype_digit($portions) || !ctype_digit($time)) {
-				$error = true;
+			if (!ctype_digit($time) || ctype_digit($time) <= 0) {
+				$errors[] = 'Gaminimo laikas nurodytas neteisingai';
 			}
 			
-			for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
-				if ((strlen ( $ingredients [$i] ) == 0) || (!ctype_digit ( $quantity [$i] ))) {
-					$error = true;
-				}
+			if(sizeof($ingredients) != 0){
+				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
+					if ((strlen ( $ingredients [$i] ) == 0) || (!ctype_digit ( $quantity [$i] )) || $measr[$i] == 0) {
+						$errors[] = 'Klaida nurodant produktus.';
+						break;
+					}
+				}	
+			}else{
+				$errors[] = 'Nenurodytas nei vienas produktas';
 			}
 			
-			if (! $error) {				
+			
+			if(!preg_match($regex_with_space, $recName)){
+				$errors[] = 'Pavadinime naudokite tik raides skaičius ir tarpus';
+			}
+			
+			if (empty($errors)) {				
 				if (isset ( $_POST ['privacy'] )) {
 					$visibility = 0;
 				} else {
@@ -42,17 +49,9 @@ if ($_POST) {
 				$newRecpId = databaseController::getDB ()->getLast ();
 				
 				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
-					$ingr = product::checkIfExists($ingredients[$i]);		
-					$meaId = measure::getMeasureByName ( $measr [$i] )->id;
-					if (empty($ingr)) {
-						product::sendMinProduct ( user::current_user()->id, $ingredients [$i] );
-						$pr = databaseController::getDB ()->getLast ();
-						measure::sendProductMeasure ( $pr, $meaId );
-					} else {	
-						$pr = product::getProductIdByName ( $ingredients[$i] );
-						measure::sendProductMeasure ( $ingr[0]->ID, $meaId );
-					}
-					product::addToRecepie($newRecpId, $pr, $quantity[$i], $meaId);
+					$p = product::getProductIdByName($ingredients[$i]);
+					echo "{$newRecpId} {$p} {$quantity[$i]} {$measr[$i]}";
+					product::addToRecepie($newRecpId, $p, $quantity[$i], $measr[$i]);
 				}
 				
 				if(isset($_FILES['photo'])) {
@@ -65,77 +64,97 @@ if ($_POST) {
 
 
 		}
-	}
-}
+
 ?>
 
 	<div class="title">
 		<h3>Pridėti receptą</h3>
+		<?php
+			$count = 1;
+			foreach ( $errors as $error ) {
+				echo "<font size='3' color='red'>{$count}.{$error}</font><br>";
+				$count ++;
+			}
+		?>
 	</div>
 	<div class="recipesForm">
-		<form method="post" class="createForm" enctype="multipart/form-data">
-			<div class="leftSide">
-				<fieldset class="info">
-					<label>Pavadinimas</label> <input type="text" name="recipeName" />
-					<div class="clear"></div>
-					<label>Porcijų skaičius</label> <input class="short" type="text"
-						name="portions" />
-					<div class="clear"></div>
-					<label>Gaminimo laikas</label> <input class="short" type="text"
-						name="time" />&nbsp; min.
-				</fieldset>
+		<form method="post" class="form-horizontal" enctype="multipart/form-data">
+			<div class = 'form-group'>
+				<label>Pavadinimas</label>
+				<div class = 'col-sm-6'>
+					<input type="text" name="recipeName" class = "form-control" />
+				</div>
+			</div>
+			<div class = 'form-group'>
+				<label>Porcijų skaičius</label>
+				<div class ='col-sm-2'>
+					<input class = "form-control" type="text" name="portions"  />
+				</div>
+			</div>
+			<div class = 'form-group'>
+				<label>Gaminimo laikas (min.)</label>
+				<div class ='col-sm-2'>
+					<input class = "form-control" type="text"name="time" />
+				</div>
+			</div>
+			<div class = 'form-group'>
 				<fieldset class="ingredients">
 					<label>Produktai</label>
+					<div class = 'col-sm-6'>
 					<table>
 						<thead>
 							<tr>
-								<td>Produktas</td>
-								<td>Matavimo vienetas</td>
-								<td>Kiekis</td>
+								<th></th>
+								<th>Produktas</th>
+								<th>Matavimo vienetas</th>
+								<th>Kiekis</th>
 							</tr>
 						</thead>
 						<tbody class="productsContainer">
 							<tr class="row">
-								<td><input type="text" name="ingredient[]" id="searchid"
-									class="search">
+								<td style = 'min-width:200px;'>
+									<input type="text" name="ingredient[]" id="searchid" class="form-control" autocomplete = 'off'>
 									<div id="result"></div></td>
-								<td><select name="measurement[]" class="mat">
-										<?php
-// 										foreach ( $measureUnits as $mu ) {
-// 											echo "<option>" . $mu->Pavadinimas . "</option>";
-// 										}
-// 										?>
-								</select></td>
-								<td><input class="small" type="text" name="quantity[]" /></td>
-								<td><input type="button" class="add btn btn-default btn-sm" name="add" value="+" /></td>
+								<td style = 'min-width:175px;'>
+									<select name="measurement[]" class="form-control" id = 'mat'>	
+										<option value = '0'>Matavimo vienetas</option>
+									</select>
+								</td>
+								<td style = 'min-width:100px;'>	
+									<input type="number" min="0.01" value ="0.01" step="0.01" name ='quantity[]' class="form-control">
+								</td>
+								<td>
+									<input type="button" class="add btn btn-default btn-sm" name="add" value="+" />
+								</td>
 							</tr>
 						</tbody>
 					</table>
-
+					</div>
 				</fieldset>
-				<fieldset class="description">
+				</div>
+				<div class = 'form-group'>
 					<label>Gaminimo aprašmas</label>
-					<textarea name="description" rows="5" cols="45"></textarea>
-				</fieldset>
-				<fieldset class="photos">
+					<textarea class = 'form-control' name="description" rows="3" cols="5" style='width:40%'></textarea>
+				</div>
+				<div class = 'form-group'>
 					<label>Nuotraukos</label>
-					<span>Iki 6 nuotraukų. Maksimalus dydis: 2MB.</span>
+					<div class = 'col-sm-8'>
 					<table>
-						<tr>
-							<td><input name="photo[]" type="file" accept="image/*" /></td>
-						</tr>
-						<tr>
-							<td><input name="photo[]" type="file" accept="image/*" /></td>
-						</tr>
-					</table>	
+						<thead>
+							<td >Iki 6 nuotraukų. Maksimalus dydis: 2MB.</td>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="min-width:300px;"><input name="photo[]" type="file" accept="image/*" multiple /></td>
+							</tr>
+						</tbody>
+					</table>
+					</div>
+				</div>
+				<fieldset class="confirm">
+					Privatus? &nbsp;<input name="privacy" type="checkbox" />
+					<input type="submit" value="Pridėti" name = 'sukurti'/>
 				</fieldset>
-				<fieldset style="float: right;" class="confirm">
-					Privatus? &nbsp;<input name="privacy" type="checkbox" /> <input
-						type="submit" value="Pridėti" />
-				</fieldset>
-			</div>
-			<div class="rightSide">
-				<fieldset class="type"></fieldset>
-			</div>
+			
 		</form>
 	</div>

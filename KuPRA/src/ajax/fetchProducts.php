@@ -13,7 +13,7 @@ if ($_POST) {
 		$bold_word = '<strong>' . $q . '</strong>';
 		$final_word = str_ireplace ($q, $bold_word, $word);
 		?>
-<div class="show">
+<div id='show' class="container-fluid">
 	<span class="name"><?php echo $word; ?></span>
 </div>
 <?php

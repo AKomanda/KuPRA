@@ -13,18 +13,20 @@ if ($_POST) {
 		$allMeas = databaseController::getDB()->get("produkto_matavimo_vienetai", array("Produktas", "=", $auth[0]->ID))->results();
 		foreach ($allMeas as $a) {
 			$vnt = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $a->Matavimo_vienetas))->results()[0];
-			array_push($availableMeas, $vnt->Pavadinimas);
+			$availableMeas[$vnt->ID] = $vnt->Pavadinimas;
 		}
 	} else {
-		$allMeas = databaseController::getDB()->query("SELECT * FROM matavimo_vienetai", array())->results();
-		foreach ($allMeas as $a) {
-			$vnt = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $a->ID))->results()[0];
-			array_push($availableMeas, $vnt->Pavadinimas);
-		}
+		$allMeas = array();
+		$availableMeas = array();
+		//$allMeas = databaseController::getDB()->query("SELECT * FROM matavimo_vienetai", array())->results();
+		//foreach ($allMeas as $a) {
+		//	$vnt = databaseController::getDB()->get("matavimo_vienetai", array("ID", "=", $a->ID))->results()[0];
+		//	array_push($availableMeas, $vnt->Pavadinimas);
+		//}
 	}
-	
-	foreach ( $availableMeas as $words ) {
-		echo "<option>" . $words . "</option>";
+	echo "<option value = '0'>Matavimo vienetas</option>";
+	foreach ( $availableMeas as $key => $words ) {
+		echo "<option value = '{$key}'>" . $words . "</option>";
 	}
 }
 ?>
