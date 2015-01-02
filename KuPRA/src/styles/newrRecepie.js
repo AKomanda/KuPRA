@@ -9,7 +9,7 @@ var fetchMeasures = function(loc) {
 			data : dataString,
 			cache : false,
 			success : function(html) {
-				$(smt).closest("tr").find("#mat").html(html).show();
+				$(smt).closest("tr").find(".mat").html(html).show();
 			}
 		});
 	}
@@ -33,7 +33,7 @@ $(document).ready(
 						$(".add").eq(-2).removeClass("add").addClass("del");
 					});
 
-			$("#searchid").keyup(function() {
+			$(".search").keyup(function() {
 				var smt = this;
 				var searchid = $(this).val();
 				var dataString = 'search=' + searchid;
@@ -51,15 +51,11 @@ $(document).ready(
 				return false;
 			});
 
-			$("#searchid").keyup(function() {
+			$(".search").keyup(function() {
 				fetchMeasures(this);
 			});
 			
-			$("#searchid").click(function() {
-				fetchMeasures(this);
-			});
-			
-			$("#searchid").change(function() {
+			$(".search").click(function() {
 				fetchMeasures(this);
 			});
 
@@ -69,13 +65,12 @@ $(document).ready(
 					var txt = $(e.target).parent().text().replace('\t', '');
 				}
 				$(this).prev().val(txt);
+				$(this).fadeOut();
 			});
 
 			$(document).on("click", function(e) {
 				var $clicked = $(e.target);
-				$("#result").each(function() {
-					$(this).fadeOut();
-				});
+				$(this).find("#result").fadeOut();
 			});
 
 			$('#searchid').on(function() {
@@ -89,23 +84,5 @@ $(document).ready(
 				});
 			});
 
-			//
-			// $(".portionIn").change(function() {
-			// var portion = $(this).val();
-			// var id = $('#recpId').val();
-			// var defaultP = $('#recpP').val();
-			// if (portion != '') {
-			// $.ajax({
-			// type : "POST",
-			// url : "./ajax/checkIfEnoughProducts.php",
-			// data : ({portion: portion, id: id, defaultP: defaultP}),
-			// cache : false,
-			// success : function(data) {
-			// $("#testt").html(data);
-			// }
-			// });
-			// }
-			// return false;
-			// });
 
 		});

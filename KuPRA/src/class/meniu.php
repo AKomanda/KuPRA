@@ -21,8 +21,8 @@ class meniu
 	public static function getMeniu($author){
 		$meniu = new meniu;
 		$meniu->setAuthor($author);
-		$meniuData = databaseController::getDB()->get("valgiarastis", array("Vartotojas", "=", $author))->results();
-		
+//		$meniuData = databaseController::getDB()->get("valgiarastis", array("Vartotojas", "=", $author))->results();
+		$meniuData = databaseController::getDB()->query("SELECT * FROM valgiarastis WHERE Vartotojas = ? ORDER BY Gaminimo_data DESC", array($author))->results();
 		foreach($meniuData as $receptas) {
 			$receptoNuotraukos = databaseController::getDB()->query("SELECT Nuotrauka FROM receptu_nuotraukos WHERE receptas = ?", array($receptas->Receptas))->results();
 			$receptas->Nuotraukos = $receptoNuotraukos;

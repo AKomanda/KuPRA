@@ -57,7 +57,6 @@ class fridge {
 	}
 	
 	public static function removeProducts($product = array(), $modifier) {
-		var_dump($product);
 		foreach ($product as $pr) {
 			$currentProduct = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Produktas = ? AND Matavimo_vienetas = ?", array($pr->Produktas, $pr->Matavimo_vienetas))->results()[0];
 			databaseController::getDB()->query("UPDATE saldytuvas SET Kiekis = ? WHERE Produktas = ? AND Matavimo_vienetas = ?", array(($currentProduct->Kiekis - round(($pr->Kiekis*$modifier), 2)), $pr->Produktas, $pr->Matavimo_vienetas));

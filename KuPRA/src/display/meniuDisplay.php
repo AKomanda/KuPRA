@@ -58,12 +58,17 @@ if(isset($_POST['buy'])){
 <div class="container-fluid js-masonry"
 		data-masonry-options='{ "gutter": 10 }'>
 	<?php 
+	$lastDate = "0000-00-00";
 	foreach ( $meniu->recepies as $receptas ) {
+		if (strcmp($lastDate, $receptas->Gaminimo_data) !== 0) {
+			echo "aAAA". $receptas->Gaminimo_data;
+			$lastDate = $receptas->Gaminimo_data;
+		}
 		echo ""?>
 		<div class='thumbnail <?php if (recepie::isMadeByUser(user::current_user()->id, $receptas->MeniuID)) { echo " recepieMade"; } ?>'>
 			<div class='receptoPavadinimas'><?php echo $receptas->Receptas; ?></div>
 			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "&m=". $receptas->MeniuID . "'>" ?>
-			<div class='receptoNuotrauka'><img src="<?php if (count($receptas->Nuotraukos) > 0) { echo $receptas->Nuotraukos[0]->Nuotrauka; } ?>" /></div>
+			<div class='receptoNuotrauka'><img src="<?php if (count($receptas->Nuotraukos) > 0) { echo $receptas->Nuotraukos[0]->Nuotrauka; } else { echo '../resources/default/recepie/default.png'; } ?>" /></div>
 			</a>
 			<div class='caption'>
 				<p><?php echo substr($receptas->Aprasymas, 0, 100); ?></p>
