@@ -23,7 +23,7 @@
 					if(User::isLoggedIn()){
 							echo '<a class="navbar-brand" href="index.php">KuPRA</a>';
 						}else{
-							echo '<a class="navbar-brand" href="#">KuPRA</a>';
+							echo '<a class="navbar-brand" href="welcome.php">KuPRA</a>';
 						}
   				?>
         </div>

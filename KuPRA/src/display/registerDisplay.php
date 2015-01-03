@@ -52,7 +52,7 @@
 			    		    <input class="form-control" placeholder="Slaptažodis" name="password" type="password">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Slaptažodis" name="password_again" type="password" value="">
+			    			<input class="form-control" placeholder="Pakartokite slaptažodį" name="password_again" type="password" value="">
 			    		</div>
 			    		<input class="btn btn-success btn-block" type="submit" value="Registruotis">
 			    	</fieldset>
