@@ -24,7 +24,9 @@ $errors = array();
 			
 			if(sizeof($ingredients) != 0){
 				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
-					if ((strlen ( $ingredients [$i] ) == 0) || (!ctype_digit ( $quantity [$i] )) || $measr[$i] == 0) {
+					if (strlen ( $ingredients [$i] ) == 0 || $quantity[$i] <= 0 || $measr[$i] == 0) {
+						echo "{$ingredients[$i]} {$quantity[$i]}{$measr[$i]}<br>";
+						echo ctype_digit($quantity[$i]);
 						$errors[] = 'Klaida nurodant produktus.';
 						break;
 					}
@@ -77,7 +79,7 @@ $errors = array();
 			}
 		?>
 	</div>
-	<div class="recipesForm">
+	<div class="recipesForm" style ="padding-left: 15px;">
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class = 'form-group'>
 				<label>Pavadinimas</label>
@@ -108,13 +110,14 @@ $errors = array();
 								<th>Produktas</th>
 								<th>Matavimo vienetas</th>
 								<th>Kiekis</th>
+								<th><input type="button" class="add btn btn-success btn-sm" name="add" value="+" /></th>
 							</tr>
 						</thead>
 						<tbody class="productsContainer">
-							<tr class="row">
+							<tr class="row product">
 								<td style = 'min-width:200px;'>
 									<input type="text" name="ingredient[]" id="searchid" class="form-control" autocomplete = 'off'>
-									<div id="result"></div></td>
+									<div id="result" class = 'result'></div></td>
 								<td style = 'min-width:175px;'>
 									<select name="measurement[]" class="form-control" id = 'mat'>	
 										<option value = '0'>Matavimo vienetas</option>
@@ -124,7 +127,7 @@ $errors = array();
 									<input type="number" min="0.01" value ="0.01" step="0.01" name ='quantity[]' class="form-control">
 								</td>
 								<td>
-									<input type="button" class="add btn btn-default btn-sm" name="add" value="+" />
+									<input type="button" class="del btn btn-danger btn-sm" name="del" value="-" />
 								</td>
 							</tr>
 						</tbody>

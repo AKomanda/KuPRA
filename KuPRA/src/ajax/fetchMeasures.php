@@ -4,11 +4,15 @@ if ($_POST) {
 	$q = $_POST ['search'];
 	$qb = $q;
 	$availableMeas = array();
-	$auth = databaseController::getDB ()->get ( "maisto_produktai", array (
-			"Pavadinimas",
-			"=",
-			$qb 
-	) )->results ();
+	if($qb != ''){
+		$auth = databaseController::getDB ()->get ( "maisto_produktai", array (
+				"Pavadinimas",
+				"=",
+				$qb
+		) )->results ();
+	}else{
+		$auth = array();
+	}
 	if (!empty($auth)) {
 		$allMeas = databaseController::getDB()->get("produkto_matavimo_vienetai", array("Produktas", "=", $auth[0]->ID))->results();
 		foreach ($allMeas as $a) {

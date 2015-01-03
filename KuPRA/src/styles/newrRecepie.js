@@ -2,7 +2,7 @@ var fetchMeasures = function(loc) {
 	var smt = loc;
 	var searchid = $(loc).val();
 	var dataString = 'search=' + searchid;
-	if (searchid != '') {
+	
 		$.ajax({
 			type : "POST",
 			url : "./ajax/fetchMeasures.php",
@@ -12,7 +12,7 @@ var fetchMeasures = function(loc) {
 				$(smt).closest("tr").find("#mat").html(html).show();
 			}
 		});
-	}
+	
 	return false;
 }
 
@@ -21,16 +21,24 @@ $(document).ready(
 
 			$(".add").click(
 					function() {
-						$(".row").eq(-1).clone(true).appendTo(
-								".productsContainer")
-								.find("input[type='text']").val("");
-						$(".add").eq(-2).off("click");
-						$(".add").eq(-2).bind("click", function() {
+						var row = $(".row").eq(-1).clone(true).appendTo(
+								".productsContainer");
+						$(row).find("input[type='text']").val("");
+						$(row).find("input[type='number']").val('0.01');
+						$(row).find("select[id='mat']")
+							  .find('option')
+							  .remove()
+							  .end()
+							  .append('<option value="0">Matavimo vienetas</option>')
+							  .val('0');
+					});
+			
+			$(".del").click(
+					function(){
+						var numItems = $('.product').length;
+						if(numItems > 1 ){
 							$(this).closest(".row").remove();
-						})
-						$(".add").eq(-2).val("-");
-						$(".add").eq(-2).attr("name", "del");
-						$(".add").eq(-2).removeClass("add").addClass("del");
+						}
 					});
 
 			$("#searchid").keyup(function() {
@@ -66,11 +74,12 @@ $(document).ready(
 				}
 				$(this).prev().val(txt);
 				$(this).fadeOut();
+				fetchMeasures($(this).prev());
 			});
 
 			$(document).on("click", function(e) {
 				var $clicked = $(e.target);
-				$(this).find("#result").fadeOut();
+				$(this).find(".result").fadeOut();
 			});
 
 			$('#searchid').on(function() {
