@@ -40,7 +40,7 @@
 			    	<form method="post" accept-charset="UTF-8" role="form">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" value="<?php echo $email;  ?>" placeholder="El. Paštas" name="email" type="text">
+			    		    <input class="form-control" value="<?php echo $email;  ?>" placeholder="El. PaÅ�tas" name="email" type="text">
 			    		</div>
 			    		<div class="form-group">
 			    		    <input class="form-control" value="<?php echo $login;  ?>" placeholder="Prisijungimo vardas" name="login" type="text">
@@ -49,10 +49,10 @@
 			    		    <input class="form-control" value="<?php echo $nick;  ?>" placeholder="Slapyvardis" name="nick" type="text">
 			    		</div>
 			    		<div class="form-group">
-			    		    <input class="form-control" placeholder="Slaptažodis" name="password" type="password">
+			    		    <input class="form-control" placeholder="SlaptaÅ¾odis" name="password" type="password">
 			    		</div>
 			    		<div class="form-group">
-			    			<input class="form-control" placeholder="Slaptažodis" name="password_again" type="password" value="">
+			    			<input class="form-control" placeholder="Pakartokite slaptaÅ¾odį" name="password_again" type="password" value="">
 			    		</div>
 			    		<input class="btn btn-success btn-block" type="submit" value="Registruotis">
 			    	</fieldset>
