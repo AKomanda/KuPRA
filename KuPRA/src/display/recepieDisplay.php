@@ -62,6 +62,12 @@ if ($_POST) {
 ?>
 
 <div class="container-fluid">
+    <div class="row">
+    <div class="col-md-10"></div>
+    <div class="col-md-1">
+    	<a href="<?php echo "edit.php?id={$id}"; ?>"><input type="button" class="btn btn-xs btn-default" value="Redaguoti"></a>
+    </div>
+    </div>
 	<div class="row">
 		<div class="col-md-12">
 				<div class="col-xs-12 col-sm-6">
@@ -289,5 +295,9 @@ if ($_POST) {
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<?php }
-		} ?>
+		} 
+		
+		?>
+		
+		
 </div>

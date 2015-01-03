@@ -18,6 +18,11 @@ var fetchMeasures = function(loc) {
 
 $(document).ready(
 		function() {
+			
+			$(".del").on("click", function() {
+						$(this).unbind();
+						$(this).closest(".row").remove();
+			});
 
 			$(".add").click(
 					function() {
@@ -54,7 +59,7 @@ $(document).ready(
 			$("#searchid").keyup(function() {
 				fetchMeasures(this);
 			});
-			
+
 			$("#searchid").click(function() {
 				fetchMeasures(this);
 			});
@@ -83,6 +88,5 @@ $(document).ready(
 					$(".filename").html(fileName);
 				});
 			});
-
 
 		});

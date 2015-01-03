@@ -263,9 +263,9 @@
 
 <div id ="myModal" class="modal fade">
 	<?php 
-		if($edit_item != 0){
-			$p = databaseController::getDB()->get('saldytuvas', array('ID', '=', $edit_item))->results()[0];
-		}?>
+// 		if($edit_item != 0){
+// 			$p = databaseController::getDB()->get('saldytuvas', array('ID', '=', $edit_item))->results()[0];
+// 		}?>
   	<div class="modal-dialog">
     	<div class="modal-content">
       		<div class="modal-header">
