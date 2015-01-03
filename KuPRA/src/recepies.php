@@ -18,8 +18,8 @@ if(!User::isLoggedIn()){
 		</div>
 	</div>
 	<div class='row'>
-		<div class = 'col-xs-9'>
-		  <div class = 'mainContainer'>
+		<div class = 'col-xs-9 '>
+		  <div class = 'mainContainer mainas'>
 		  	<?php include_once "display/recepiesDisplay.php"; ?>
 		  </div>
 		</div>

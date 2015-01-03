@@ -17,7 +17,7 @@ if(!User::isLoggedIn()){
 	</div>
 	<div class='row'>
 		<div class = 'col-xs-9'>
-		  <div class = 'profileContainer'>
+		  <div class = 'profileContainer mainas'>
 		  	<?php include_once "display/userDisplay.php"; ?>
 		  </div>
 		</div>

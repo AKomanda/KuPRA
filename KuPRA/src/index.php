@@ -29,7 +29,7 @@ $first = true;
 	</div>
 	<div class='row'>
 		<div class = 'col-xs-9'>
-		  <div class = 'mainContainer'>
+		  <div class = 'mainContainer mainas'>
 		  
 	<div id = 'car' class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

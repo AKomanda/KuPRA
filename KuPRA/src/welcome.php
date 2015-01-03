@@ -6,18 +6,24 @@ if(User::isLoggedIn()){
 }
 ?>
 
-<html>
 <body>
 <?php  include_once "display/topBar.php";?>
-<div class ="container">
-	<div class ='row'>
-		<div class = 'col-xs-12'>
-			<div class="mainContainer">
-				<h1>Sveiki atvykę į KuPRA svetainę</h1>
-				<font>KuPRA - tai <strong>Ku</strong>linarinių <strong>P</strong>atiekalų <strong>R</strong>uošimo <strong>A</strong>sistentas.</font><br>
-				<font>Pilnam šios sistemos naudojimui reikalinga registracija.</font><br>
-				<button type="button" class="btn btn-success" id = 'reg'>Registruotis</button>
-				<button type="button" class="btn btn-success" id = 'login'>Prisijungti</button>
+<div class ="container welcomingContainer">
+<div class="row ">
+<div class="col-lg-12">
+	<div class="text-vertical-center">
+		<span class="name">Sveiki atvykę į KuPRA svetainę</span>
+	</div>
+<p class="lead text-center">Sveiki atvykę į KuPRA svetainę</p>
+				<p class="lead text-center">KuPRA - tai <strong>Ku</strong>linarinių <strong>P</strong>atiekalų <strong>R</strong>uošimo <strong>A</strong>sistentas.</p>
+				<p class="lead text-center">Pilnam šios sistemos naudojimui reikalinga registracija.</font><p>
+					<p class="lead text-center">
+						<div class="suround text-center">
+						<button type="button" class="btn btn-primary" id = 'reg'>Registruotis</button>&nbsp;-&nbsp;arba&nbsp;-
+						
+						<button type="button" class="btn btn-primary" id = 'login'>Prisijungti</button>
+						</div>
+					</p>
 				<script type="text/javascript">
 	    		document.getElementById("reg").onclick = function () {
 		        	location.href = "register.php";
@@ -26,10 +32,7 @@ if(User::isLoggedIn()){
 			       	location.href = "login.php";
 			    	};
 				</script>
-			</div>
-		</div>
-	</div>
+</div>
+</div>			
 </div>
 </body>
-
-</html>
