@@ -20,12 +20,12 @@
             <span class="icon-bar"></span>
           </button>
             	<?php 
-					if(User::isLoggedIn()){
-							echo '<a class="navbar-brand" href="index.php">KuPRA</a>';
-						}else{
-							echo '<a class="navbar-brand" href="welcome.php">KuPRA</a>';
-						}
-  				?>
+			//if(User::isLoggedIn()){
+				echo '<a class="navbar-brand" href="index.php">KuPRA</a>';
+			//}else{
+				//echo '<a class="navbar-brand" href="welcome.php">KuPRA</a>';
+			//}
+  		?>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
