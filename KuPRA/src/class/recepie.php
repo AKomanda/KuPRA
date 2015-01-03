@@ -59,7 +59,7 @@ class recepie {
 		return $recepie;
 	}
 	
-	public static function sendRecepie($user, $name, $portion, $length, $descr, $publ) {
+public static function sendRecepie($user, $name, $portion, $length, $descr, $publ) {
 		databaseController::getDB()->insert("receptai", array (
 					"Autorius" => $user,
 					"Pavadinimas" => $name, 
@@ -68,6 +68,18 @@ class recepie {
 					"Aprasymas" => $descr, 
 					"Viesumas" => $publ
 		));
+	}
+	
+	public static function updateRecepie($id, $user, $name, $portion, $length, $descr, $publ) {
+		databaseController::getDB()->update("receptai", array (
+		"Autorius" => $user,
+		"Pavadinimas" => $name,
+		"Porciju_skaicius" => $portion,
+		"Gamybos_trukme" => $length,
+		"Aprasymas" => $descr,
+		"Viesumas" => $publ
+		),
+		array("ID", "=", $id));
 	}
 	
 	public static function allPublic(){
