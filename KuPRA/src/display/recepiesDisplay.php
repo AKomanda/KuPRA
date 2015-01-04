@@ -1,6 +1,6 @@
 <?php
 include_once 'core/init.php';
-$perPage = 6;
+$perPage = 12;
 if(isset($_GET['page'])){
 	if($_GET['page'] > 1){
 		$page = $_GET['page'];
