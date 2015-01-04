@@ -60,10 +60,10 @@ $errors = array();
 				}
 				
 				if(isset($_FILES['photo'])) {
-					fileUploadController::uplRecepieFile($newRecpId, $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . user::current_user()->login . "/" . $newRecpId . "/");
+					fileUploadController::uplRecepieFile($_GET['id'], $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . user::current_user()->login . "/" . $newRecpId . "/");
 				}
 				
-				header('location: recepie.php?id=' . $newRecpId);
+				header('location: recepie.php?id=' . $_GET['id']);
 				
 			} 
 

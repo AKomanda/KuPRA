@@ -55,16 +55,26 @@ if(isset($_POST['buy'])){
 
 
 <div class="row">
-<div class="container-fluid js-masonry"
-		data-masonry-options='{ "gutter": 10 }'>
 	<?php 
 	$lastDate = "0000-00-00";
+	$f = 0;
 	foreach ( $meniu->recepies as $receptas ) {
 		if (strcmp($lastDate, $receptas->Gaminimo_data) !== 0) {
-			echo "aAAA". $receptas->Gaminimo_data;
+			if ($f == 1) {
+				echo "</div>";
+			}
+			?>
+			
+			<div class="thumbnail" style="width: 100%;">
+				<div class="receptoPavadinimas"><?php echo $receptas->Gaminimo_data ?></div>
+			</div>
+			<div class="container-fluid js-masonry"
+				data-masonry-options='{ "gutter": 10 }'>
+			<?php 
 			$lastDate = $receptas->Gaminimo_data;
+			$f=1;
 		}
-		echo ""?>
+		?>
 		<div class='thumbnail <?php if (recepie::isMadeByUser(user::current_user()->id, $receptas->MeniuID)) { echo " recepieMade"; } ?>'>
 			<div class='receptoPavadinimas'><?php echo $receptas->Receptas; ?></div>
 			<?php echo "<a href='recepie.php?id=" . $receptas->ID . "&m=". $receptas->MeniuID . "'>" ?>
@@ -74,10 +84,10 @@ if(isset($_POST['buy'])){
 				<p><?php echo substr($receptas->Aprasymas, 0, 100); ?></p>
 			</div>
 		</div>
-		<?php 
-	}
-	?>
-	</div>
+
+	<?php 
+	 } ?>
+</div>
 </div>
 	<div class = 'row'>
 		<div class ='col-xs-2'>
