@@ -18,9 +18,6 @@
 	    		<button type="button" class="btn btn-success" id="recepies">Receptai</button>
 	  		</div>
 	  		<div class="btn-group" role="group">
-	   			<button type="button" class="btn btn-success">Ieškoti receptų</button>
-	  		</div>
-	  		<div class="btn-group" role="group">
 	  			  <button type="button" class="btn btn-success" id="fridge">Šaldytuvas</button>
 	 		</div>
 	  		<div class="btn-group" role="group">

@@ -14,7 +14,12 @@ if(isset($_GET['page'])){
 	$offset = 0;
 }
 
-$allRcp = recepie::allPublic ();
+if(isset($_GET['search'])){
+	$allRcp = recepie::search($_GET['search']);
+}else{
+	$allRcp = recepie::allPublic ();
+}
+
 $recordCount = count($allRcp);
 if($recordCount > $offset){
 	$rcp = array_slice($allRcp, $offset, $perPage);
@@ -41,6 +46,20 @@ if (isset($_GET['type'])) {
 	$recepies = $rcp;
 }
 ?>
+<div class = row>
+  <div class="col-md-6">
+  	<div class = 'search'>
+	 	 <form name="form" action="" method="get">
+		  	<div class="input-group">
+	 			 <input type="text" name="search" class="form-control" placeholder="Ieškoti receptų">
+	 			 <span class="input-group-btn">
+	        		<button type="submit"class="btn btn-success go inline"><span class="glyphicon glyphicon-search"></span></button> 
+	      		 </span>  
+			</div>
+		</form>
+	</div>
+  </div>
+</div>
 <div class="row">
 	<div class="container-fluid js-masonry"
 		data-masonry-options='{ "gutter": 10 }'>
