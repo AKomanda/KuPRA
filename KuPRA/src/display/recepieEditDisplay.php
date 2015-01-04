@@ -52,7 +52,7 @@ $errors = array();
 				recepie::updateRecepie ($_GET['id'], $receptas->authorId, $recName, $portions, $time, $descrp, $visibility );
 				$newRecpId = databaseController::getDB ()->getLast ();
 				databaseController::getDB()->query("DELETE FROM recepto_produktai WHERE Receptas = ?", array($_GET['id']));
-					
+				
 				for($i = 0; $i < sizeOf ( $ingredients ); $i ++) {
 					$p = product::getProductIdByName($ingredients[$i]);
 					echo "{$newRecpId} {$p} {$quantity[$i]} {$measr[$i]}";
@@ -60,6 +60,7 @@ $errors = array();
 				}
 				
 				if(isset($_FILES['photo'])) {
+					databaseController::getDB()->query("DELETE FROM receptu_nuotraukos WHERE receptas = ?", array($_GET['id']));
 					fileUploadController::uplRecepieFile($_GET['id'], $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . user::current_user()->login . "/" . $newRecpId . "/");
 				}
 				
@@ -162,7 +163,7 @@ $errors = array();
 				</div>
 				<fieldset class="confirm">
 					Privatus? &nbsp;<input name="privacy" type="checkbox" />
-					<input type="submit" value="Pridėti" name = 'update'/>
+					<input type="submit" value="Atnaujinti" name = 'update'/>
 				</fieldset>
 			
 		</form>
