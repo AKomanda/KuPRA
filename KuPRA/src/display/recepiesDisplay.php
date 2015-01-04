@@ -1,6 +1,6 @@
 <?php
 include_once 'core/init.php';
-$perPage = 12;
+$perPage = 6;
 if(isset($_GET['page'])){
 	if($_GET['page'] > 1){
 		$page = $_GET['page'];
@@ -88,18 +88,35 @@ if (isset($_GET['type'])) {
 	<div class = 'row'>
 			<div class = 'col-xs-12'>
 				<p style="text-align:center;">
-					<?php if($offset > 0){
-						$prevPage = $page - 1;
-						echo "<a href = 'recepies.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
-					}
-					if($offset > 0 || $recordCount > $offset + $perPage){
-						echo $page;
+					<?php 
+					if(isset($_GET['search'])){
+						if($offset > 0){
+							$prevPage = $page - 1;
+							echo "<a href = 'recepies.php?search={$_GET['search']}&page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+						}
+							if($offset > 0 || $recordCount > $offset + $perPage){
+							echo $page;
+							}
+								
+							if($recordCount > $offset + $perPage){
+							$secondPage = $page +1;
+								echo "<a href = 'recepies.php?search={$_GET['search']}&page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>";
+							}
+					}else{
+						if($offset > 0){
+							$prevPage = $page - 1;
+							echo "<a href = 'recepies.php?page={$prevPage}'><span class='glyphicon glyphicon-arrow-left'></a>";
+						}
+							if($offset > 0 || $recordCount > $offset + $perPage){
+							echo $page;
+							}
+								
+							if($recordCount > $offset + $perPage){
+							$secondPage = $page +1;
+								echo "<a href = 'recepies.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>";
+							}
 					}
 					
-					if($recordCount > $offset + $perPage){
-						$secondPage = $page +1;
-						echo "<a href = 'recepies.php?page={$secondPage}'><span class='glyphicon glyphicon-arrow-right'></a>"; 
-					}
 					?>
 				</p>
 			</div>
