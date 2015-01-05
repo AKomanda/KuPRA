@@ -23,7 +23,13 @@ class recepie {
 	public static function getRecepie($id){
 		$recepie = new recepie;
 		$recepie->setID($id);
-		$recData = databaseController::getDB()->get("receptai", array("id", "=", $id))->results()[0];
+		$recD = databaseController::getDB()->get("receptai", array("id", "=", $id))->results();
+		print_r(empty($recD));
+		if(empty($recD)){
+			return false;
+		}else{
+			$recData = $recD[0];
+		}
 		$auth = databaseController::getDB()->query("SELECT slapyvardis from vartotojas WHERE id = ?", array($recData->Autorius));
 		$recepie->setAuthor($auth->results()[0]->slapyvardis, $recData->Autorius);
 		$recepie->setName($recData->Pavadinimas);
