@@ -19,7 +19,7 @@ if(!user::isLoggedIn()){
 	<div class='row'>
 		<div class = 'col-xs-9'>
 		  <div class = 'mainContainer mainas'>
-		  	<?php include_once "display/recepiedisplay.php"; ?>
+		  	<?php include_once "display/recepieDisplay.php"; ?>
 		  </div>
 		</div>
 		<div class = 'col-xs-3'>

@@ -101,12 +101,13 @@ if(isset($_POST['buy'])){
 
 	<?php 
 	 }
+	 echo "</div>";
 	} else { ?>
-		<div class="thumbnail" style="width: 100%;">
+			<div class="thumbnail" style="width: 100%;">
 				<div class="receptoPavadinimas">Jūsų valgiaraštis tuščias</div>
 			</div>
  <?php 	} ?>
-</div>
+
 </div>
 	<div class = 'row'>
 		<div class ='col-xs-2'>
