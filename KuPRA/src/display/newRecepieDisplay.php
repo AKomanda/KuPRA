@@ -136,8 +136,10 @@ $errors = array();
 				</fieldset>
 				</div>
 				<div class = 'form-group'>
+					<fieldset class="description">
 					<label>Gaminimo aprašmas</label>
 					<textarea class = 'form-control' name="description" rows="3" cols="5" style='width:40%'></textarea>
+					</fieldset>
 				</div>
 				<div class = 'form-group'>
 					<label>Nuotraukos</label>
