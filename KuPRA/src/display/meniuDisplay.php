@@ -56,6 +56,7 @@ if(isset($_POST['buy'])){
 
 <div class="row">
 	<?php 
+	if (!empty($meniu->recepies)) {
 	$lastDate = "0000-00-00";
 	$f = 0;
 	foreach ( $meniu->recepies as $receptas ) {
@@ -86,7 +87,12 @@ if(isset($_POST['buy'])){
 		</div>
 
 	<?php 
-	 } ?>
+	 }
+	} else { ?>
+		<div class="thumbnail" style="width: 100%;">
+				<div class="receptoPavadinimas">Jūsų valgiaraštis tuščias</div>
+			</div>
+ <?php 	} ?>
 </div>
 </div>
 	<div class = 'row'>
