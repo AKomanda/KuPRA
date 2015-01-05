@@ -11,7 +11,6 @@ if (isset($_GET['m'])) {
 	$portion = meniu::getPortionById($_GET['m']);
 }
 $modifier = $portion/($receptas->getPortionCount ());
-echo $modifier;
 if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, recepie::getRequiredProducts($id), $modifier))) {
 	$notEnoughProducts = false;
 } else {

@@ -58,8 +58,8 @@ class fridge {
 	
 	public static function removeProducts($product = array(), $modifier) {
 		foreach ($product as $pr) {
-			$currentProduct = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Produktas = ? AND Matavimo_vienetas = ?", array($pr->Produktas, $pr->Matavimo_vienetas))->results()[0];
-			databaseController::getDB()->query("UPDATE saldytuvas SET Kiekis = ? WHERE Produktas = ? AND Matavimo_vienetas = ?", array(($currentProduct->Kiekis - round(($pr->Kiekis*$modifier), 2)), $pr->Produktas, $pr->Matavimo_vienetas));
+			$currentProduct = databaseController::getDB()->query("SELECT * FROM saldytuvas WHERE Produktas = ? AND Matavimo_vienetas = ? AND Vartotojas = ?", array($pr->Produktas, $pr->Matavimo_vienetas, user::current_user()->id))->results()[0];
+			databaseController::getDB()->query("UPDATE saldytuvas SET Kiekis = ? WHERE Produktas = ? AND Matavimo_vienetas = ? AND Vartotojas = ?", array(($currentProduct->Kiekis - round(($pr->Kiekis*$modifier), 2)), $pr->Produktas, $pr->Matavimo_vienetas, user::current_user()->id));
 		}
 	}
 	
