@@ -2,7 +2,18 @@
 
 include_once './core/init.php';
 
+$errorss = array();
+
 $receptas = recepie::getRecepie($_GET['id']);
+
+if($receptas != false){
+	if($receptas->authorId != User::current_user()->id && !User::current_user()->isAdmin()){
+		$errorss[] = 'Jus neturite teisės redaguoti šio recepto';
+	}	
+}else{
+	
+	$errorss[] = 'Toks receptas nerastas';
+}
 
 $regex_with_space = "/[a-zA-Z0-9 \pL]/";
 
@@ -74,7 +85,7 @@ $errors = array();
 ?>
 
 	<div class="title">
-		<h3>Pridėti receptą</h3>
+		<h3>Recepto redagavimas</h3>
 		<?php
 			$count = 1;
 			foreach ( $errors as $error ) {
@@ -83,6 +94,13 @@ $errors = array();
 			}
 		?>
 	</div>
+	<?php if(!empty($errorss)){
+		$count = 1;
+		foreach ( $errorss as $error ) {
+			echo "<font size='3' color='red'>{$count}.{$error}</font><br>";
+			$count ++;
+		}	
+	}else{?>
 	<div class="recipesForm">
 		<form method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class = 'form-group'>
@@ -168,3 +186,4 @@ $errors = array();
 			
 		</form>
 	</div>
+	<?php }?>
