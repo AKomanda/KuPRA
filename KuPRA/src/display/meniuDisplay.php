@@ -165,7 +165,7 @@ if(isset($_POST['buy'])){
 		      								<input type = "hidden" name = 'product[]' value ='<?php echo $item['product'] ?>'>
 		      							</td>
 		      							<td>
-		      								<input type="number" min="0.01" value ="<?php if(($item['amount'] - round($item['amount']) != 0)) { echo (round($item['amount'], 2) + 0.01); } else { echo round($item['amount']); } ?>" step="0.01" name ='amount[]' class="form-control">
+		      								<input type="number" min="0.01" value ="<?php if(($item['amount'] - round($item['amount'], 2) != 0)) { echo (round($item['amount'], 2) + 0.01); } else { echo round($item['amount'], 2); } ?>" step="0.01" name ='amount[]' class="form-control">
 		      							</td>
 		      							<?php $measure = databaseController::getDB()->get('matavimo_vienetai', array('ID', '=', $item['measure']))->results()[0]->Pavadinimas ?>
 		      							<td>
