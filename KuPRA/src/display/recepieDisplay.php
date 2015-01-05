@@ -10,7 +10,7 @@ if (isset($_GET['m'])) {
 	$alreadyMade =  $receptas->isMadeByUser(user::current_user()->id, $fromMenu);
 	$portion = meniu::getPortionById($_GET['m']);
 }
-$modifier = $portion/$receptas->getPortionCount ();
+$modifier = $portion/($receptas->getPortionCount ());
 if (empty($missingProducts = fridge::searchMissing(user::current_user()->id, recepie::getRequiredProducts($id), $modifier))) {
 	$notEnoughProducts = false;
 } else {
