@@ -53,7 +53,20 @@ if(isset($_POST['buy'])){
 ?>
 
 
-
+<div class = 'row'>
+<div class = 'container'>
+<div class="btn-group" role="group" aria-label="...">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
+			<button class="btn btn-success" onclick="menuHelp()">Pagalba</button>
+                        <script>
+                                function menuHelp() {
+                                        alert("Jau pagamintų receptų iš naujo gaminti negalima,\njie neturi įtakos funkcijai 'Ko man trūksta?'\nir yra apibraukti žaliai.\nNorint vėl gaminti jau pagamintus receptus,\nįkelkite juos į valgiaraštį iš naujo.");
+                                }
+                        </script>
+		</div>
+</div>
+</div>
+<br>
 <div class="row">
 	<?php 
 	if (!empty($meniu->recepies)) {
@@ -114,15 +127,7 @@ if(isset($_POST['buy'])){
 				?>
 			</p>
 		</div>
-		<div class ='col-xs-2'>
-			<button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
-			<button onclick="menuHelp()">Pagalba</button>
-                        <script>
-                                function menuHelp() {
-                                        alert("Jau pagamintų receptų iš naujo gaminti negalima,\njie neturi įtakos funkcijai 'Ko man trūksta?'\nir yra apibraukti žaliai.\nNorint vėl gaminti jau pagamintus receptus,\nįkelkite juos į valgiaraštį iš naujo.");
-                                }
-                        </script>
-		</div>
+		
 	</div>
 
 		<div class="modal fade">
@@ -168,7 +173,7 @@ if(isset($_POST['buy'])){
 		      							</td>
 		      							<td>		      								
 		      								
-											<input id = 'include' type="checkbox" name="include[]" value ='<?php echo serialize(array($item['product'], $item['measure'])); ?>' class="form-control" />		      								
+											<input id = 'include' type="checkbox" checked name="include[]" value ='<?php echo serialize(array($item['product'], $item['measure'])); ?>' class="form-control" />		      								
 		      							</td>
 		      						</tr>
 		      						<?php }?>

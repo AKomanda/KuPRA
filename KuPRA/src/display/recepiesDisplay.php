@@ -64,6 +64,9 @@ if (isset($_GET['type'])) {
 	<div class="container-fluid js-masonry"
 		data-masonry-options='{ "gutter": 10 }'>
 	<?php
+	if(empty($recepies)){
+		echo "<font size='2' color='grey'>Receptų pagal jūsų paiešką nerasta</font>";
+	}
 	foreach ( $recepies as $receptas ) {
 		?>
 		<div class='thumbnail'>

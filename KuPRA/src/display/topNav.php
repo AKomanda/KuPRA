@@ -10,9 +10,6 @@
 		<div class="btn-group btn-group-justified" role="group" aria-label="...">
 	  		<div class="btn-group" role="group">
 	   			 <button type="button" class="btn btn-success"  id="pradzia">Pagrindinis</button>
-	   			 <script type="text/javascript">
-		   			
-				</script>
 	  		</div>
 	  		<div class="btn-group" role="group">
 	    		<button type="button" class="btn btn-success" id="recepies">Receptai</button>
