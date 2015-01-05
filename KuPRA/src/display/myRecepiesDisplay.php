@@ -22,13 +22,24 @@ if($recordCount > $offset){
 	$recepies = array();
 }
 ?>
+<div class = row>
+  <div class="col-md-6">
+  	<div class = 'search'>
+	 	 <select class = 'form-control' onchange="select()" id='sele'>
+	 	 	<option value = 'all'>Visi</option>
+	 	 	<option value = 'private'>Privarųs</option>
+	 	 	<option value = 'public'>Vieši</option>
+	 	 </select>
+	</div>
+  </div>
+</div>
 <div class="row">
 	<div class="container-fluid js-masonry"
-		data-masonry-options='{ "gutter": 10 }'>
+		data-masonry-options='{ "gutter": 10 }' id = 'container'>
 	<?php
 	foreach ( $recepies as $receptas ) {
 		?>
-		<div class='thumbnail'>
+		<div class='thumbnail all <?php if($receptas[0]->Viesumas == 0){echo 'private';}else{echo 'public';} ?>'>
 			<div class='receptoPavadinimas'>
 				<h4><?php echo $receptas[0]->Pavadinimas; ?></h4>
 			</div>
@@ -66,3 +77,17 @@ if($recordCount > $offset){
 			</div>
 		</div>
 </div>
+
+
+<script>
+$(function() {
+	$('#sele').change(function(){
+	$('.all').hide();
+	$('.' + $(this).val()).show();
+	$('#container').masonry({
+        itemSelector: '.all:visible'
+    });
+});
+
+});
+</script>
