@@ -23,6 +23,9 @@
 	  		<div class="btn-group" role="group">
 	    		<button type="button" class="btn btn-success" id="mesures">Matavimo vienetai</button>
 	  		</div>
+	  		<div class="btn-group" role="group">
+	    		<button type="button" class="btn btn-success" id="users">Vartotojai</button>
+	  		</div>
 	  		<script type="text/javascript">
 	    		document.getElementById("products").onclick = function () {
 		        	location.href = "products.php";
@@ -39,6 +42,9 @@
 			   	document.getElementById("mesures").onclick = function () {
 				   	location.href = "measures.php";
 				    };
+			    document.getElementById("users").onclick = function () {
+			   	location.href = "users.php";
+					};
 				</script>
 		</div>
 	</div>
