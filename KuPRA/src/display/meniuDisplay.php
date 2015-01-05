@@ -116,6 +116,12 @@ if(isset($_POST['buy'])){
 		</div>
 		<div class ='col-xs-2'>
 			<button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
+			<button onclick="menuHelp()">Pagalba</button>
+                        <script>
+                                function menuHelp() {
+                                        alert("Jau pagamintų receptų iš naujo gaminti negalima,\njie neturi įtakos funkcijai 'Ko man trūksta?'\nir yra apibraukti žaliai.\nNorint vėl gaminti jau pagamintus receptus,\nįkelkite juos į valgiaraštį iš naujo.");
+                                }
+                        </script>
 		</div>
 	</div>
 
