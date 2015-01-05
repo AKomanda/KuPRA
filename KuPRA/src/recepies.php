@@ -1,9 +1,9 @@
 <?php
 include_once "display/pageHeader.php";
 include_once "class/user.php";
-$id = User::current_user()->id;
+$id = user::current_user()->id;
 include_once 'core/init.php';
-if(!User::isLoggedIn()){
+if(!user::isLoggedIn()){
 	header("Location: welcome.php");
 }
 ?>
