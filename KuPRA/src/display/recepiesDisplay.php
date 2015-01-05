@@ -80,7 +80,7 @@ if (isset($_GET['type'])) {
 			</a>
 			<div class='caption'>
 
-				<p><?php echo substr($receptas[0]->Aprasymas, 0, 100); ?></p>
+				<p><?php echo nl2br(substr($receptas[0]->Aprasymas, 0, 100)); ?></p>
 			</div>
 		</div>
 		<?php

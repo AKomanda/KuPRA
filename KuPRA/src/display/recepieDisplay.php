@@ -206,7 +206,7 @@ if ($_POST) {
 		<div class="col-md-12">
 			<div class="panel panel-default">
 			<div class="panel-body">
-				<p class="text-justiy"><?php echo $receptas->getDescription(); ?> </p>
+				<p class="text-justiy"><?php echo nl2br($receptas->getDescription()); ?> </p>
 			</div>
 			</div>
 		</div>
