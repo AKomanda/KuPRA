@@ -3,7 +3,7 @@
 <?php
 include_once "display/pageHeader.php";
 include_once 'core/init.php';
-if(!User::isLoggedIn()){
+if(!user::isLoggedIn()){
 	header("Location: welcome.php");
 }
 ?>

@@ -4,7 +4,7 @@ include_once "display/pageHeader.php";
 //include_once "display/topNav.php";
 include_once "class/databaseController.php";
 include_once 'core/init.php';
-if(!User::isLoggedIn()){
+if(!user::isLoggedIn()){
 	header("Location: welcome.php");
 }
 $allTopRecepies =  databaseController::getDB()->query('SELECT * FROM receptai ORDER BY Vertinimas DESC')->results();
