@@ -126,7 +126,7 @@
 			    		</div>
 			    		<div class='form-group'>
 			    			<label for="description">Matavimo vienetai:</label>
-			    			<select multiple name = 'measures[]' class="form-control" title = 'Prispauskite "ctrl", kad pasirinkti kelis matavimo vienetus'>
+			    			<select multiple name = 'measures[]' class="form-control" data-toggle="tooltip" data-placement="top" title = 'Prispauskite "ctrl", kad pasirinkti kelis matavimo vienetus'>
             					<?php
 									$measures = measure::getAllMeasures();
 									foreach($measures as $m){
