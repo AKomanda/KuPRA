@@ -39,7 +39,7 @@ $first = true;
 
   <div class="carousel-inner">
   <?php foreach($topRecepies as $recepie){
-  		$photo = Recepie::photo($recepie->ID);
+  		$photo = recepie::photo($recepie->ID);
   		if($first){
   			$first = false;
   ?>

@@ -74,8 +74,7 @@ class product {
 	}
 	
 	public static function isUsed($id){
-		$db = databaseController::getDB();
-		if($db->get('Saldytuvas', array('Produktas', '=', $id))->count() == 0 && $db->get('recepto_produktai', array('Produktas', '=', $id))->count() == 0){
+		if((null == (databaseController::getDB()->get("Saldytuvas", array("Produktas", "=", $id)))) && (null == (databaseController::getDB()->get("recepto_produktai", array("Produktas", "=", $id))))){
 			return false;
 		}else{
 			return true;

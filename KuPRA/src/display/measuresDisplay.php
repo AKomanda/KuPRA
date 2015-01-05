@@ -16,7 +16,7 @@
 	
 	$errors = array();
 	$success = array();
-	$admin = User::current_user()->isAdmin();
+	$admin = user::current_user()->isAdmin();
 	$edit_id = 0;
 	$editErrors = array();
 	
@@ -43,7 +43,7 @@
 	}
 	if(isset($_POST['complete'])){
 		$validator = new Validation();
-		$m = Measure::getById($_POST['id']);
+		$m = measure::getById($_POST['id']);
 		if($m->Trumpinys != $_POST['editShort'] && $m->Pavadinimas != $_POST['editName']){
 			$validator->measureValidation($_POST['editShort'], $_POST['editName']);
 		}elseif($m->Trumpinys != $_POST['editShort']){
@@ -56,7 +56,7 @@
 			databaseController::getDB()->update('matavimo_vienetai', array('Trumpinys'=> $_POST['editShort'], 'Pavadinimas' => $_POST['editName']), array('ID', '=', $_POST['id']));
 		}
 	}
-	$allMeasures = Measure::getAllMeasures();
+	$allMeasures = measure::getAllMeasures();
 	$recordCount = count($allMeasures);
 	if($recordCount > $offset){
 		$measures = array_slice($allMeasures, $offset, $perPage);

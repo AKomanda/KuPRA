@@ -13,7 +13,7 @@
 		$page = 1;
 		$offset = 0;
 	}
-	$admin = $admin = User::current_user()->isAdmin();
+	$admin = $admin = user::current_user()->isAdmin();
 	$errors = array();
 	$file_errors = array();
 	$edit_item = 0;
@@ -31,7 +31,7 @@
 		}
 		if(empty($errors)){
 			databaseController::getDB()->insert('maisto_produktai', array(
-				'Autorius' => User::current_user()->id,
+				'Autorius' => user::current_user()->id,
 				'Pavadinimas' => $_POST['name'],
 				'Aprasymas' => $_POST['description']));
 			$newId = databaseController::getDB ()->getLast ();
@@ -81,7 +81,7 @@
 	}
 	
 
-	$allProducts = Product::all();
+	$allProducts = product::all();
 	$recordCount = count($allProducts);
 	if($recordCount > $offset){
 		$products = array_slice($allProducts, $offset, $perPage);
@@ -128,7 +128,7 @@
 			    			<label for="description">Matavimo vienetai:</label>
 			    			<select multiple name = 'measures[]' class="form-control" title = 'Prispauskite "ctrl", kad pasirinkti kelis matavimo vienetus'>
             					<?php
-									$measures = Measure::getAllMeasures();
+									$measures = measure::getAllMeasures();
 									foreach($measures as $m){
 										echo "<option value ='{$m->ID}'>";
 										echo $m->Pavadinimas;
