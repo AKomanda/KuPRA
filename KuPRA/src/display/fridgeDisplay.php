@@ -17,8 +17,8 @@
 	$found_products = array();
 	
 	function add($p){
-		if(!array_key_exists($p['id'], User::current_user()->fridge)){
-			User::current_user()->fridge[$p['id']] = array(
+		if(!array_key_exists($p['id'], user::current_user()->fridge)){
+			user::current_user()->fridge[$p['id']] = array(
 					'product' => Product::getProduct($p['id']),
 					'amount' => 1,
 					'mesure' => 0
@@ -42,7 +42,7 @@
 					foreach($mat as $m){
 						$vienetai[] = $m;
 					}
-					$found_products[$prod->ID] = Product::getProduct($prod->ID);
+					$found_products[$prod->ID] = product::getProduct($prod->ID);
 				}
 			}
 		}
@@ -56,7 +56,7 @@
 					databaseController::getDB()->update('saldytuvas', array('Kiekis' => $amount), array('ID', '=', $d->ID));
 				}else{
 				databaseController::getDB()->insert('saldytuvas', array(
-					'Vartotojas' => User::current_user()->id,
+					'Vartotojas' => user::current_user()->id,
 					'Produktas' => $_POST['product'],
 					'Kiekis' => $_POST['amount'],
 					'Matavimo_vienetas' => $_POST['vnt']
@@ -94,7 +94,7 @@
 			}		
 		}
 	}
-	$allProducts = User::current_user()->getFridgeContent();
+	$allProducts = user::current_user()->getFridgeContent();
 	$recordCount = count($allProducts);
 	if($recordCount > $offset){
 		$products = array_slice($allProducts, $offset, $perPage);

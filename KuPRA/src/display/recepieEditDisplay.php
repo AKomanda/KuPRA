@@ -11,7 +11,6 @@ if($receptas != false){
 		$errorss[] = 'Jus neturite teisės redaguoti šio recepto';
 	}	
 }else{
-	
 	$errorss[] = 'Toks receptas nerastas';
 }
 
