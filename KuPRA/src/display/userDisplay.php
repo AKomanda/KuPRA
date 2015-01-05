@@ -1,10 +1,10 @@
 <?php
 include_once 'core/init.php';
 $id = $_GET['id'];
-if($id == User::current_user()->id){
+if($id == user::current_user()->id){
 	header('Location: profile.php');
 }
-$user = User::getUser($id);
+$user = user::getUser($id);
 if($user == false){
 	header('Location: index.php');
 }
@@ -16,7 +16,7 @@ if($user == false){
 		<div class="panel-heading"><h3 class="panel-title"><?php echo $user->nick ?></h3></div>
 		<div class="col-xs-4" style = "padding-top: 15px;">
 			<div class = 'profilePicture'>
-				<img class ="img-thumbnail" src=<?php echo $user->photo; ?>>
+				<img class ="img-thumbnail" src=<?php if ($id == user::current_user()->id) { echo $user->photo; } else { echo "../resources/default/user/default.png"; } ?>>
 			</div><br>
 		</div>
 		<div class="col-xs-8" style = "padding-top: 15px;">
@@ -24,23 +24,28 @@ if($user == false){
 				<tbody>
 					<tr>
 						<td class = 'profileHeading'><strong>Vardas:</strong></td>
-						<td class = 'profileContent'><?php echo $user->name; ?></td>
+						<td class = 'profileContent'>
+						<?php if ($id == user::current_user()->id) { echo $user->name; } else { echo "privatus"; }  ?></td>
 					</tr>
 					<tr>
 						<td class = 'profileHeading'><strong>Pavardė:</strong></td>
-						<td class = 'profileContent'><?php echo $user->surname; ?></td>
+						<td class = 'profileContent'>
+						<?php if ($id == user::current_user()->id) { echo $user->surname; } else { echo "privatus"; } ?></td>
 					</tr>
 					<tr>
 						<td class = 'profileHeading'><strong>Adresas:</strong></td>
-						<td class = 'profileContent'><?php echo $user->adress; ?></td>
+						<td class = 'profileContent'>
+						<?php if ($id == user::current_user()->id) { echo $user->adress; } else { echo "privatus"; } ?></td>
 					</tr>
 					<tr>
 						<td class = 'profileHeading'><strong>Aprašymas:</strong></td>
-						<td class='descriptionCell'><?php echo $user->description; ?></td>
+						<td class='descriptionCell'>
+						<?php if ($id == user::current_user()->id) { echo $user->description; } else { echo "privatus"; } ?></td>
 					</tr>
 					<tr>
 						<td class = 'profileHeading'><strong>El. paštas:</strong></td>
-						<td class = 'profileContent'><?php echo $user->email; ?></td>
+						<td class = 'profileContent'>
+						<?php if ($id == user::current_user()->id) { echo $user->email; } else { echo "privatus"; } ?></td>
 					</tr>
 				</tbody>
 			</table>
