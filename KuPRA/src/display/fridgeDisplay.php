@@ -19,7 +19,7 @@
 	function add($p){
 		if(!array_key_exists($p['id'], user::current_user()->fridge)){
 			user::current_user()->fridge[$p['id']] = array(
-					'product' => Product::getProduct($p['id']),
+					'product' => product::getProduct($p['id']),
 					'amount' => 1,
 					'mesure' => 0
 			);
