@@ -18,5 +18,5 @@
 <link rel="stylesheet" type="text/css" href="styles/main.css">
 
 <meta charset="UTF-8">
-<title>Title of the document</title>
+<title>KuPRA</title>
 </head>
