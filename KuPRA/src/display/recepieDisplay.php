@@ -216,7 +216,7 @@ if ($_POST) {
 	<!-- Gaminti  -->
 	<?php if (!$alreadyMade) { ?>
 	<div class="row">
-	<div class="col-md-10"></div>
+	<div class="col-md-9"></div>
 	<div class="col-md-1">
 		<?php if(!isset($_GET['m'])) { ?>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Pridėti į valgiaraštį</button>
