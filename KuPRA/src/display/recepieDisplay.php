@@ -77,7 +77,8 @@ if ($_POST) {
                     <p>sukūrė <strong><a href = <?php echo "user.php?id={$receptas->authorId}"; ?>> <?php echo $receptas->getAuthor(); ?></a></strong></p>
                     <p>
                     	<div class="recepiePortionCount">
-							<div class="recepiePortionCountIco"></div>
+<!-- 							<div class="recepiePortionCountIco"></div> -->
+							<span class="glyphicon glyphicon-glass"></span>
 							<?php
 							if (isset($_GET['m'])) {
 								echo $portion;
@@ -87,7 +88,8 @@ if ($_POST) {
 							?>
 						</div>
 						<div class="recepieTimeToMake">
-							<div class="recepieTimeToMakeIco"></div>
+<!-- 							<div class="recepieTimeToMakeIco"></div> -->
+							<span class ='glyphicon glyphicon-time'></span>
 							<?php
 							echo $receptas->getTimeToMake ();
 							?>
