@@ -7,7 +7,7 @@ $errorss = array();
 $receptas = recepie::getRecepie($_GET['id']);
 
 if($receptas != false){
-	if($receptas->authorId != User::current_user()->id && !User::current_user()->isAdmin()){
+	if($receptas->authorId != user::current_user()->id && !user::current_user()->isAdmin()){
 		$errorss[] = 'Jus neturite teisės redaguoti šio recepto';
 	}	
 }else{
