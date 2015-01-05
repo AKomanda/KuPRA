@@ -59,6 +59,10 @@ if ($_POST) {
 	}
 	
 }
+if(isset($_POST['deleteRec'])){
+	databaseController::getDB()->delete('receptai', array('ID', '=', $id));
+	header('Location: recepies.php');
+}
 ?>
 
 <div class="container-fluid">
@@ -218,20 +222,30 @@ if ($_POST) {
 	<!-- Gaminti  -->
 	<?php if (!$alreadyMade) { ?>
 	<div class="row">
-	<div class="col-md-9"></div>
-	<div class="col-md-1">
+	<div class="col-md-7"></div>
+	<div class="col-md-3">
 		<?php if(!isset($_GET['m'])) { ?>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Pridėti į valgiaraštį</button>
+		<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".modal">Pridėti į valgiaraštį</button>
 		<?php  } else { 
 			if ($notEnoughProducts) {
 			?>
-			<button type="button" class="btn btn-default" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
+			<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".modal">Ko man trūksta?</button>
 			<?php } else {?>
 		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
-		<button type="submit" name="prepareSubmit" class="btn btn-primary">Gaminti</button>
+			<button type="submit" name="prepareSubmit" class="btn btn-success btn-block">Gaminti</button>
 		</form>
+	
 		<?php }
-		} ?>
+		}?>
+		</div>
+		<div class = 'col-md-2'>
+		<?php 
+		if(user::current_user()->isAdmin() && empty(databaseController::getDB()->get('valgiarastis', array('Receptas', '=', $id))->results())){
+		?>
+		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
+			<button type="submit" name="deleteRec" class="btn btn-danger btn-block">Trinti</button>
+		</form>
+		<?php } ?>
 	</div>
 	</div>
 <!-- 	Trukstami produktai -->
