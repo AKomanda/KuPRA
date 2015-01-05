@@ -78,7 +78,7 @@ if ($_POST) {
                     <p>
                     	<div class="recepiePortionCount">
 <!-- 							<div class="recepiePortionCountIco"></div> -->
-							<span class="glyphicon glyphicon-glass"></span>
+							<span class="glyphicon glyphicon-cutlery"></span>
 							<?php
 							if (isset($_GET['m'])) {
 								echo $portion;
