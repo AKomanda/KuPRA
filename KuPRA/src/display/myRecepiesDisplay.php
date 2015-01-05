@@ -27,7 +27,7 @@ if($recordCount > $offset){
   	<div class = 'search'>
 	 	 <select class = 'form-control' onchange="select()" id='sele'>
 	 	 	<option value = 'all'>Visi</option>
-	 	 	<option value = 'private'>Privarųs</option>
+	 	 	<option value = 'private'>Privatūs</option>
 	 	 	<option value = 'public'>Vieši</option>
 	 	 </select>
 	</div>
