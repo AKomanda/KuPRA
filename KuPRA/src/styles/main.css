@@ -623,6 +623,11 @@ a#logo:hover {
     position: relative;
 }
 
+.index {
+	width: 30%;
+    position: relative;
+}
+
 .thumbnail .caption {
 	padding: 0px;
 }

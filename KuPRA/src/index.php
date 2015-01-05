@@ -8,8 +8,8 @@ if(!user::isLoggedIn()){
 	header("Location: welcome.php");
 }
 $allTopRecepies =  databaseController::getDB()->query('SELECT * FROM receptai ORDER BY Vertinimas DESC')->results();
-if(count($allTopRecepies) > 9){
-	$topRecepies = array_slice($allTopRecepies, 0, 9);
+if(count($allTopRecepies) > 10){
+	$topRecepies = array_slice($allTopRecepies, 0, 10);
 }else{
 	$topRecepies = $allTopRecepies;
 }
@@ -29,62 +29,35 @@ $first = true;
 	</div>
 	<div class='row'>
 		<div class = 'col-xs-9'>
+		
 		  <div class = 'mainContainer mainas'>
-		  
-	<div id = 'car' class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  
- 
-  <!-- Wrapper for slides -->
-
-  <div class="carousel-inner">
-  <?php foreach($topRecepies as $recepie){
-  		$photo = recepie::photo($recepie->ID);
-  		if($first){
-  			$first = false;
-  ?>
-    <div class="item active">
-      <div class="col-md-4">
-      		<div class ='CarouselElement'>
-      		<a href="recepie.php?id=<?php echo $recepie->ID; ?>">
-	      		<div class="carousel-header" style = 'text-align: center;'>
-          			<h3><?php echo $recepie->Pavadinimas ?></h3>
-     			 </div>
-				<img src="<?php echo $photo; ?>" class="img-responsive" />			
-			</a>
+		  	<h3 style = 'text-align: center'>Receptų top 10</h3>
+		  	<div class = 'row'>
+			<div class="container-fluid js-masonry" data-masonry-options='{ "gutter": 10 }'>
+				<?php
+					foreach ( $topRecepies as $receptas ) {
+						$photo = recepie::photo($receptas->ID);
+				?>
+				<div class='thumbnail index'>
+					<div class='receptoPavadinimas'>
+						<h4><?php echo $receptas->Pavadinimas; ?></h4>
+					</div>
+					<?php echo "<a href='recepie.php?id=" . $receptas->ID . "'>"?>
+					<div class='receptoNuotrauka'>
+						<img src="<?php echo $photo; ?>" />
+					</div>
+					</a>
+					<div class='caption'>	
+						<p>Vertinimas: <?php echo $receptas->Vertinimas;?>/10</p>
+					</div>
+				</div>
+				<?php
+				}
+				?>				
 			</div>
-      	</div>
-    </div>
-    <?php }else{?>
-    <div class="item">
-      <div class="col-md-4">
-      		<div class ='CarouselElement'>
-      		<a href="recepie.php?id=<?php echo $recepie->ID; ?>">
-	      		<div class="carousel-header" style = 'text-align: center;'>
-          			<h3><?php echo $recepie->Pavadinimas ?></h3>
-     			 </div>
-				<img src="<?php echo $photo; ?>" class="img-responsive" />			
-			</a>
 			</div>
-      	</div>
-    </div>
-    
-    <?php }} ?>
-  </div>
-  <a class="left carousel-control" href="#car" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#car" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-
- 
-  <!-- Controls -->
-  
-</div> 
-
-
 		  </div>
+		
 		</div>
 		<div class = 'col-xs-3'>
 		  <div class = 'mainContainer'>
