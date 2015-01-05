@@ -65,7 +65,9 @@ if ($_POST) {
     <div class="row">
     <div class="col-md-10"></div>
     <div class="col-md-1">
+    	<?php  if(!($receptas->authorId != user::current_user()->id && !user::current_user()->isAdmin())){ ?>
     	<a href="<?php echo "edit.php?id={$id}"; ?>"><input type="button" class="btn btn-xs btn-default" value="Redaguoti"></a>
+    	<?php } ?>
     </div>
     </div>
 	<div class="row">
