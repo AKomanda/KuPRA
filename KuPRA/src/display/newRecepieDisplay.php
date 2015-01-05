@@ -154,6 +154,7 @@ $errors = array();
 					</table>
 					</div>
 				</div>
+				<div class="col-sm-10"></div>
 				<fieldset class="confirm">
 					Privatus? &nbsp;<input name="privacy" type="checkbox" />
 					<input type="submit" value="Pridėti" name = 'sukurti'/>

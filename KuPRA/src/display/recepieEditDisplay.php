@@ -70,7 +70,6 @@ $errors = array();
 				}
 				
 				if(isset($_FILES['photo'])) {
-					databaseController::getDB()->query("DELETE FROM receptu_nuotraukos WHERE receptas = ?", array($_GET['id']));
 					fileUploadController::uplRecepieFile($_GET['id'], $_FILES['photo'], array("jpg", "jpeg", "png", "bmp"), 1024*1024*2,  "/uploads/" . user::current_user()->login . "/" . $newRecpId . "/");
 				}
 				
