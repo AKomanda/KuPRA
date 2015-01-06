@@ -223,15 +223,17 @@ if(isset($_POST['deleteRec'])){
 	<?php if (!$alreadyMade) { ?>
 	<div class="row">
 	<div class="col-md-7"></div>
+	<div class="col-md-2">
 	<?php 
 		if(user::current_user()->isAdmin() && (null == (databaseController::getDB()->get('valgiarastis', array('Receptas', '=', $id))->results()))){
 		?>
-		<div class="col-md-2">
+		
 		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
 			<button type="submit" name="deleteRec" class="btn btn-danger btn-block">Trinti</button>
 		</form>
-		</div>
+		
 		<?php } ?>
+		</div>
 	<div class="col-md-3">
 		<?php if(!isset($_GET['m'])) { ?>
 		<button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target=".modal">Pridėti į valgiaraštį</button>
