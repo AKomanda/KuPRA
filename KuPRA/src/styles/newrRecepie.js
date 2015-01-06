@@ -23,6 +23,10 @@ $(document).ready(
 //						$(this).unbind();
 //						$(this).closest(".row").remove();
 //			});
+			
+			$('.prod').each(function(){
+				fetchMeasures(this);
+			});
 
 			$(".add").click(
 					function() {

@@ -137,7 +137,7 @@ $errors = array();
 						<?php foreach ($receptas->products as $pr) {?>
 							<tr class="row product">
 								<td style = 'min-width:200px;'>
-									<input type="text" name="ingredient[]" id="searchid" value="<?php echo $pr->Produktas; ?>" class="form-control" autocomplete = 'off'>
+									<input type="text" name="ingredient[]" id="searchid" value="<?php echo $pr->Produktas; ?>" class="form-control prod" autocomplete = 'off'>
 									<div id="result" class = 'result'></div></td>
 								<td style = 'min-width:175px;'>
 									<select name="measurement[]" class="form-control" id = 'mat'>	
