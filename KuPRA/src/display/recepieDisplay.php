@@ -240,7 +240,7 @@ if(isset($_POST['deleteRec'])){
 		</div>
 		<div class = 'col-md-2'>
 		<?php 
-		if(user::current_user()->isAdmin() && empty(databaseController::getDB()->get('valgiarastis', array('Receptas', '=', $id))->results())){
+		if(user::current_user()->isAdmin() && (null == (databaseController::getDB()->get('valgiarastis', array('Receptas', '=', $id))->results()))){
 		?>
 		<form method="post" accept-charset="UTF-8" class="form-inline" role="form">
 			<button type="submit" name="deleteRec" class="btn btn-danger btn-block">Trinti</button>
